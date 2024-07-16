@@ -3,386 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tulku Urgyen Quotes: JavaScript Showcase</title>
+    <title>Nonmeditation Quote by Tulku Urgyen</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
         body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            color: white;
             font-family: 'Noto Serif', serif;
-            background: #1a1a1a;
-            color: #fff;
-            line-height: 1.6;
-            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            opacity: 0; /* Initial opacity set to 0 for fade-in effect */
+            transition: opacity 2s; /* Transition for fade-in effect */
         }
-        .quote-container {
+        .container {
             max-width: 800px;
-            margin: 20px auto;
             padding: 20px;
-            background: rgba(255,255,255,0.1);
+            border: 2px solid white;
             border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
         .quote {
-            font-size: 1.2em;
-            margin-bottom: 10px;
+            font-size: 1.5em;
+            line-height: 1.5;
         }
         .author {
-            font-style: italic;
-            text-align: right;
+            margin-top: 20px;
+            font-size: 1.2em;
         }
-        #nav {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.7);
-            padding: 10px;
-            border-radius: 5px;
-        }
-        button {
-            background: #333;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            margin: 2px;
-            cursor: pointer;
-            border-radius: 3px;
-        }
-        button:hover {
-            background: #555;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
     </style>
 </head>
 <body>
-    <div id="nav">
-        <button onclick="prevQuote()">Previous</button>
-        <button onclick="nextQuote()">Next</button>
+    <div class="container">
+        <div class="quote">
+            "Nonmeditation is to be free from the trap of meditating and not meditating. It means letting be in the state of naturalness, without focusing on any object or reference point, without trying to fabricate or alter anything, but simply allowing whatever occurs to arise and dissolve naturally. This is the essence of nonmeditation: to let everything be as it is, without trying to create a particular state of mind. The natural state is effortless and free from any need to alter or control. It is like the sky, open and vast, allowing clouds to come and go without any attachment or aversion. In this way, we recognize the true nature of our mind, beyond concepts and dualistic thinking. This is the practice of nonmeditation."
+        </div>
+        <div class="author">- Tulku Urgyen Rinpoche</div>
     </div>
-    <div id="quoteDisplay" class="quote-container"></div>
-
     <script>
-        const quotes = [
-            "Nonmeditation is to be free from the trap of meditating and not meditating.",
-            "The natural state is effortless and free from any need to alter or control.",
-            "Recognize your nature as empty cognizance, unborn awareness.",
-            "To be free from effort is the way to see the effortless nature.",
-            "The essence of mind is empty; its nature is cognizant.",
-            "Remain in nowness, free from concepts, free from meditation.",
-            "Awareness is naturally present; you don't have to create it.",
-            "The ultimate meditation is to rest in the natural state.",
-            "Unfabricated awareness is the true nature of mind.",
-            "Don't try to meditate; simply rest in natural awareness.",
-            "The nature of mind is like space, boundless and free.",
-            "Recognize that which is aware, the knower itself.",
-            "Rest in the unaltered state, free from fabrication.",
-            "Awareness is ever-present, like the sky behind the clouds.",
-            "The essence of practice is non-practice.",
-            "Let go of all effort and rest in natural being.",
-            "True meditation is beyond meditating and not meditating.",
-            "Recognize the emptiness of awareness itself.",
-            "The natural state is always available, here and now.",
-            "Rest in the unfabricated nature of mind, free from concepts."
-        ];
-
-        let currentQuote = 0;
-
-        function showQuote(index) {
-            const quoteDisplay = document.getElementById('quoteDisplay');
-            quoteDisplay.innerHTML = `
-                <div class="quote">${quotes[index]}</div>
-                <div class="author">- Tulku Urgyen Rinpoche</div>
-            `;
-            applyEffect(index);
-        }
-
-        function nextQuote() {
-            currentQuote = (currentQuote + 1) % quotes.length;
-            showQuote(currentQuote);
-        }
-
-        function prevQuote() {
-            currentQuote = (currentQuote - 1 + quotes.length) % quotes.length;
-            showQuote(currentQuote);
-        }
-
-        function applyEffect(index) {
-            const quoteElement = document.querySelector('.quote');
-            quoteElement.style.opacity = '0';
-            quoteElement.style.transform = 'translateY(20px)';
-            quoteElement.style.transition = 'all 0.5s ease-out';
-
-            switch(index) {
-                case 0: // Typewriter effect
-                    typeWriter(quoteElement, quotes[index]);
-                    break;
-                case 1: // Fade in words
-                    fadeInWords(quoteElement, quotes[index]);
-                    break;
-                case 2: // Color change
-                    colorChange(quoteElement);
-                    break;
-                case 3: // Text shadow pulse
-                    textShadowPulse(quoteElement);
-                    break;
-                case 4: // Zoom in
-                    zoomIn(quoteElement);
-                    break;
-                case 5: // Letter spacing
-                    letterSpacing(quoteElement);
-                    break;
-                case 6: // Rotate words
-                    rotateWords(quoteElement);
-                    break;
-                case 7: // Wave effect
-                    waveEffect(quoteElement);
-                    break;
-                case 8: // Blur in
-                    blurIn(quoteElement);
-                    break;
-                case 9: // Bounce in
-                    bounceIn(quoteElement);
-                    break;
-                case 10: // Neon glow
-                    neonGlow(quoteElement);
-                    break;
-                case 11: // Text scramble
-                    textScramble(quoteElement, quotes[index]);
-                    break;
-                case 12: // 3D flip
-                    flip3D(quoteElement);
-                    break;
-                case 13: // Rain effect
-                    rainEffect(quoteElement);
-                    break;
-                case 14: // Glitch effect
-                    glitchEffect(quoteElement);
-                    break;
-                case 15: // Spiral in
-                    spiralIn(quoteElement);
-                    break;
-                case 16: // Elastic stretch
-                    elasticStretch(quoteElement);
-                    break;
-                case 17: // Smoke effect
-                    smokeEffect(quoteElement);
-                    break;
-                case 18: // Mirror effect
-                    mirrorEffect(quoteElement);
-                    break;
-                case 19: // Shatter effect
-                    shatterEffect(quoteElement);
-                    break;
-            }
-        }
-
-        // Effect implementations
-        function typeWriter(element, text) {
-            element.textContent = '';
-            let i = 0;
-            function type() {
-                if (i < text.length) {
-                    element.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, 50);
-                }
-            }
-            type();
-        }
-
-        function fadeInWords(element, text) {
-            element.innerHTML = text.split(' ').map(word => 
-                `<span style="opacity: 0; transition: opacity 0.5s;">${word}</span>`
-            ).join(' ');
-            let delay = 0;
-            element.querySelectorAll('span').forEach(span => {
-                setTimeout(() => span.style.opacity = '1', delay);
-                delay += 200;
-            });
-        }
-
-        function colorChange(element) {
-            element.style.transition = 'color 2s';
-            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff'];
-            let i = 0;
-            function changeColor() {
-                element.style.color = colors[i];
-                i = (i + 1) % colors.length;
-                setTimeout(changeColor, 2000);
-            }
-            changeColor();
-        }
-
-        function textShadowPulse(element) {
-            element.style.animation = 'textShadowPulse 2s infinite';
-            element.style.textShadow = '0 0 10px #fff';
-        }
-
-        function zoomIn(element) {
-            element.style.transition = 'transform 1s';
-            element.style.transform = 'scale(0)';
-            setTimeout(() => element.style.transform = 'scale(1)', 100);
-        }
-
-        function letterSpacing(element) {
-            element.style.transition = 'letter-spacing 1s';
-            element.style.letterSpacing = '-10px';
-            setTimeout(() => element.style.letterSpacing = 'normal', 100);
-        }
-
-        function rotateWords(element) {
-            element.innerHTML = element.textContent.split(' ').map(word => 
-                `<span style="display: inline-block; transition: transform 1s;">${word}</span>`
-            ).join(' ');
-            element.querySelectorAll('span').forEach(span => {
-                span.style.transform = `rotate(${Math.random() * 360}deg)`;
-                setTimeout(() => span.style.transform = 'rotate(0deg)', 100);
-            });
-        }
-
-        function waveEffect(element) {
-            element.innerHTML = element.textContent.split('').map(char => 
-                `<span style="display: inline-block; position: relative; animation: wave 1s infinite;">${char}</span>`
-            ).join('');
-            element.querySelectorAll('span').forEach((span, index) => {
-                span.style.animationDelay = `${index * 0.1}s`;
-            });
-        }
-
-        function blurIn(element) {
-            element.style.transition = 'filter 2s';
-            element.style.filter = 'blur(10px)';
-            setTimeout(() => element.style.filter = 'blur(0)', 100);
-        }
-
-        function bounceIn(element) {
-            element.style.animation = 'bounceIn 1s';
-        }
-
-        function neonGlow(element) {
-            element.style.transition = 'text-shadow 1s';
-            element.style.textShadow = '0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de';
-        }
-
-        function textScramble(element, finalText) {
-            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            let iteration = 0;
-            const interval = setInterval(() => {
-                element.textContent = finalText.split('').map((letter, index) => {
-                    if (index < iteration) {
-                        return finalText[index];
-                    }
-                    return letters[Math.floor(Math.random() * 26)];
-                }).join('');
-                if (iteration >= finalText.length) clearInterval(interval);
-                iteration += 1 / 3;
-            }, 30);
-        }
-
-        function flip3D(element) {
-            element.style.transition = 'transform 1s';
-            element.style.transform = 'rotateX(90deg)';
-            setTimeout(() => element.style.transform = 'rotateX(0deg)', 100);
-        }
-
-        function rainEffect(element) {
-            element.innerHTML = element.textContent.split('').map(char => 
-                `<span style="display: inline-block; animation: rain 1s;">${char}</span>`
-            ).join('');
-            element.querySelectorAll('span').forEach((span, index) => {
-                span.style.animationDelay = `${Math.random() * 1}s`;
-            });
-        }
-
-        function glitchEffect(element) {
-            element.style.animation = 'glitch 1s infinite';
-        }
-
-        function spiralIn(element) {
-            element.style.transition = 'transform 1s';
-            element.style.transform = 'rotate(720deg) scale(0)';
-            setTimeout(() => element.style.transform = 'rotate(0) scale(1)', 100);
-        }
-
-        function elasticStretch(element) {
-            element.style.animation = 'elasticStretch 1s';
-        }
-
-        function smokeEffect(element) {
-            element.style.transition = 'opacity 2s, filter 2s';
-            element.style.opacity = '0';
-            element.style.filter = 'blur(10px)';
-            setTimeout(() => {
-                element.style.opacity = '1';
-                element.style.filter = 'blur(0)';
-            }, 100);
-        }
-
-        function mirrorEffect(element) {
-            const clone = element.cloneNode(true);
-            clone.style.transform = 'scaleY(-1)';
-            clone.style.opacity = '0.5';
-            clone.style.filter = 'blur(2px)';
-            element.parentNode.insertBefore(clone, element.nextSibling);
-        }
-
-        function shatterEffect(element) {
-            const fragments = 10;
-            const originalText = element.textContent;
-            element.textContent = '';
-            for (let i = 0; i < fragments; i++) {
-                const span = document.createElement('span');
-                span.textContent = originalText;
-                span.style.position = 'absolute';
-                span.style.left = '0';
-                span.style.top = '0';
-                span.style.clipPath = `polygon(${100/fragments*i}% 0, ${100/fragments*(i+1)}% 0, ${100/fragments*(i+1)}% 100%, ${100/fragments*i}% 100%)`;
-                span.style.animation = `shatter 1s ${i * 0.1}s forwards`;
-                element.appendChild(span);
-            }
-        }
-
-        // CSS Animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes textShadowPulse {
-                0% { text-shadow: 0 0 10px #fff; }
-                50% { text-shadow: 0 0 20px #fff; }
-                100% { text-shadow: 0 0 10px #fff; }
-            }
-            @keyframes wave {
-                0%, 100% { top: 0; }
-                50% { top: -10px; }
-            }
-            @keyframes bounceIn {
-                0% { transform: scale(0.3); opacity: 0; }
-                50% { transform: scale(1.05); opacity: 1; }
-                70% { transform: scale(0.9); }
-                100% { transform: scale(1); }
-            }
-            @keyframes rain {
-                0% { transform: translateY(-100%); opacity: 0; }
-                100% { transform: translateY(0); opacity: 1; }
-            }
-            @keyframes glitch {
-                0% { transform: translate(0); }
-                20% { transform: translate(-5px, 5px); }
-                40% { transform: translate(-5px, -5px); }
-                60% { transform: translate(5px, 5px); }
-                80% { transform: translate(5px, -5px); }
-                100% { transform: translate(0); }
-            }
-            @keyframes elasticStretch {
-                0% { transform: scaleX(1); }
-                50% { transform: scaleX(1.5); }
-                100% { transform: scaleX(1); }
-            }
-            @keyframes shatter {
-                0% { transform: translate(0, 0) rotate(0); opacity: 1; }
-                100% { transform: translate(var(--tx), var(--ty)) rotate(var(--rot)); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Initialize
-        showQuote(currentQuote);
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1'; // Fade-in effect on page load
+        });
     </script>
 </body>
 </html>
-
