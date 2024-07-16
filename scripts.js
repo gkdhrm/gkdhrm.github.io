@@ -1,4 +1,18 @@
 const stockApiKey = 'YOUR_ALPHA_VANTAGE_API_KEY';
+const weatherApiKey = 'YOUR_OPENWEATHERMAP_API_KEY';
+const location = 'YOUR_LOCATION'; // e.g., 'New York'
+
+function fetchWeather() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${weatherApiKey}&units=metric`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('weather-data').innerHTML = `
+                <p>Temperature: ${data.main.temp}°C</p>
+                <p>Weather: ${data.weather[0].description}</p>
+            `;
+        })
+        .catch(error => console.error('Error fetching weather data:', error));
+}
 
 function fetchQQQPrice() {
     fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=QQQ&apikey=${stockApiKey}`)
@@ -53,6 +67,7 @@ function fetchBitcoinPrice() {
 }
 
 function fetchAllData() {
+    fetchWeather();
     fetchQQQPrice();
     fetchSPYPrice();
     fetchBitcoinPrice();
