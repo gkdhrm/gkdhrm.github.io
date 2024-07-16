@@ -8,47 +8,141 @@
         body {
             margin: 0;
             padding: 0;
-            background: black;
+            background: linear-gradient(135deg, #1c1c1c 0%, #2c2c2c 100%);
             color: white;
             font-family: 'Noto Serif', serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             overflow: hidden;
             text-align: center;
-            opacity: 0; /* Initial opacity set to 0 for fade-in effect */
-            transition: opacity 2s; /* Transition for fade-in effect */
+            opacity: 0;
+            transition: opacity 2s;
         }
         .container {
             max-width: 800px;
-            padding: 20px;
-            border: 2px solid white;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            padding: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.5);
+            animation: float 6s ease-in-out infinite;
         }
         .quote {
             font-size: 1.5em;
-            line-height: 1.5;
+            line-height: 1.6;
+            margin-bottom: 30px;
         }
         .author {
-            margin-top: 20px;
             font-size: 1.2em;
+            font-style: italic;
+        }
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .copy-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .copy-btn:hover {
+            background-color: #45a049;
+        }
+        .share-btn {
+            background-color: #3b5998;
+            color: white;
+        }
+        .share-btn:hover {
+            background-color: #344e86;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+            .quote {
+                font-size: 1.2em;
+            }
+            .author {
+                font-size: 1em;
+            }
         }
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="quote">
-            "Nonmeditation is to be free from the trap of meditating and not meditating. It means letting be in the state of naturalness, without focusing on any object or reference point, without trying to fabricate or alter anything, but simply allowing whatever occurs to arise and dissolve naturally. This is the essence of nonmeditation: to let everything be as it is, without trying to create a particular state of mind. The natural state is effortless and free from any need to alter or control. It is like the sky, open and vast, allowing clouds to come and go without any attachment or aversion. In this way, we recognize the true nature of our mind, beyond concepts and dualistic thinking. This is the practice of nonmeditation."
-        </div>
+        <div class="quote" id="quote"></div>
         <div class="author">- Tulku Urgyen Rinpoche</div>
+        <div class="buttons">
+            <button class="btn copy-btn" onclick="copyToClipboard()">Copy Quote</button>
+            <button class="btn share-btn" onclick="shareQuote()">Share</button>
+        </div>
     </div>
     <script>
+        const quote = "Nonmeditation is to be free from the trap of meditating and not meditating. It means letting be in the state of naturalness, without focusing on any object or reference point, without trying to fabricate or alter anything, but simply allowing whatever occurs to arise and dissolve naturally. This is the essence of nonmeditation: to let everything be as it is, without trying to create a particular state of mind. The natural state is effortless and free from any need to alter or control. It is like the sky, open and vast, allowing clouds to come and go without any attachment or aversion. In this way, we recognize the true nature of our mind, beyond concepts and dualistic thinking. This is the practice of nonmeditation.";
+        
+        let i = 0;
+        const speed = 30; // Adjust for faster/slower typing
+
+        function typeWriter() {
+            if (i < quote.length) {
+                document.getElementById("quote").innerHTML += quote.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
         window.addEventListener('load', () => {
-            document.body.style.opacity = '1'; // Fade-in effect on page load
+            document.body.style.opacity = '1';
+            typeWriter();
         });
+
+        function copyToClipboard() {
+            const el = document.createElement('textarea');
+            el.value = quote + "\n- Tulku Urgyen Rinpoche";
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert("Quote copied to clipboard!");
+        }
+
+        function shareQuote() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Nonmeditation Quote by Tulku Urgyen',
+                    text: quote + "\n- Tulku Urgyen Rinpoche",
+                    url: window.location.href,
+                })
+                .then(() => console.log('Successful share'))
+                .catch((error) => console.log('Error sharing', error));
+            } else {
+                alert("Web Share API not supported in your browser. You can manually copy the quote and share it.");
+            }
+        }
     </script>
 </body>
 </html>
+
