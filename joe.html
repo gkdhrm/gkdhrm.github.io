@@ -172,6 +172,32 @@
             {
                 text: "Your body's response to stress can quickly pull you out of your preferred state of being. Learning to manage stress effectively is crucial for maintaining a high vibrational state. Practice stress-reduction techniques like deep breathing, progressive muscle relaxation, or mindfulness meditation. When you feel stressed, pause and ask yourself: 'How would I respond to this situation from my preferred state of being?' Then, consciously choose that response. Over time, this practice will help you stay centered and aligned with your desired reality, even in challenging situations.",
                 author: "Dr. Joe Dispenza"
-            },
-            {
-                text: "Quantum entanglement suggests that everything in the universe is interconnected. This means that your state of being doesn't just affect you; it influences the world around you. As you cultivate your preferred state of being, you're not just changing your personal reality, you're contributing to a shift in the collective consciousness. Remember
+            }
+                    ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html>
