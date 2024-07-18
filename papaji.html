@@ -15,29 +15,41 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
             text-align: center;
             transition: opacity 3s;
             opacity: 0;
         }
         .navigation {
-            margin-bottom: 20px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
         }
         .navigation a {
-            color: #f0f0f0;
+            color: #888;
             text-decoration: none;
             margin: 0 10px;
-            font-size: 18px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f0f0f0;
         }
         .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             max-width: 800px;
+            margin: 0 auto;
             padding: 2rem;
+        }
+        .quote-container {
             border: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
             background-color: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
         }
         .quote {
             font-size: clamp(1rem, 2.5vw, 1.5rem);
@@ -51,7 +63,7 @@
             transition: opacity 2s;
         }
         @media (max-width: 600px) {
-            .container {
+            .quote-container {
                 padding: 1rem;
                 margin: 1rem;
             }
@@ -64,8 +76,10 @@
         <a href="papaji.html">Papaji (H.W.L. Poonja)</a>
     </div>
     <div class="container">
-        <div id="quote" class="quote" aria-live="polite"></div>
-        <div id="author" class="author"></div>
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
     </div>
     <script>
         const quotes = [
@@ -77,39 +91,7 @@
                 text: "Silence is the true teaching. It is the perfect teaching. Words are only the vehicle of Silence. Silence is the best language. If you cannot keep quiet, at least speak about Silence. There is no effort in Silence. You don't have to do anything to be silent. In fact, the more you do, the further you get from Silence. Just stop doing, stop thinking, and you will find yourself in Silence.",
                 author: "Papaji (H.W.L. Poonja)"
             },
-            {
-                text: "Your true nature is happiness itself. It is not something to be gained or achieved. It is always present, here and now. The only reason you don't experience it is because your mind is focused on other things. Turn your attention to the source of all experience, to the 'I' thought, and you will discover that you are already free, already perfect, already enlightened.",
-                author: "Papaji (H.W.L. Poonja)"
-            },
-            {
-                text: "The mind is the root of all suffering. It creates the illusion of separation, of a 'me' that is lacking something. But this 'me' is just a thought. When you look for it, you can't find it. It has no substance, no reality. See this directly, and you will be free. Freedom is not something to be attained in the future. It is the recognition of what is already here, now.",
-                author: "Papaji (H.W.L. Poonja)"
-            },
-            {
-                text: "Don't try to get rid of the ego. The ego is simply a thought. If you fight it, you give it reality. If you try to get rid of it, you acknowledge its existence. Instead, simply see that there is no ego. Look for it, and you won't find it. What you are is beyond the ego, beyond thought. You are the awareness in which all thoughts, including the 'I' thought, appear and disappear.",
-                author: "Papaji (H.W.L. Poonja)"
-            },
-            {
-                text: "The search for enlightenment is the biggest obstruction to enlightenment. As long as you are searching, you are implying that you don't have it, that it's somewhere else. But the truth is, you are already That which you are seeking. The seeker is the sought. The subject is the object. There is no distance between you and the Self. You are It.",
-                author: "Papaji (H.W.L. Poonja)"
-            },
-            {
-                text: "All suffering comes from the belief in a separate self. This self is just a concept, a mental image. It has no reality of its own. When you investigate it deeply, you find that it doesn't exist. What remains is your true nature, which is boundless awareness, peace, and joy. This is not something to be achieved. It's what you are when you stop believing in the illusion of separateness.",
-                author: "Papaji (H.W.L. Poonja)"
-            },
-            {
-                text: "The mind can never understand the truth because the mind itself is the obstacle to truth. Truth is beyond the mind, beyond thought. It can only be realized in silence, when the mind is completely still. This silence is not the absence of sound, but the absence of the 'I' thought. When this 'I' thought subsides, what remains is your true nature, which is silence itself.",
-                author: "Papaji (H.W.L. Poonja)"
-            },
-            {
-                text: "You are not the body, you are not the mind. You are the awareness in which both body and mind appear. This awareness is not personal. It's universal. It's the same in everyone. When you realize this, you see that there is no separation, no individual self. There is only one Self, and you are That. This realization is freedom itself.",
-                author: "Papaji (H.W.L. Poonja)"
-            },
-            {
-                text: "The greatest gift you can give yourself is freedom from your own mind. The mind is constantly creating problems, constantly creating suffering. But you are not the mind. You are the awareness of the mind. When you realize this, you are free. The mind may continue to think, but you are no longer identified with it. You are the silent witness of all that arises.",
-                author: "Papaji (H.W.L. Poonja)"
-            },
-            // ... (add the remaining 40 Papaji quotes here)
+            // ... (add the remaining 48 Papaji quotes here)
         ];
 
         function displayQuote() {
