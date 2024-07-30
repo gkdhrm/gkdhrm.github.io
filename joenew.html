@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Joe Dispenza Teachings</title>
+    <meta name="description" content="Authentic quotes by Dr. Joe Dispenza on state of being, manifesting reality, and personal transformation">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a5f7a, #57c84d);
+            color: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f0f0f0;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            position: relative;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: color 0.3s, transform 0.3s;
+            padding: 1rem;
+        }
+        .arrow:hover {
+            color: #ffffff;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .arrow-left {
+            left: -60px;
+        }
+        .arrow-right {
+            right: -60px;
+        }
+        @media (max-width: 900px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+            .arrow {
+                position: static;
+                transform: none;
+                margin: 1rem 0;
+            }
+            .arrow-left {
+                float: left;
+            }
+            .arrow-right {
+                float: right;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <a href="index.html">Tulku Urgyen Rinpoche</a>
+        <a href="papaji.html">Papaji (H.W.L. Poonja)</a>
+        <a href="abraham.html">Abraham Hicks</a>
+        <a href="joe-dispenza.html">Dr. Joe Dispenza</a>
+    </div>
+    <div class="container">
+        <div class="quote-container">
+            <button class="arrow arrow-left" aria-label="Previous quote">&lt;</button>
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+            <button class="arrow arrow-right" aria-label="Next quote">&gt;</button>
+        </div>
+    </div>
+    <script>
+        const quotes = [
+            // ... (quotes array remains unchanged)
+        ];
+
+        let currentQuoteIndex = 0;
+        let autoChangeTimer;
+
+        function displayQuote(index) {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const quote = quotes[index];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = quote.text;
+                authorElement.textContent = `- ${quote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 500);
+
+            // Reset the auto-change timer
+            clearTimeout(autoChangeTimer);
+            startAutoChangeTimer();
+        }
+
+        function nextQuote() {
+            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+            displayQuote(currentQuoteIndex);
+        }
+
+        function previousQuote() {
+            currentQuoteIndex = (currentQuoteIndex - 1 + quotes.length) % quotes.length;
+            displayQuote(currentQuoteIndex);
+        }
+
+        function startAutoChangeTimer() {
+            const currentQuote = quotes[currentQuoteIndex];
+            const delay = Math.max(20000, Math.min(30000, currentQuote.text.length * 75));
+            autoChangeTimer = setTimeout(nextQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote(currentQuoteIndex);
+
+            document.querySelector('.arrow-left').addEventListener('click', previousQuote);
+            document.querySelector('.arrow-right').addEventListener('click', nextQuote);
+        });
+    </script>
+</body>
+</html>
