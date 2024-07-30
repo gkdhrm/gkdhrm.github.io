@@ -251,13 +251,22 @@
             autoChangeTimer = setTimeout(nextQuote, delay);
         }
 
-        window.addEventListener('load', () => {
+        // Initialize the page
+        function init() {
             document.body.style.opacity = '1';
             displayQuote(currentQuoteIndex);
 
             document.querySelector('.arrow-left').addEventListener('click', previousQuote);
             document.querySelector('.arrow-right').addEventListener('click', nextQuote);
-        });
+        }
+
+        // Run initialization when the DOM is fully loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
     </script>
 </body>
 </html>
+
