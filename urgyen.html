@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulku Urgyen Rinpoche Teachings</title>
+    <meta name="description" content="Authentic quotes by Tulku Urgyen Rinpoche on nonduality, unfabricated awareness, nonmeditation, and rigpa">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☸️</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            color: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f0f0f0;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            {
+                text: "Recognizing the nature of mind is like seeing your own face. It's not something that you attain newly or that comes from somewhere else. It's always been present within you. What happens is that you remove the covers that obscure it. When you remove these covers, you recognize what has always been there.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "The nature of mind is not a thing that can be pointed out as 'this' or 'that.' It is not an object of observation, separate from the one observing. It is the very nature of the observer, the cognizant quality itself. This nature is empty of any concrete essence, yet it is cognizant. These two aspects, empty and cognizant, are indivisible.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "Rigpa is the state of primordial awareness, free from conceptual elaboration and dualistic fixation.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "In the recognition of our true nature, there is no separation between subject and object, knower and known. The perceiver and the perceived are of one taste, like water mixed with water.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "Unfabricated awareness is not something to be achieved or created. It is already present, waiting to be recognized. It's like the sun in the sky - even when covered by clouds, it's always there, shining.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "The essence of mind is emptiness; its nature is clarity; its expression is unobstructed. These three aspects are inseparable, like the wetness, clarity, and coolness of water. They are not three different things, but three qualities of the same essence.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "Recognize your nature, and rest in that recognition without distraction. This is the heart of practice. It's not about achieving something new or rejecting what's already here. It's about recognizing what has always been present.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "The true nature of mind is like a mirror, reflecting all appearances without being affected by them. Just as a mirror is not stained by what it reflects, the nature of mind remains pure regardless of what thoughts or emotions arise.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "In the state of rigpa, thoughts are neither rejected nor followed. They are allowed to arise and dissolve naturally, like waves on the ocean. The ocean doesn't try to stop the waves, nor does it get carried away by them. It remains as it is, vast and unmoving.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "Meditation is not about achieving a state of mind, but recognizing the nature of mind itself. It's not about creating something new or getting rid of something old. It's about seeing what has always been there, obscured by our habitual patterns of thinking and perceiving.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "The practice of nonmeditation is to remain in the natural state without fabrication or alteration. It's not about doing something special or trying to change your experience. It's about letting everything be as it is, without interference.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "Awareness itself is inherently free from conceptual elaboration. It is primordially pure and unobstructed. Like space, it cannot be contaminated or improved upon. Our task is simply to recognize this and rest in this recognition.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "In the recognition of our true nature, there is no need to reject thoughts or emotions. They are the self-display of awareness. Just as waves are not separate from the ocean, thoughts and emotions are not separate from the nature of mind.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "The essence of practice is to recognize the empty, cognizant nature of mind and to remain in that recognition. This doesn't mean becoming like a stone, devoid of thought or feeling. It means allowing thoughts and feelings to arise and pass without being caught up in them.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "Nondual awareness is not a state to be achieved, but the ever-present nature of mind to be recognized. It's like the sky - always there, whether we notice it or not. Our practice is to clear away the clouds of conceptual thinking that obscure this open, boundless awareness.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "In the state of rigpa, there is no separation between subject and object, no duality of perceiver and perceived. It's like a mirror and its reflections - they appear distinct, but are in essence inseparable.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "The nature of mind is like space - boundless, open, and unobstructed. Just as space accommodates everything without being affected, the nature of mind allows all experiences without being changed or disturbed.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "True meditation is not about focusing on an object, but resting in the natural state of awareness. It's not about achieving a special state or experience, but recognizing the ever-present nature of mind that is already complete and perfect.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "In the recognition of our true nature, all phenomena are seen as the play of awareness. Like a dream, everything appears vividly, yet lacks inherent existence. This recognition frees us from both attachment and aversion.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "The practice of nonmeditation is to remain in the natural state without effort or fabrication. It's not about trying to stop thoughts or create a special experience. It's about allowing everything to be as it is, without interference or manipulation.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "Rigpa is the primordial wisdom that recognizes the empty nature of all phenomena. It's not something new to be created or attained, but our fundamental nature to be recognized. Like the sun emerging from behind clouds, it's always present, even when obscured.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "In the state of unfabricated awareness, thoughts and emotions are neither accepted nor rejected. They are allowed to arise and dissolve naturally, like reflections in a mirror. The mirror neither clings to pleasant reflections nor pushes away unpleasant ones.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "The essence of practice is to recognize the nature of mind and rest in that recognition without distraction. This doesn't mean forcing the mind to be blank or free from thoughts. It means recognizing the aware quality that is present whether thoughts are there or not.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "Nondual awareness is not something to be created or achieved, but the fundamental nature of mind to be recognized. It's like the vastness of the sky - always present, whether we notice it or not. Our practice is to look beyond the clouds of our habitual thinking and recognize this open, boundless awareness.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+            {
+                text: "In the state of rigpa, all appearances are recognized as the self-display of awareness. Like waves on the ocean, thoughts and perceptions arise and dissolve within the vast expanse of mind itself. There is no need to accept or reject anything - everything is allowed to be as it is.",
+                author: "Tulku Urgyen Rinpoche"
+            },
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html> 

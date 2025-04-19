@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eckhart Tolle Teachings</title>
+    <meta name="description" content="Authentic quotes by Eckhart Tolle on presence, consciousness, and spiritual awakening">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☸️</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2c3e50, #4a6572);
+            color: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f0f0f0;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            {
+                text: "The primary cause of unhappiness is never the situation but your thoughts about it. Be aware of the thoughts you are thinking. Separate them from the situation, which is always neutral, which always is as it is. There is the situation or the fact, and here are my thoughts about it. Instead of making up stories, stay with the facts.",
+                author: "Eckhart Tolle"
+            },
+            {
+                text: "Life will give you whatever experience is most helpful for the evolution of your consciousness. How do you know this is the experience you need? Because this is the experience you are having at the moment. The present moment is always perfect, even if the mind denies it and creates suffering.",
+                author: "Eckhart Tolle"
+            },
+            {
+                text: "Realize deeply that the present moment is all you ever have. Make the Now the primary focus of your life. Whereas before you dwelt in time and paid brief visits to the Now, have your dwelling place in the Now and pay brief visits to past and future when required to deal with the practical aspects of your life situation.",
+                author: "Eckhart Tolle"
+            },
+            {
+                text: "Acknowledging the good that you already have in your life is the foundation for all abundance. Abundance does not come from getting more of what you already have, but from acknowledging and appreciating what you have while wanting more. This is the abundance paradox: the more you acknowledge what you have, the more you will attract.",
+                author: "Eckhart Tolle"
+            },
+            {
+                text: "To love is to recognize yourself in another. The other's difference from you is an illusion. This is not to say you will like everyone, or agree with them, or approve of their actions and opinions. Sometimes the power of presence can only be realized through accepting what is, including people's unconsciousness and limitations.",
+                author: "Eckhart Tolle"
+            },
+            {
+                text: "The moment you realize you are not present, you are present. Whenever you are able to observe your mind, you are no longer trapped in it. Another factor has come in, something that is not of the mind: the witnessing presence. The present moment holds the key to liberation. But you cannot find the present moment as long as you are your mind.",
+                author: "Eckhart Tolle"
+            },
+            {
+                text: "Some changes look negative on the surface but you will soon realize that space is being created in your life for something new to emerge. Make becoming conscious of what you are doing as you are doing it, your practice. Even the smallest task can be transformed if done with complete attention. The rewards are immeasurable.",
+                author: "Eckhart Tolle"
+            },
+            {
+                text: "All true artists, whether they know it or not, create from a place of no-mind, from inner stillness. The mind then gives form to the creative impulse or insight. Even the great scientists have reported that their creative breakthroughs came at a time of mental quietude. The surprising result of a survey among America's most eminent mathematicians was that thinking 'plays only a subordinate part in the brief, decisive phase of the creative act itself.'",
+                author: "Eckhart Tolle"
+            },
+            {
+                text: "You find peace not by rearranging the circumstances of your life, but by realizing who you are at the deepest level. When you live in surrender, something comes through you into the world of duality that is not of this world. It shines through your thoughts, feelings, and actions, yet it is greater than all of these.",
+                author: "Eckhart Tolle"
+            },
+            {
+                text: "The ego identifies with having, but its satisfaction in having is a relatively shallow and short-lived one. Concealed within it remains a deep-seated sense of dissatisfaction, of incompleteness, of 'not enough.' This gives rise to the ego's ceaseless wanting, its continuous demand for more, for what it thinks is 'needed' for its fulfillment and completion.",
+                author: "Eckhart Tolle"
+            }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html> 

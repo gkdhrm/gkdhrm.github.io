@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Joe Dispenza Teachings</title>
+    <meta name="description" content="Authentic quotes by Dr. Joe Dispenza on state of being, manifesting reality, and personal transformation">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a5f7a, #57c84d);
+            color: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f0f0f0;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            {
+                text: "Your thoughts and feelings create your state of being. When you change your state of being, you change your energy, and when you change your energy, you change your life. This is because your state of being is a frequency that you broadcast to the universe, and the universe responds by matching that frequency with experiences that resonate with it. To manifest a new reality, you must become the person who already has what you want. Feel the emotions of having your desire fulfilled, embody the energy of that version of yourself, and watch as your external reality begins to shift to match your internal state.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "The quantum field responds not to what we want; it responds to who we are being. Your state of being is a combination of your thoughts, feelings, and actions. To change your reality, you must first change your state of being. This means aligning your thoughts with your desired outcome, feeling the emotions of already having achieved it, and taking inspired action from that place. When you consistently maintain this new state of being, you create a new signal in the quantum field, and your external reality has no choice but to reorganize itself to match your internal state.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "To enter the state of being of your preference, start by clearly defining what you want to experience. Then, close your eyes and imagine that reality as vividly as possible. Engage all your senses: see it, hear it, feel it, taste it, smell it. As you do this, allow the emotions of having that experience to wash over you. Feel the joy, excitement, gratitude, or peace that comes with it. Practice this daily, and soon you'll find that your default state of being begins to shift. Remember, the more you can sustain this elevated emotional state, the more you draw that reality to you.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "Your personality creates your personal reality. If you want to change your personal reality, you have to change your personality. This means changing your thoughts, behaviors, and emotional reactions. Start by becoming aware of your habitual thought patterns and emotional responses. Then, consciously choose new thoughts and reactions that align with the reality you want to create. Practice these new patterns consistently, and you'll begin to embody a new state of being. As your state of being shifts, so too will your external experiences.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "The present moment is where all possibilities exist. When you're fully present, you're not weighed down by past experiences or anxious about future outcomes. You're in a state of pure potential. To access this state, practice mindfulness. Focus on your breath, observe your thoughts without judgment, and bring your awareness fully into the now. From this place of presence, you can more easily shift your state of being to align with your desires, opening the door for new possibilities to manifest in your life.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "Your brain doesn't know the difference between what's happening in your external world and what's happening in your internal world. This means that when you vividly imagine your desired reality and feel the corresponding emotions, your brain and body begin to change as if that reality is already happening. This is the power of mental rehearsal. By regularly practicing this technique, you're training your brain and body to expect and accept your new reality, making it more likely to manifest in your external world.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "Meditation is a powerful tool for changing your state of being. When you meditate, you're able to bypass the analytical mind and access the subconscious, where deep-seated beliefs and patterns reside. Through consistent meditation practice, you can reprogram these subconscious patterns to align with your desired reality. Start with short sessions and gradually increase the duration. Focus on cultivating the emotions of your desired state of being during your meditation. Over time, this practice will help you maintain that state even outside of meditation.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "Your body is your unconscious mind. It keeps the score of all your experiences, thoughts, and emotions. To change your state of being, you must also change the state of your body. This involves releasing stored emotions and tension through practices like breathwork, yoga, or body scanning meditation. As you release old patterns held in the body, you create space for new, empowering states of being to take root. Pay attention to your body's signals and work on aligning your physical state with your desired emotional and mental state.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "Gratitude is one of the highest vibrational states you can embody. When you're truly grateful, you're signaling to the universe that you already have what you desire. This state of being attracts more experiences to be grateful for. Practice gratitude daily by focusing on what you appreciate in your life right now. Then, extend that gratitude to things you want as if you already have them. Feel the emotion of gratitude deeply. This practice will shift your state of being to one of abundance and receptivity, drawing more positive experiences into your reality.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "The key to manifesting your desired reality is consistency in maintaining your preferred state of being. It's not enough to do it once or twice; you must make it your new normal. This requires dedication and practice. Set reminders throughout your day to check in with your state of being. Are you embodying the energy of your desired reality? If not, take a moment to shift your focus and recalibrate your energy. The more consistent you are, the more quickly you'll see changes in your external reality.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "Your environment plays a crucial role in maintaining your desired state of being. Surround yourself with people, places, and things that support and reinforce your new state. This might mean changing your physical space, the media you consume, or the people you spend time with. Create an environment that reflects and nurtures the reality you're trying to manifest. When your external environment aligns with your internal state, it becomes much easier to maintain that elevated state of being.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "The art of manifestation lies in your ability to feel the future you desire in the present moment. This means moving beyond mere visualization and into embodiment. Don't just see your desired reality; feel it with every fiber of your being. Allow the emotions of that future to course through you now. The more real you can make it feel in the present, the more quickly it will materialize in your physical reality. Practice this daily, and watch as your life begins to mirror your internal state.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "Your beliefs shape your reality. To change your state of being, you must be willing to challenge and change your beliefs. Start by identifying limiting beliefs that are holding you back. Then, consciously choose new, empowering beliefs that align with your desired reality. Repeat these new beliefs to yourself daily, feel the truth of them, and act as if they are already true. Over time, these new beliefs will become your default, shifting your state of being and, consequently, your reality.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "The unknown is where all possibilities exist. Many people fear the unknown, but it's actually the realm of infinite potential. To manifest a new reality, you must become comfortable with the unknown. Practice stepping out of your comfort zone regularly. Embrace uncertainty as an opportunity for growth and transformation. As you become more comfortable with the unknown, you open yourself up to new possibilities and experiences that align with your desired state of being.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "Your attention and intention are powerful tools for manifesting reality. Where you place your attention, energy flows. What you hold as your intention sets the direction for that energy. To shift your state of being, consciously direct your attention towards thoughts, feelings, and experiences that align with your desired reality. Set clear intentions for how you want to feel and what you want to experience. The combination of focused attention and clear intention will help you maintain your preferred state of being, attracting corresponding experiences into your life.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "The heart and brain coherence is a powerful state for manifestation. When your heart and brain are in sync, you enter a state of balance and harmony that allows for clearer thinking, enhanced intuition, and increased manifestation power. To achieve this state, practice heart-focused breathing. Focus your attention on your heart area and imagine breathing through your heart. As you do this, cultivate feelings of appreciation or love. This coherent state will help you maintain your preferred state of being more easily and consistently.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "Your energy field extends beyond your physical body and interacts with the quantum field around you. By consciously managing your energy, you can influence the field and attract experiences that match your energetic state. Practice energy awareness by tuning into how you feel throughout the day. If you notice your energy dipping or becoming negative, use techniques like deep breathing, positive affirmations, or brief meditation to realign your energy with your desired state of being. The more you can maintain a high-vibration energy field, the more positive experiences you'll attract.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "The present moment is your point of power. It's where all change happens and where you have the ability to choose your state of being. Whenever you find yourself dwelling on the past or worrying about the future, gently bring your attention back to the present. Use your senses to ground yourself in the now. From this place of presence, consciously choose thoughts and feelings that align with your desired reality. The more you can stay present and intentional about your state of being, the more effectively you can shape your reality.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "Your subconscious mind is incredibly powerful in shaping your reality. It operates based on programmed beliefs and patterns, many of which were formed in childhood. To change your state of being at a deep level, you need to reprogram your subconscious. This can be done through techniques like repetition, visualization, and emotional rehearsal. Before sleep and upon waking, when your subconscious is most receptive, spend time affirming your new beliefs, visualizing your desired reality, and feeling the associated emotions. Over time, this practice will rewire your subconscious, supporting your new state of being.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "The language you use, both internally and externally, plays a crucial role in shaping your state of being. Pay attention to your self-talk and the words you choose when describing your experiences. Are they aligned with your desired reality? Practice using language that supports your preferred state of being. Speak as if what you desire is already true. This isn't about denial or ignoring challenges, but about consciously choosing language that empowers you and reinforces your desired state. As you shift your language, you'll find your thoughts and feelings naturally aligning with your words.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "Resistance is often the biggest obstacle to maintaining your preferred state of being. When you resist what is, you create tension and negative emotions that lower your vibration. Instead, practice acceptance of the present moment. This doesn't mean you approve of everything or stop desiring change, but that you stop fighting against what is. From a place of acceptance, you can more easily shift into your preferred state of being. Remember, what you resist persists. What you accept, you can transcend.",
+                author: "Dr. Joe Dispenza"
+            },
+            {
+                text: "Your body's response to stress can quickly pull you out of your preferred state of being. Learning to manage stress effectively is crucial for maintaining a high vibrational state. Practice stress-reduction techniques like deep breathing, progressive muscle relaxation, or mindfulness meditation. When you feel stressed, pause and ask yourself: 'How would I respond to this situation from my preferred state of being?' Then, consciously choose that response. Over time, this practice will help you stay centered and aligned with your desired reality, even in challenging situations.",
+                author: "Dr. Joe Dispenza"
+            }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html>

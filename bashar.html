@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bashar Teachings</title>
+    <meta name="description" content="Authentic quotes by Bashar on manifestation, reality creation, and aligning with your preferred state of being">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f0f0f0;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            {
+                text: "The definition of reality is that which exists whether you believe in it or not. The definition of belief is that which only exists because you believe in it. So beliefs themselves are illusions, and that's why they're beliefs. But these illusions are designed to create effects, effects that are very real. Your beliefs have real effects, and that's why you have them.",
+                author: "Bashar"
+            },
+            {
+                text: "What you put out is what you get back. What you believe is what you experience. You are creating your reality in every moment of every day. You are creating your reality with your thoughts, your words, your emotions, and your actions. Everything you do is a statement of who you believe you are.",
+                author: "Bashar"
+            },
+            {
+                text: "Your highest excitement is your internal compass. It is the representation of the path of least resistance to your true self, your authentic self, your highest self. When you follow your excitement, even if you don't know where it leads, you are following the path most connected to your core frequency and thus will manifest the reality most reflective of your true self.",
+                author: "Bashar"
+            },
+            {
+                text: "All possible realities already exist. You're not creating a new reality, you're selecting from a reality that already exists. The quantum field contains every possible reality in wave form. When you match the frequency of a particular reality through your belief, attitude, expectation, and emotional state, that wave collapses into a particle experience in your physical reality.",
+                author: "Bashar"
+            },
+            {
+                text: "Permission slips are beliefs that you think you need in order to allow yourself to be, do, or have what you prefer. But you don't actually need them. You can be, do, or have anything right now if you simply allow yourself to. The only thing stopping you is your belief that something is stopping you. There are no rules except the ones you believe in.",
+                author: "Bashar"
+            },
+            {
+                text: "You cannot experience what you are not the vibration of. This is physics, not philosophy. You must be the frequency of what you wish to experience. If you are being the frequency of frustration, you will attract more things to be frustrated about. If you are being the frequency of joy, you will attract more things to be joyful about.",
+                author: "Bashar"
+            },
+            {
+                text: "Act as if what you prefer is already in your reality. See it, feel it, know it. Do not pretend it is there; know it is there even if physically you cannot yet see it. The physical reality follows the non-physical template. Create the template by being in the state of being of your preference right now, and reality will rearrange itself to match that template.",
+                author: "Bashar"
+            },
+            {
+                text: "The idea of 'acting as if' is not about pretending. It's about recognizing that you exist in an infinite number of parallel realities simultaneously. When you 'act as if,' you're actually shifting your consciousness to a parallel reality where what you desire already exists. You're not creating it; you're tuning into it, like changing the channel on a television.",
+                author: "Bashar"
+            },
+            {
+                text: "Your physical body is actually a projection of your consciousness. It's not the other way around. Your consciousness doesn't come from your brain; your brain comes from your consciousness. When you change your state of consciousness, your body must follow. This is why when you change your beliefs, you change your reality, including your physical experience.",
+                author: "Bashar"
+            },
+            {
+                text: "You are always manifesting. There's no time when you're not manifesting. The question is: what are you manifesting? Are you manifesting what you prefer, or are you manifesting what you don't prefer? The difference lies in what frequency you're being, what state you're in, what beliefs you're holding, and what definitions you've decided to identify with.",
+                author: "Bashar"
+            },
+            {
+                text: "Synchronicity is simply the universe's way of showing you that you're on the right track. When you experience synchronicity, it means you are in alignment with your true self and the reality you prefer. The more you follow your excitement and trust the path it leads you on, the more synchronicity you will experience in your life.",
+                author: "Bashar"
+            },
+            {
+                text: "Every negative emotion is a signal that you are contradicting who you truly are, what you truly believe, and what you truly prefer. It is a sign that you are thinking thoughts that are not in alignment with your true self. Pay attention to these signals and use them as guidance to shift back into alignment with who you really are.",
+                author: "Bashar"
+            },
+            {
+                text: "Your imagination is not making things up. It is actually your ability to tap into parallel realities that already exist. When you imagine something, you are actually tuning into a frequency where that thing already exists. By holding that frequency, you allow that reality to manifest in your physical experience. This is why visualization is so powerful.",
+                author: "Bashar"
+            },
+            {
+                text: "Negative thoughts have more momentum because you've been trained to give them more attention. But they don't have more power. The only power they have is the power you give them through your attention. When you choose to focus on what you prefer instead, you take your power back and build new momentum in the direction of your preference.",
+                author: "Bashar"
+            },
+            {
+                text: "Your beliefs act as filters. They filter out anything that doesn't match what you believe is possible or true. The good news is that you can change your beliefs. When you do, you will begin to see things that were always there but were filtered out by your old beliefs. This is how changing your beliefs changes your reality.",
+                author: "Bashar"
+            },
+            {
+                text: "Time is actually simultaneous. Past, present, and future all exist now. What you call the 'past' and the 'future' are simply different coordinates in the spacetime continuum that all exist simultaneously. When you change your state in the now, you're not just changing your future; you're changing your interpretation of your past and your experience of parallel realities.",
+                author: "Bashar"
+            },
+            {
+                text: "Everything is energy vibrating at different frequencies. When you understand this, you understand that changing your frequency changes what you attract and experience. Your thoughts, emotions, beliefs, and actions all contribute to your overall frequency. By consciously choosing these, you consciously choose the reality you experience.",
+                author: "Bashar"
+            },
+            {
+                text: "The idea of 'no expectations' doesn't mean you don't intend or prefer a specific outcome. It means you don't attach your happiness to that outcome. You can have a preference while being equally open to the idea that something even better might manifest. This is the balance between intention and surrender.",
+                author: "Bashar"
+            },
+            {
+                text: "You cannot become what you already are. You can only recognize it, remember it, and express it. Your journey is not about becoming something you're not; it's about unveiling who you've always been beneath the layers of conditioning and limiting beliefs. This recognition is what allows you to express your authentic self more fully.",
+                author: "Bashar"
+            },
+            {
+                text: "The highest service you can provide to others is to be yourself fully, completely, and authentically. When you are being your true self, you give others permission to be their true selves. This is how you change the world—not by trying to change others, but by being the change yourself and inspiring others through your example.",
+                author: "Bashar"
+            },
+            {
+                text: "Doubt is just a sign that you're straddling realities. One foot is in the reality where your desire exists, and one foot is in the reality where it doesn't. You can't be in both places at once, so you feel the discord as doubt. The cure for doubt is to fully commit to one reality—preferably the one you prefer—and take your focus off the other.",
+                author: "Bashar"
+            },
+            {
+                text: "The universe doesn't respond to what you want; it responds to what you are being. If you want abundance but you're being scarcity, you will keep experiencing scarcity. If you want love but you're being unloving, you will keep experiencing a lack of love. The key is to be what you want to attract, to match the frequency of what you desire.",
+                author: "Bashar"
+            },
+            {
+                text: "Your circumstances don't determine your state of being; your state of being determines your circumstances. Most people have this backwards. They think they need to change their circumstances in order to change their state. But it works the other way around. Change your state first, and your circumstances will change to match.",
+                author: "Bashar"
+            },
+            {
+                text: "Every choice you make is a definition of who you are. When you make a choice, you're saying, 'This is who I am.' The more consistent your choices are with your preferred self-definition, the more consistent your reality will be with your preferences. Your choices are constantly reinforcing the reality you're experiencing.",
+                author: "Bashar"
+            },
+            {
+                text: "Abundance is not something you pursue; it's something you tune into. There is never a lack of abundance in the universe; there is only a lack of the ability to perceive and receive the abundance that's already there. When you shift your frequency to one of abundance, you open yourself to receiving the abundance that has always been available.",
+                author: "Bashar"
+            },
+            {
+                text: "Fear is not real. It's a projected imagined experience that hasn't happened. It's a negative expectation. The only thing that gives it power is your belief in it. When you recognize that fear is just a thought form that you've energized with your attention, you can choose to withdraw your energy from it and focus on what you prefer instead.",
+                author: "Bashar"
+            },
+            {
+                text: "Everything you experience is a reflection of the frequency you're vibrating at. If you don't like what you're experiencing, change your frequency. How? By changing your thoughts, beliefs, emotions, and actions to match the frequency of what you prefer to experience. Your reality is always showing you what frequency you're embodying.",
+                author: "Bashar"
+            },
+            {
+                text: "The idea of 'fake it till you make it' misses the point. It's not about faking anything; it's about recognizing that the reality you prefer already exists, and all you have to do is match its frequency to experience it. You're not pretending to be something you're not; you're allowing yourself to be who you truly are at the core level.",
+                author: "Bashar"
+            },
+            {
+                text: "Your brain processes 400 billion bits of information per second, but you're only consciously aware of 2,000 of those bits. So what determines which 2,000 bits you're aware of? Your beliefs, expectations, and what you're looking for. You literally see what you believe, not the other way around. Change your beliefs, and you'll see a different reality.",
+                author: "Bashar"
+            },
+            {
+                text: "Everything in physical reality is a manifestation of non-physical energy. The thoughts you think, the emotions you feel, the beliefs you hold—these are all non-physical energies that eventually manifest in your physical reality. The lag time between non-physical and physical manifestation is what you experience as time.",
+                author: "Bashar"
+            },
+            {
+                text: "There are no victims in this reality, only creators. You are creating your reality in every moment through your focus, your beliefs, and your state of being. When you take full responsibility for your creations, you reclaim your power to create the reality you prefer. Victim consciousness gives your power away to things outside of you.",
+                author: "Bashar"
+            },
+            {
+                text: "The moment you actually decide what it is you prefer and commit to that decision, the universe begins to rearrange itself to bring that preference into your experience. But you must be decisive. Wishy-washy preferences create wishy-washy realities. Clear, definitive preferences create clear, definitive realities.",
+                author: "Bashar"
+            },
+            {
+                text: "You attract what you are, not what you want. If what you want and what you are are not the same thing, you'll keep attracting what you are until you become what you want. This is why working on yourself is more important than working on the external circumstances. Change yourself, and the circumstances will change to match.",
+                author: "Bashar"
+            },
+            {
+                text: "All transformation begins with relaxation. When you relax, you open yourself to receive. When you're tense, you're closed off. This is why forcing things rarely works, but allowing things to come to you does. The paradox is that the more you let go of the need to control, the more you actually get what you want.",
+                author: "Bashar"
+            },
+            {
+                text: "Your life is a reflection of your beliefs. Your experiences are created by your expectations. If you change your beliefs and expectations, you change your reality. It's that simple. But simple doesn't mean easy. It takes awareness, willingness, and practice to change beliefs that have been ingrained in you for a lifetime.",
+                author: "Bashar"
+            },
+            {
+                text: "Everything you need is already inside you. The answers you seek, the guidance you desire, the love you crave—it's all within you. The external world can only reflect what's already within you. When you go within and connect with your inner being, you'll find everything you've been looking for in the outside world.",
+                author: "Bashar"
+            },
+            {
+                text: "Worry is a waste of imagination. It's using your creative power to manifest what you don't want. Every time you worry, you're imagining a negative outcome and giving it energy. Use your imagination instead to envision what you prefer, and you'll be using your creative power to manifest what you do want.",
+                author: "Bashar"
+            },
+            {
+                text: "The most exciting thing about existence is that there are no limits. You are an infinite being having a temporary physical experience. Any limitations you perceive are self-imposed through your beliefs. When you recognize this, you free yourself to explore the limitless possibilities that have always been available to you.",
+                author: "Bashar"
+            }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html>

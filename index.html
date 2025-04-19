@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spiritual Teachings & Quotes</title>
+    <meta name="description" content="A collection of wisdom quotes from spiritual teachers including Tulku Urgyen Rinpoche, Papaji, Abraham Hicks, Dr. Joe Dispenza, and Eckhart Tolle">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☸️</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            color: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f0f0f0;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .welcome {
+            margin-bottom: 2rem;
+        }
+        .welcome h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+        .welcome p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+        .category {
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+        .category-title {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .teachers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+        .teacher-card {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .teacher-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+        .teacher-card h2 {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            transition: filter 0.8s ease, opacity 0.8s ease;
+        }
+        .teacher-card:hover h2 {
+            filter: blur(2px);
+            opacity: 0.5;
+        }
+        .teacher-card p {
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            z-index: 2;
+            height: calc(100% - 3rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .teacher-card:hover p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .teacher-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.teacher-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.5s ease;
+}
+
+.teacher-card:hover .teacher-image img {
+    transform: scale(1.1);
+}
+
+        .card-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+            cursor: pointer;
+        }
+        .nondual {
+            background: rgba(52, 73, 94, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .manifestation {
+            background: rgba(52, 73, 94, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 600px) {
+            .teacher-image {
+        width: 100px;
+        height: 100px;
+    }
+    .teacher-card {
+        height: 280px;
+    }
+            .container {
+                padding: 1rem;
+            }
+            .teachers-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="welcome">
+            <h1>Wisdom from Contemporary Spiritual Teachers</h1>
+            <p>Welcome to this collection of profound teachings and quotes from some of the most potent spiritual teachers of our time. Each teacher offers a unique perspective on consciousness, presence, and the journey toward self-realization.</p>
+        </div>
+        
+        <div class="category nondual">
+            <h2 class="category-title">Nondual Teachings</h2>
+            <p>These teachers focus on the recognition of our true nature, the dissolution of the separate self, and the direct experience of nondual awareness.</p>
+            <div class="teachers-container">
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/tulku-urgyen.jpg" alt="Tulku Urgyen Rinpoche">
+                    </div>
+                    <h2>Tulku Urgyen Rinpoche</h2>
+                    <p>Renowned Tibetan Buddhist master who taught the recognition of the nature of mind with remarkable clarity. His teachings on rigpa and unfabricated awareness offer direct insight into nonduality.</p>
+                    <a href="urgyen.html" class="card-link" aria-label="View Tulku Urgyen Rinpoche quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/papaji2.jpg" alt="Papaji">
+                    </div>
+                    <h2>Papaji (H.W.L. Poonja)</h2>
+                    <p>A disciple of Ramana Maharshi who became a powerful exponent of Advaita Vedanta. Papaji's direct pointing to the Self has awakened countless seekers to their true nature.</p>
+                    <a href="papaji.html" class="card-link" aria-label="View Papaji quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/eckhart-tolle.jpg" alt="Eckhart Tolle">
+                    </div>
+                    <h2>Eckhart Tolle</h2>
+                    <p>Author of "The Power of Now" and "A New Earth," Eckhart Tolle offers profound teachings on presence, consciousness, and transcending ego identification to discover inner peace.</p>
+                    <a href="eckhart-tolle.html" class="card-link" aria-label="View Eckhart Tolle quotes"></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category manifestation">
+            <h2 class="category-title">Manifestation & Conscious Creation</h2>
+            <p>These teachers focus on the practical application of consciousness principles to create positive change and manifest desired outcomes in life.</p>
+            <div class="teachers-container">
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/esther-hicks.JPG" alt="Esther Hicks">
+                    </div>
+                    <h2>Abraham Hicks</h2>
+                    <p>Offering teachings on the Law of Attraction and conscious creation, Abraham Hicks provides practical guidance on aligning with your true vibrational essence and manifesting from joy.</p>
+                    <a href="abraham.html" class="card-link" aria-label="View Abraham Hicks quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/joe-dispenza.png" alt="Dr. Joe Dispenza">
+                    </div>
+                    <h2>Dr. Joe Dispenza</h2>
+                    <p>Blending neuroscience, quantum physics, and spirituality, Dr. Joe Dispenza teaches how to rewire the brain, heal the body, and create new possibilities through meditation and conscious intention.</p>
+                    <a href="joe-dispenza.html" class="card-link" aria-label="View Dr. Joe Dispenza quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/bashar.png" alt="Bashar">
+                    </div>
+                    <h2>Bashar</h2>
+                    <p>Channeled by Darryl Anka, Bashar offers wisdom on reality creation, parallel realities, and aligning with your highest excitement to manifest your desired experiences and raise your vibrational frequency.</p>
+                    <a href="bashar.html" class="card-link" aria-label="View Bashar quotes"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>

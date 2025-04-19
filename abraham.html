@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abraham Hicks Teachings</title>
+    <meta name="description" content="Authentic quotes by Abraham Hicks on the law of attraction, well-being, and alignment">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌟</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: #ecf0f1;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #ecf0f1;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            {
+                text: "The Law of Attraction is most understood when you see yourself as a magnet getting more and more of the way you feel. When you feel lonely, you attract more loneliness. When you feel poor, you attract more poverty. When you feel sick, you attract more sickness. When you feel unworthy, you attract more unworthiness. When you feel happy, you attract more happiness. You can change your life by changing the way you feel.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "You are the creator of your own reality, and so you are not in jeopardy. You do not need to control the behavior of others in order for you to thrive. Your attention to things that you consider to be wrong, or not enough, or unwanted, is what keeps you from allowing what you want to come into your experience. What you think and what you feel and what manifests is always a match — no exceptions.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "The reason you want every single thing that you want, is because you think you will feel better in the having of it. But, if you don't feel good, right now, in the absence of it, it is not likely to come. Feeling good is the most important thing. Joy is really where you are wanting to put your emphasis. Joy in the now is really the most important thing.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "You cannot notice what-is and complain about it, and be a vibrational match to the solution. When you were living the problem, you were asking for the solution. The solution is a different frequency than the problem. The solution is here. Every time you look at the problem, you're tuning your tuner to the problem frequency. Turn your tuner to the solution frequency, and the solution welcomes you in with open arms. Everything that you want is active in your vibrational reality. Everything you want is pulsing and alive and calling you toward it. All you have to do is chill.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "The Universe does not know whether the vibration that you're offering is because of something you're observing or something you're remembering or something that you are imagining. It just receives the vibration and answers it with things that match it. This is how you create your own reality. It's why you must be aware of your thoughts and focus on feeling good, because what you think and feel is always reflected back to you through the Law of Attraction.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "The appreciation that Source feels for you, never-endingly, will wrap you in a warm blanket of worthiness if you will allow it. But your lack of appreciation for yourself, and your personal perception of unworthiness, holds you apart from that. Let it in. Let it in. Let it in. You are worthy. You are valued. You are the object of appreciation of Source. If you will accept those feelings of appreciation, and no longer try to hold yourself apart from them, your valve will open, and the true essence of that which is you will reveal itself to you in all moments.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "Your life is right now. It's not later. It's not in that time of retirement. It's not when the lover gets here. It's not when you've moved into the new house. It's not when you get the better job. Your life is right now. It will always be right now. You might as well decide to start enjoying your life right now, because it's not ever going to get better than right now-until it gets better right now!",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "The standard of success in life isn't the things. It isn't the money or the stuff. It is absolutely the amount of joy that you feel. The capacity to love and laugh, that's when you're really living. That's when you're really succeeding as a human. Your natural state is joy. Your natural state is love. Your natural state is connection to Source Energy. So when you have found vibrational alignment with that, you are tuned in, tapped in, turned on. And that is the measure of your success.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "When you focus on the good, the good gets better. It's not your job to make something happen—Universal Forces are in place for all of that. Your job is to simply align with the good. When you focus upon anything, you activate a vibration within you. The Law of Attraction then matches that vibration. This is the key to creating the life you want. Focus on the essence of what you want, not the specifics. Trust that the Universe knows the perfect timing and path for your desires to manifest.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "You can't watch out for bad things and allow good things at the same time. It is vibrationally not possible. Choose where you want to put your attention. If you focus on what you want, your life will be filled with it. Focusing on unwanted things only brings more of the same into your life experience. The Universe doesn't hear your words, it feels your vibration. So focus on feeling good, and watch as the good things in your life multiply.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "The greatest gift you can ever give another person is your own happiness. When you are in a state of joy, you are aligned with the energy of Source. From this place, you have access to infinite intelligence, creativity, and love. Your positive energy ripples out and affects everyone around you. By focusing on your own happiness and well-being, you become a powerful force for good in the world. Remember, you cannot get poor enough to help poor people thrive or sick enough to help sick people get well. Your job is to be as happy as you can be, and in doing so, you will be an uplifter to all who cross your path.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "Everything is unfolding perfectly, and as you relax and find ease in your approach to life, as you look for reasons to feel good, you will find yourself in the perfect vibrational place to allow the well-being that has always been yours to flow easily into your experience. Well-being is the order of this Universe. Well-being is the basis of this Universe. Well-being is what is. Sometimes you have to get out of the way of it and let it in. Lighten up. When you try too hard, when you struggle too much, when you make it too serious, you sometimes hold yourself apart from what you want.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "You are joy, looking for a way to express. It's not just that your purpose is joy, it is that you are joy. You are love and joy and freedom and clarity expressing. Energy-frolicking and eager. That's who you are. And so, if you're always reaching for alignment with that, you're always on your path, and your path will take you into all kinds of places. We will not deny that you will not discover miracles and create the reality that you consider your ideal. All of that is there for you. But we can't take our eyes off of you long enough to look down the road to see where you're going. We can't take our eyes off of you.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "The basis of your life is freedom; the purpose of your life is joy. You are free to choose to discover new avenues for your joy. In your joy you will grow; in your growth you will add to the expansion of All-That-Is. (You can't get it wrong, and you never get it done.) Every part of your life is infinitely expanding. Just relax and enjoy the ride.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "Make a decision and then make the decision right. Line up your Energy with it. In most cases it doesn't really matter what you decide. Just decide. There are endless options that would serve you enormously well, and all or any one of them is better than no decision.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "If you want it and expect it, it will be yours very soon. When you look forward to the future with anticipation and expectation of good things, that is the powerful creative force that brings those good things into your experience. Expectation is a powerful attractive force. Expect the things you want, and don't expect the things you don't want.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "You can't take sides against anything. If you would just be for things, you would live in this world of inclusion where you're always looking for the best in people, you're always looking for the best in situations. You're always looking for the best in yourself. And out of that, you would be inspired to thoughts and words and actions that would always serve you.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "The entire Universe is conspiring to give you everything that you want. This is not empty talk. This is Law. When you get your thoughts and emotions in alignment with the energy of your desire, you will see evidence of that evidence. And as you see that evidence and acknowledge that evidence, the evidence will expand. And as you expand it and expect it and relax into it and appreciate it, it will expand more. And then you will be surrounded by so much evidence that there will be no question about the power you have to create your own reality.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "Your emotions are your indicator of how your active thought blends, or doesn't blend, with the thought Source is thinking about the same subject. And as you are aware of your emotions, and as you continue to reach for good-feeling thoughts, you will be able to bridge your thoughts to the thoughts of Source... and then you will be following your path of least resistance to all that you desire.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "You are the vibrational writers of the script of your life, and everyone else in the Universe is playing the part that you have assigned to them. You can literally script any life that you desire, and the Universe will deliver to you the people, places, and events just as you decide them to be. For you are the creator of your own experience—you have only to decide it and allow it to be.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "The Law of Attraction is responding not to your words, not to your conscious thought, but to your vibrational offering. And your vibrational offering is about the way you feel. So, when you're feeling insecure, you're offering a vibration of insecurity. When you're feeling vulnerable, you're offering a vibration of vulnerability. When you're feeling strong, you're offering a vibration of strength. The Law of Attraction is responding to the way you feel.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "You cannot suffer your way to joy. You cannot resent your way to appreciation. You cannot fear your way to love. You cannot vibrate negatively and live positively. That's the way it works. You have to change the way you feel. Now how do you do that? You do it by softening your resistance to unwanted things. You do it by looking for positive aspects. You do it by looking for things to appreciate. You do it by practicing good-feeling thoughts. And as you do that more and more, you will find yourself in the place where good things just keep flowing to you.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "Your work is to create the feeling in yourself even before you have the marriage, even before you have the money, even before you have the thing, even before you have the property. Your work is to create the feeling in yourself, and when you do, the thing must come. It is Law. It must come. And so you can create it first, vibrationally, and then the circumstances and events line up to match the vibration. That's why you want to do the Rampage of Appreciation. That's why you want to do Virtual Reality. That's why you want to imagine it the way you want it to be. That's why you want to pretend.",
+                author: "Abraham Hicks"
+            },
+            {
+                text: "The universe is not punishing you or blessing you. The universe is responding to the vibrational attitude that you are emitting. The more joyful you are, the more Well-being flows to you — and you get to choose the details of how it flows.",
+                author: "Abraham Hicks"
+            },
+            {
+"text": "Your body is an amazing instrument. It is constantly working to heal itself and maintain balance. When you focus on feeling good, you are sending positive vibrations to your body, which can support its natural healing processes.",
+"author": "Abraham Hicks"
+},
+{
+"text": "The Law of Attraction applies to your health as well. When you focus on thoughts and feelings of wellness, you are attracting experiences and resources that support your well-being. Visualize yourself as healthy and vibrant, and allow those positive expectations to guide your choices.",
+"author": "Abraham Hicks"
+},
+{
+"text": "Stress and negative emotions can weaken your body's defenses. When you learn to manage your emotions and cultivate a sense of peace, you are creating a foundation for better health. Prioritize activities that bring you joy and relaxation.",
+"author": "Abraham Hicks"
+},
+{
+"text": "Your body is constantly responding to your thoughts and feelings. When you dwell on worries about your health, you are attracting experiences that might confirm those fears. Focus on gratitude for your body's current abilities, and trust in its natural healing power.",
+"author": "Abraham Hicks"
+},
+{
+"text": "Listen to your body's intuition. It will guide you towards what it needs to feel its best. Craving healthy foods? It's a sign your body needs nourishment. Feeling sluggish? Take a rest or move your body in a way that feels good.",
+"author": "Abraham Hicks"
+},
+{
+"text": "Don't judge yourself for unhealthy habits. Instead, focus on making small, positive changes each day. Celebrate your progress, no matter how small, and trust that over time, these changes will lead to a healthier you.",
+"author": "Abraham Hicks"
+},
+{
+"text": "Your body is a magnificent creation. Appreciate its strength and resilience. When you focus on gratitude for your body, you are sending a powerful signal to the Universe, attracting experiences that support its continued health and well-being.",
+"author": "Abraham Hicks"
+},
+{
+"text": "You are not your body. You are a vibrational being who has a body. When you disconnect from physical limitations and focus on your true essence, you create space for healing and well-being to occur on a deeper level.",
+"author": "Abraham Hicks"
+},
+{
+"text": "Allow yourself to feel good, regardless of your physical circumstances. Joy and positive emotions are powerful healers. Find things that spark joy in your life, and let them fill you with vibrant energy that supports your overall well-being.",
+"author": "Abraham Hicks"
+},
+{
+"text": "Health is a natural state of being. When you align yourself with your Source and allow your true essence to shine through, you naturally attract experiences that promote health and well-being. Trust in the process and focus on feeling good.",
+"author": "Abraham Hicks"
+},
+
+            
+                   ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html>

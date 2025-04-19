@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papaji (H.W.L. Poonja) Teachings</title>
+    <meta name="description" content="Authentic quotes by Papaji on self-inquiry, awakening, and direct pointing to the Self">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☸️</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f3e5ab, #e6c96a);
+            color: #553c1b;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(85, 60, 27, 0.1);
+        }
+        .navigation a {
+            color: #6b4c23;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #8e6529;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(85, 60, 27, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(85, 60, 27, 0.1);
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            {
+                text: "Keep quiet. Don't touch anything. Don't try to make any effort. This is your true nature. Thoughts come and go. Let them come and go. Give them full freedom to arise. Your nature is not affected by the rising of thoughts. Quietness is already present. This is your nature, and to see it, do nothing.",
+                author: "Papaji (H.W.L. Poonja)"
+            },
+            {
+                text: "Self has never moved, never changed, never disappeared. Self is here and now. You only have to recognize it because you are That. The Self is already the Self. It doesn't need to attain anything to be itself. Only reject all that you are not. What remains is the Self.",
+                author: "Papaji (H.W.L. Poonja)"
+            },
+            {
+                text: "Truth is simple. Very simple - so simple that a child can understand it. In fact, so simple that only a child can understand it. Unless you become like a child, you will not understand it. A child who has not yet been corrupted by society, conditioned by the educational system, and contaminated by religions.",
+                author: "Papaji (H.W.L. Poonja)"
+            },
+            {
+                text: "To know yourself, simply reject all that you are not. What remains is your Self. It is not attained by doing something; it is attained by doing nothing. When you do nothing, what is that? That is the Self. When your mind is empty of concepts, the heart is full of love.",
+                author: "Papaji (H.W.L. Poonja)"
+            },
+            {
+                text: "Nothing to do, nothing to become, nothing to attain. Everything is happening by itself. The waking state appears, dream appears, and sleep appears, but you are always the same. You have never gone anywhere. Consciousness is unchanging.",
+                author: "Papaji (H.W.L. Poonja)"
+            },
+            {
+                text: "The most beautiful experience of your life is not enlightenment; it is freedom. Freedom from the idea 'I am enlightened' or 'I am not enlightened.' When you are free from both these concepts, then you are freedom itself. This is true awakening.",
+                author: "Papaji (H.W.L. Poonja)"
+            },
+            {
+                text: "There is no entity as such. The thinker is the thought. If there is no thought, where is the thinker? There is no thinker. The thinker is thought-created, mind-created. If you go beyond thought, there is no entity there. There is no 'I' there, there is silence, emptiness, space.",
+                author: "Papaji (H.W.L. Poonja)"
+            },
+            {
+                text: "Who wants to know what happens after death? Find out who is asking the question. Who is born? The body is born. Who are you? Are you the body? Find out who you are, and all questions will dissolve. The answer is not in words; it is beyond words. It is in silence.",
+                author: "Papaji (H.W.L. Poonja)"
+            },
+            {
+                text: "Don't depend on anything. Don't depend on any person, place, or thing. Don't depend on time. Don't depend on any concept. Just get rid of dependence. Then you are free. Freedom is your nature. It is the nature of every being.",
+                author: "Papaji (H.W.L. Poonja)"
+            },
+            {
+                text: "Keep quiet. This is the greatest spiritual practice. It doesn't mean to go to a cave and close your mouth. It means to let the mind be quiet. Let thoughts come and go, but don't serve them tea. Don't entertain any thought. Then you will see who you are.",
+                author: "Papaji (H.W.L. Poonja)"
+            },
+            {
+                text: "The Self is pure awareness. This awareness is not an attribute of the Self; it is the Self. This awareness is permanent, beginningless, endless. It always is as it is. You are That. Anything that rises from This and returns to This is merely a phenomenon, an appearance.",
+                author: "Papaji (H.W.L. Poonja)"
+            },
+            {
+                text: "Liberation is not in the future. If it is to happen, it will happen NOW. Either you are free now, or you are not free. There is no gradual path to freedom. You are either bound or free. And to know which, you have to find out who you are. Who is bound? Who needs to be free?",
+                author: "Papaji (H.W.L. Poonja)"
+            },
+            {
+                text: "The ultimate truth is so simple. It is nothing more than being in the pristine state. This is all that needs to be said. Still, it is a wonder that to teach this simple truth there should be so many religions, so many yogas, and so many philosophies.",
+                author: "Papaji (H.W.L. Poonja)"
+            },
+            {
+                text: "What is needed is to stop all seeking. Just stop all seeking and see what is already here. All seeking is in time, in the future, but what you are looking for is here now. It always has been. It never left. How can the eternal ever leave? It is not a thing that comes and goes.",
+                author: "Papaji (H.W.L. Poonja)"
+            },
+            {
+                text: "Awakening is not changing who you are, but discarding who you are not. The ultimate truth of who you are is not in the past or future. It is here now in this moment, in this consciousness. This consciousness is universal, without birth, without death. You are That.",
+                author: "Papaji (H.W.L. Poonja)"
+            }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html>
