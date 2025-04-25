@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tilopa Teachings</title>
+    <meta name="description" content="Authentic quotes by Tilopa on Mahamudra, nonduality, and the nature of mind">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💧</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #232526, #5d6680);
+            color: #f7f7f7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #b2bec3;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f7f7f7;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.04);
+            background-color: rgba(35, 37, 38, 0.18);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .original-text {
+            font-size: 0.95em;
+            color: #b2bec3;
+            font-style: italic;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <span id="original" class="original-text"></span>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            { text: "Let go of what has passed. Let go of what may come. Let go of what is happening now. Don't try to figure anything out. Don't try to make anything happen. Relax, right now, and rest.", author: "Tilopa" },
+            { text: "The mind that seeks liberation is the mind that binds you. Rest in the natural state, free from grasping and aversion, and you will discover the freedom that is always present.", author: "Tilopa" },
+            { text: "All phenomena are like dreams, illusions, bubbles, or shadows. They have no true substance, no independent reality. Recognize this, and the mind will settle into its own nature.", author: "Tilopa" },
+            { text: "The essence of mind is like space: open, clear, and without center or edge. Rest in this spaciousness, and all confusion will dissolve.", author: "Tilopa" },
+            { text: "Do not seek the truth; only cease to cherish opinions. When you let go of all concepts, the natural state reveals itself effortlessly.", author: "Tilopa" },
+            { text: "The river flows naturally to the ocean. In the same way, the mind, when left alone, returns to its own nature. Do not interfere; simply allow everything to be as it is.", author: "Tilopa" },
+            { text: "Thoughts arise and dissolve like waves on the ocean. You are the ocean, vast and unchanging, not the waves that come and go.", author: "Tilopa" },
+            { text: "There is nothing to meditate on, nothing to realize, nothing to attain. The very search for enlightenment is what obscures the truth of your being.", author: "Tilopa" },
+            { text: "The mind is like a monkey, always jumping from one thing to another. Let it tire itself out, and rest as the witness, unmoved and serene.", author: "Tilopa" },
+            { text: "All appearances are mind, and mind itself is empty. In this recognition, all suffering ceases, and only peace remains.", author: "Tilopa" },
+            { text: "The natural state is beyond effort and non-effort, beyond meditation and non-meditation. It is the ever-present awareness in which all experiences arise and dissolve.", author: "Tilopa" },
+            { text: "Do not try to stop thoughts or control the mind. Simply recognize the awareness in which all thoughts appear, and rest as that.", author: "Tilopa" },
+            { text: "The true nature of mind is luminous and empty, like the sky. Clouds may come and go, but the sky remains untouched.", author: "Tilopa" },
+            { text: "Freedom is not found by seeking, but by letting go of seeking. When you stop searching, you discover that you are already free.", author: "Tilopa" },
+            { text: "Let go of all effort, all striving, all resistance. Rest in the simplicity of being, and the truth will reveal itself.", author: "Tilopa" },
+            { text: "The mind is restless by nature, but its essence is peace. Recognize this, and let the mind return to its own ground.", author: "Tilopa" },
+            { text: "There is no need to purify the mind or attain any special state. The natural state is already pure, already perfect, already complete.", author: "Tilopa" },
+            { text: "All teachings are only pointers to the truth. The truth itself is beyond words, beyond thought, beyond all description.", author: "Tilopa" },
+            { text: "The greatest obstacle to realization is the belief that there is something to realize. Let go of this belief, and the truth will shine forth effortlessly.", author: "Tilopa" },
+            { text: "Rest in the natural state, free from hope and fear, free from grasping and aversion. Here, you will find the peace that passes all understanding.", author: "Tilopa" }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const originalElement = document.getElementById('original');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            originalElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                if (randomQuote.original) {
+                    originalElement.textContent = randomQuote.original;
+                    originalElement.style.display = 'block';
+                } else {
+                    originalElement.textContent = '';
+                    originalElement.style.display = 'none';
+                }
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+                originalElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html> 

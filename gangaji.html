@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gangaji Teachings</title>
+    <meta name="description" content="Authentic quotes by Gangaji on nonduality, self-inquiry, and the nature of the Self">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #614385, #49547a);
+            color: #f7f7f7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #b2bec3;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f7f7f7;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.04);
+            background-color: rgba(97, 67, 133, 0.18);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .original-text {
+            font-size: 0.95em;
+            color: #b2bec3;
+            font-style: italic;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <span id="original" class="original-text"></span>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            { text: "Stop all movement, even the movement toward enlightenment. Be still, and discover that you are already home. The peace you seek is your own true nature, always present, always available. In this stillness, all questions dissolve, and only love remains.", author: "Gangaji" },
+            { text: "The invitation is to stop searching, to stop running from yourself. Turn your attention inward and rest in the heart of being. Here, you will find a peace that is not dependent on circumstances, a joy that is not touched by time.", author: "Gangaji" },
+            { text: "You are not your thoughts, not your feelings, not your story. You are the awareness in which all these arise and pass away. When you recognize this, you are free from the tyranny of the mind and the world.", author: "Gangaji" },
+            { text: "The mind will always find something to fix, something to improve. But the heart knows that you are already whole, already complete. Rest in the heart, and let the mind be as it is. In this way, you live in harmony with yourself and the world.", author: "Gangaji" },
+            { text: "Suffering arises from the belief in separation. When you see that all is one, that there is no other, suffering dissolves. This is not a belief, but a direct experience available to all who are willing to look.", author: "Gangaji" },
+            { text: "Let go of all concepts, even the concept of letting go. What remains is pure awareness, untouched by thought or experience. This is your true nature, ever-present and unchanging.", author: "Gangaji" },
+            { text: "The world is not outside you; it is a projection of consciousness. When you see this, you are no longer a victim of circumstances. You are the creator of your experience, and in this recognition, you find true freedom.", author: "Gangaji" },
+            { text: "Love is the natural fragrance of being. When you are free from identification with the mind, love flows effortlessly. It is not a feeling towards another, but the recognition of oneness with all that is.", author: "Gangaji" },
+            { text: "You do not need to become anything. The search for enlightenment is itself the obstacle. When you stop seeking and simply rest in being, you realize that you are already that which you seek. The journey ends where it began: in the simple presence of awareness.", author: "Gangaji" },
+            { text: "True meditation is not a practice, but a state of being. It is the effortless awareness of what is, without judgment or resistance. In this openness, all tension dissolves, and you are left with the pure joy of existence.", author: "Gangaji" },
+            { text: "The heart is the center of being, the source of all wisdom and love. When you live from the heart, you are in harmony with yourself and the world. The mind may doubt, but the heart knows the truth.", author: "Gangaji" },
+            { text: "You are not the doer, but the witnessing presence in which all action occurs. When you see this, all effort drops away, and life flows naturally. There is no need to control or direct; everything unfolds perfectly in awareness.", author: "Gangaji" },
+            { text: "Peace is not something to be attained, but the natural state of being. When you stop searching and simply rest in awareness, peace reveals itself. It is always present, waiting to be recognized.", author: "Gangaji" },
+            { text: "The greatest gift you can offer the world is your own presence. When you are fully present, you radiate peace and love to all around you. This is the true service, the highest form of compassion.", author: "Gangaji" },
+            { text: "Do not try to change the world; change your relationship to it. When you see the world as a reflection of your own consciousness, you gain the power to transform your experience. The world is not outside you; it is within.", author: "Gangaji" },
+            { text: "Freedom is not the absence of limitation, but the recognition that you are not limited by anything. You are the boundless awareness in which all limitations appear and disappear. This is the true meaning of liberation.", author: "Gangaji" },
+            { text: "Let thoughts come and go, like clouds in the sky. You are the sky, vast and unchanging, untouched by the passing weather. In this recognition, all anxiety and fear dissolve.", author: "Gangaji" },
+            { text: "The mind seeks answers, but the heart knows that there are no questions. In the silence of being, all questions dissolve, and only peace remains. Trust the heart, and you will find your way home.", author: "Gangaji" },
+            { text: "You are the light of awareness, shining in every experience. Do not look for yourself in the objects of perception; you are the perceiver, the witness of all that appears. This recognition is the key to lasting peace and happiness.", author: "Gangaji" },
+            { text: "Let go of all ideas about yourself, good or bad. You are not the story the mind tells; you are the awareness in which all stories appear. When you let go of identification with the mind, you discover a freedom that is beyond description. This is the freedom of the Self, your true home.", author: "Gangaji" }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const originalElement = document.getElementById('original');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            originalElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                if (randomQuote.original) {
+                    originalElement.textContent = randomQuote.original;
+                    originalElement.style.display = 'block';
+                } else {
+                    originalElement.textContent = '';
+                    originalElement.style.display = 'none';
+                }
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+                originalElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html> 

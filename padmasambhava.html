@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padmasambhava Teachings</title>
+    <meta name="description" content="Authentic long quotes by Padmasambhava on Dzogchen and nonduality.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☸️</text></svg>">
+    <style>
+        body { margin: 0; padding: 0; background: linear-gradient(135deg, #1a1a1a, #2a2a2a); color: #f0f0f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif; display: flex; flex-direction: column; min-height: 100vh; text-align: center; transition: opacity 3s; opacity: 0; }
+        .navigation { padding: 10px; background-color: rgba(0, 0, 0, 0.2); }
+        .navigation a { color: #bdc3c7; text-decoration: none; margin: 0 10px; font-size: 14px; transition: color 0.3s; }
+        .navigation a:hover { color: #f0f0f0; }
+        .container { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .quote-container { border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 15px; box-shadow: 0 0 30px rgba(255, 255, 255, 0.05); background-color: rgba(0, 0, 0, 0.3); padding: 2rem; }
+        .quote { font-size: clamp(1rem, 2.5vw, 1.5rem); line-height: 1.6; margin-bottom: 1rem; transition: opacity 2s; }
+        .author { font-size: clamp(0.8rem, 2vw, 1.2rem); opacity: 0.8; transition: opacity 2s; }
+        @media (max-width: 600px) { .quote-container { padding: 1rem; margin: 1rem; } }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            { text: "Abandon your notions of the past, without attributing a temporal sequence. Cut off your mental associations regarding the future, without anticipation. Rest in a spacious modality, without clinging to the thoughts of the present. Do not meditate at all, since there is nothing upon which to meditate. Instead, revelation will come through undistracted mindfulness, for there is nothing by which you can be distracted. In this way, the natural state reveals itself effortlessly.", author: "Padmasambhava" },
+            { text: "If, upon looking outwards towards the external expanse of the sky, there are no projections emanated by the mind, and if, on looking inwards at one's own mind, there is no projectionist who projects thoughts by thinking them, then one's own mind, completely free from conceptual projections, will become luminously clear. In this clarity, all phenomena are seen as the play of awareness, and the mind abides in its natural state, free from grasping and aversion.", author: "Padmasambhava" },
+            { text: "All phenomena of samsara and nirvana are your own mind. When you recognize this, you see that there is nothing to accept or reject, nothing to gain or lose. The mind's nature is empty, luminous, and unimpeded. Rest in this recognition, and all appearances will self-liberate in the expanse of awareness.", author: "Padmasambhava" },
+            { text: "Look into the awakened mind of your own awareness. It has neither form nor color, neither center nor edge. At first, it has no origin but is empty. Next, it has no dwelling place but is empty. At the end, it has no destination but is empty. This emptiness is not made of anything and is clear and cognizant. When you see this and recognize it, you know your natural face and understand the nature of things.", author: "Padmasambhava" },
+            { text: "Knowing one thing liberates all. Although hundreds or thousands of explanations are given, there is only one thing to be understood—awareness itself, your true nature. When that one thing is understood, everything is liberated. There is nothing to accept and nothing to reject in that vast openness, as everything arises and vanishes as a pure play of essenceless awareness.", author: "Padmasambhava" },
+            { text: "When you hear pleasant or unpleasant words, understand them to be an empty resounding, like an echo. When you encounter severe misfortune and misery, understand it to be a temporary occurrence, a deluded experience. Recognize that the innate nature is never apart from you. Rest in this recognition, and you will not be disturbed by the play of appearances.", author: "Padmasambhava" },
+            { text: "Don't mistake mere words to be the meaning of the teachings. Mingle the practice with your own being and attain liberation from samsara right now. The true meaning is not found in concepts, but in the direct experience of awareness. Rest in the natural state, and all phenomena will self-liberate.", author: "Padmasambhava" },
+            { text: "The root of faults is nothing other than your ego-clinging, the attitude of deluded fixation. Cut the ties of ego-clinging, cast away the fixation on enemy and friend, and forsake worldly concerns. Abandon materialistic pursuits and engage in nothing but the Dharma from the core of your heart. In this way, the mind's true nature is revealed.", author: "Padmasambhava" },
+            { text: "What is the difference between buddhas and sentient beings? It is nothing other than realizing or not realizing mind. The substance of the awakened state, of buddha, is present within you, but you don't recognize it. When you do, all confusion dissolves, and you abide in the natural state, free from suffering.", author: "Padmasambhava" },
+            { text: "If you want to know your past life, look at your present condition. If you want to know your future life, look at your present actions. The law of cause and effect is unfailing, but the recognition of your true nature transcends all karma. Rest in awareness, and you are free from the cycles of birth and death.", author: "Padmasambhava" },
+            { text: "When your body is in seclusion your mind will be also. Give up idle gossip and speak less. If you hurt another's feelings, both of you create negative karma. Don't allow yourself to feel attached or hostile. Maintain a peaceful frame of mind, and give up angry and harsh words; instead, speak with a smiling face. In this way, the mind abides in its natural clarity.", author: "Padmasambhava" },
+            { text: "Associate with companions who are in harmony with the Dharma and who don't promote disturbing emotions. Keeping company with unwholesome friends, you cannot possibly avoid being influenced by their ways. That is the root of going astray. Remain with those who support your practice, and your mind will naturally settle in the state of awareness.", author: "Padmasambhava" },
+            { text: "Agitation due to circumstances occurs when, because of an external incident, you follow a thought and your mind becomes agitated and scatters into a disturbing emotion. When that happens, keep the attitude of 'There is no need to do anything.' Train in loving kindness and compassion, disenchantment, means and knowledge, and devotion. Persevere in the practice as at the time of the view, and that will clear it.", author: "Padmasambhava" },
+            { text: "When you rest in the natural state, all thoughts and emotions arise and dissolve like clouds in the sky. The sky is never affected by the clouds, no matter how many appear. In the same way, your true nature is never affected by the play of thoughts and emotions. Recognize this, and you are free.", author: "Padmasambhava" },
+            { text: "Death holds up an all-seeing mirror, the mirror of past actions, to our eyes, in which the consequences of all our negative and positive actions are clearly seen. There is a weighing of our past actions in the light of their consequences, the balance of which will determine the kind of existence or mental state we are being driven to enter. Recognize the nature of mind, and you are free from all fear.", author: "Padmasambhava" },
+            { text: "Transcendent renunciation is developed by meditating on the preciousness of human life, the immediacy of death, the inexorability of evolutionary causality, and the sufferings of the ignorance-driven, involuntary life cycle. Renunciation automatically occurs when you come face-to-face with your real existential situation, and so develop a genuine sympathy for yourself, having given up pretending the prison of habitual emotions and confusions is just fine. In this way, you shift your priorities and feel a profound relief at unburdening yourself of a weight of worry over inconsequential things.", author: "Padmasambhava" },
+            { text: "O, with your mind far away, thinking that death will not come, entranced by the pointless activities of this life, if you were to return empty-handed now, would not your life's purpose have been utterly confused? Recognize what it is that you truly need—it is a sacred teaching for liberation. Should you not practice this divine teaching, beginning from this very moment?", author: "Padmasambhava" },
+            { text: "When realization occurs you should definitely be free from samsara, so that your disturbing emotions naturally subside and become original wakefulness. What is the use of a realization that fails to reduce your disturbing emotions? True realization brings about a natural peace and clarity, free from all afflictions.", author: "Padmasambhava" },
+            { text: "The mind is empty in essence and luminous clarity in nature. Empty in essence means a vast openness like the free space. There is nothing substantial about it, nothing can impede it, and it is never born and never ceases. Yet, it is luminously clear in nature. Whatever rises up in that space is spontaneously compassionate. No matter what else one knows, unless this is directly realized, there is no liberation.", author: "Padmasambhava" },
+            { text: "May all sentient beings be endowed with happiness! May they all be separated from suffering and its causes! May they be endowed with joy, free from suffering! May they abide in equanimity, free from attachment or aversion. This is the aspiration of the awakened mind, arising naturally from the recognition of our true nature.", author: "Padmasambhava" }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+            setInterval(displayQuote, 18000);
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khenpo Tsültrim Gyamtso Rinpoche Teachings</title>
+    <meta name="description" content="Authentic long quotes by Khenpo Tsültrim Gyamtso Rinpoche on Dzogchen, Mahamudra, and nonduality.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☸️</text></svg>">
+    <style>
+        body { margin: 0; padding: 0; background: linear-gradient(135deg, #1a1a1a, #2a2a2a); color: #f0f0f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif; display: flex; flex-direction: column; min-height: 100vh; text-align: center; transition: opacity 3s; opacity: 0; }
+        .navigation { padding: 10px; background-color: rgba(0, 0, 0, 0.2); }
+        .navigation a { color: #bdc3c7; text-decoration: none; margin: 0 10px; font-size: 14px; transition: color 0.3s; }
+        .navigation a:hover { color: #f0f0f0; }
+        .container { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .quote-container { border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 15px; box-shadow: 0 0 30px rgba(255, 255, 255, 0.05); background-color: rgba(0, 0, 0, 0.3); padding: 2rem; }
+        .quote { font-size: clamp(1rem, 2.5vw, 1.5rem); line-height: 1.6; margin-bottom: 1rem; transition: opacity 2s; }
+        .author { font-size: clamp(0.8rem, 2vw, 1.2rem); opacity: 0.8; transition: opacity 2s; }
+        @media (max-width: 600px) { .quote-container { padding: 1rem; margin: 1rem; } }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            { text: "Mind is, at one and the same time, both real and empty. It is real in the sense that all experience is basically a manifestation of mind. It is empty in the sense that it is not a permanent, single, independent entity. It is instead a stream of fleeting, dependently arising moments of consciousness. Recognizing this, we rest in the natural state, free from fixation.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "Existence and nonexistence are both extremes, pure and impure are the same. Therefore, abandoning all extremes, the wise do not even abide in the middle. The mind is naturally free from mental constructions, and there is nothing to add or remove. This is emptiness without any sense of negating anything and without any concept of emptiness.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "Although this path is called the path of the two accumulations, in the last analysis there is no accumulation, no path and no fruit. The mind just rests naturally in its natural state without contrivance. This is the essence of Mahamudra and Dzogchen, the realization that nothing needs to be changed or improved.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "Look at appearance-emptiness forms, listen to sound and emptiness sounds, rest in mind's nature, clarity-emptiness, and when your thoughts free themselves, laugh, oh laugh 'Ha ha! Hee hee!' In this way, all phenomena are recognized as the play of awareness, and self-liberate without effort.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "Hey, hey, lucky students, diligent, faithful and smart, take a look at mind's nature—simplicity unborn. When reference points and signs dissolve in certainty, don't strive, strain, or stop, just relax naturally. Look nakedly at the inexpressible—mind's basic nature, bliss and emptiness. Relaxed, at ease, fixation-free, all that binds is free in bliss-emptiness.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "Within this clear light, the dharmadhatu, take a look at the play of unborn mind. Mind's play manifests as appearance-emptiness. Pure awareness, from beginningless time, naturally present, transcending mind—thoughts that this view is best dissolve naturally when we realize mind's reality.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "This mind that's not tampered with, left uncontrived, is when feeling good feels just right. When we rest in the uncontrived state, all confusion dissolves, and the natural clarity of mind shines forth. This is the heart of Mahamudra and Dzogchen practice.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "Emptiness is the deepest and most subtle topic one could ever attempt to understand, so it is never enough to hear or read teachings on emptiness just once. Rather, we must analyze them again and again, apply them again and again, and continually cultivate familiarity with their profound meaning. In this way, realization dawns naturally.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "Rather than regarding the mind as merely the seeing or observing aspect of a moment of experience, it is also the content of that experience. All phenomena are mind, and mind itself is empty. In this recognition, all suffering ceases, and only peace remains.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "In fact, there is no proof that there is any substance other than mind anywhere. If something cannot be known without a knower, how can it ever be shown to exist independently? The mind and its experiences are inseparable, and in this unity, all duality dissolves.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "The main thrust of Buddhism, however, is not about theories at all. It is about experience. In particular it is concerned with the experience of suffering. What Buddhism has discovered is that the experience of suffering is always associated with strong emotional attachment to a vague sense of 'self'. So Buddhism turns its attention onto that strong emotional response associated with that sense of 'self' and asks about how that self is actually experienced. Where is that 'I' experienced?", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "All phenomena are equal in the expanse of the dharmadhatu. When you rest in equality, there is no attachment or aversion, no hope or fear. This is the realization of nonduality, the heart of Mahamudra and Dzogchen.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "When your thoughts free themselves, laugh, oh laugh! In the natural state, thoughts arise and dissolve like waves on the ocean. There is no need to accept or reject anything—everything is allowed to be as it is. This is the freedom of mind's true nature.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "The essential points of Mahamudra, Dzogchen, and the Middle Way are to look at mind's nature, simplicity unborn, and to relax naturally without striving or contrivance. When you rest in this way, all phenomena self-liberate, and the natural clarity of awareness shines forth.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "At first gain a clear understanding through learning. Next, establish certainty through reflection. Finally train day and night in Mahamudra and Dzogchen. Do that and you will automatically discover the nectar of immortality that already exists within the expanse of primordial purity in your heart.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "When practicing the Tibetan tradition of Buddhism, which belongs to Mahayana, devotion to the Primordial Lord, the glorious master, is essential. Regard him as the dharmakaya of equality, and through his blessing, may the realization of the ultimate lineage be transmitted to your heart.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "If you see any merit in these teachings, share them generously. Generosity is itself a practice that opens the heart and deepens realization. In the expanse of nonduality, all acts of kindness are naturally perfected.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "The mind just rests naturally in its natural state without contrivance. This is the essence of Mahamudra and Dzogchen, the realization that nothing needs to be changed or improved. In this effortless presence, all confusion dissolves, and the true nature of mind shines forth.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "When you rest in the uncontrived simplicity of awareness, you discover the freedom that is your true nature. There is no need to fabricate or alter anything. The natural state is already perfect, already complete.", author: "Khenpo Tsültrim Gyamtso Rinpoche" },
+            { text: "All teachings are methods to bring you to the recognition of your own nature. Once you have recognized, there is nothing more to seek, nothing more to do. Remain in the natural state, and all phenomena will self-liberate without effort.", author: "Khenpo Tsültrim Gyamtso Rinpoche" }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+            setInterval(displayQuote, 18000);
+        });
+    </script>
+</body>
+</html> 

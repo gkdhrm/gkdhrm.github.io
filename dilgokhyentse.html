@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilgo Khyentse Rinpoche Teachings</title>
+    <meta name="description" content="Authentic long quotes by Dilgo Khyentse Rinpoche on Dzogchen and nonduality.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☸️</text></svg>">
+    <style>
+        body { margin: 0; padding: 0; background: linear-gradient(135deg, #1a1a1a, #2a2a2a); color: #f0f0f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif; display: flex; flex-direction: column; min-height: 100vh; text-align: center; transition: opacity 3s; opacity: 0; }
+        .navigation { padding: 10px; background-color: rgba(0, 0, 0, 0.2); }
+        .navigation a { color: #bdc3c7; text-decoration: none; margin: 0 10px; font-size: 14px; transition: color 0.3s; }
+        .navigation a:hover { color: #f0f0f0; }
+        .container { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .quote-container { border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 15px; box-shadow: 0 0 30px rgba(255, 255, 255, 0.05); background-color: rgba(0, 0, 0, 0.3); padding: 2rem; }
+        .quote { font-size: clamp(1rem, 2.5vw, 1.5rem); line-height: 1.6; margin-bottom: 1rem; transition: opacity 2s; }
+        .author { font-size: clamp(0.8rem, 2vw, 1.2rem); opacity: 0.8; transition: opacity 2s; }
+        @media (max-width: 600px) { .quote-container { padding: 1rem; margin: 1rem; } }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            { text: "The everyday practice of Dzogchen is simply to develop a complete carefree acceptance, an openness to all situations without limit. We should realize openness as the playground of our emotions and relate to people without artificiality, manipulation or strategy. Experience everything totally, never withdrawing into ourselves as a marmot hides in its hole. This practice releases tremendous energy which is usually constricted by the process of maintaining fixed reference points. Being present in the moment may initially trigger fear, but by welcoming the sensation of fear with complete openness, we cut through the barriers created by habitual emotional patterns.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "Vast unoriginated self-luminous wisdom space is the ground of being—the beginning and the end of confusion. The presence of awareness in the primordial state has no bias toward enlightenment or non-enlightenment. This ground of being, known as pure or original mind, is the source from which all phenomena arise. It is the great mother, the womb of potentiality in which all things arise and dissolve in natural self-perfectedness and absolute spontaneity.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "All aspects of phenomena are completely clear and lucid. The whole universe is open and unobstructed—everything is mutually interpenetrating. Seeing all things as naked, clear, and free from obscurations, there is nothing to attain or realize. The nature of phenomena appears naturally and is naturally present in time-transcending awareness. Everything is naturally perfect just as it is.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "With no effort or practice whatsoever, liberation or enlightenment is already here. The everyday practice of Dzogchen is just everyday life itself. Since the undeveloped state does not exist, there is no need to behave in any special way or attempt to attain anything above and beyond what you actually are. There should be no feeling of striving to reach some 'amazing goal' or 'advanced state.' To strive for such a state is a neurosis which only conditions us and serves to obstruct the free flow of Mind.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "Meditation should be as natural as eating, breathing, and defecating. It should not become a specialized or formal event, bloated with seriousness and solemnity. Meditation transcends effort, practice, aims, goals, and the duality of liberation and non-liberation. Meditation is always ideal; there is no need to correct anything. Since everything that arises is simply the play of mind, there is no unsatisfactory meditation and no need to judge thoughts as good or bad.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "All phenomena are completely new and fresh, absolutely unique and entirely free from all concepts of past, present, and future. They are experienced in timelessness. The continual stream of new discovery, revelation, and inspiration which arises at every moment is the manifestation of our clarity. We should learn to see everyday life as mandala—the luminous fringes of experience which radiate spontaneously from the empty nature of our being.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "Do not encumber your mind with useless thoughts. What good does it do to brood on the past or anticipate the future? Remain in the simplicity of the present moment. Wisdom is found in the direct experience of nowness, free from the distractions of memory and expectation.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "If we allow our thoughts to arise and dissolve by themselves, they will pass through our mind as a bird flies through the sky, without leaving a trace. There is no logical reason why thoughts, which have no substance, should have so much power over you, nor is there any reason why you should become their slave. Recognize their insubstantial nature and rest in the freedom of awareness.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "When a rainbow appears vividly in the sky, you can see its beautiful colors, yet you could not wear it as clothing or put it on as an ornament. It arises through the conjunction of various factors, but there is nothing about it that can be grasped. Likewise, thoughts that arise in the mind have no tangible existence or intrinsic solidity. There is no reason why you should become their slave.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "Obstacles can arise from good as well as bad circumstances, but they should never deter or overpower you. Be like the earth, which supports all living creatures indiscriminately, without distinguishing good from bad. The earth is simply there. Your practice should be strengthened by the difficult situations you encounter, just as a bonfire in a strong wind is not blown out, but blazes even brighter.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "It is our mind, and that alone, that chains us or sets us free. When you master your mind, it will remain naturally concentrated, peaceful, and aware. Even in the midst of a crowd, you will not be distracted or carried away by desire or aversion.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "To meet someone who really hurts you is to meet a rare and precious treasure. Hold that person in high esteem, and make full use of the opportunity to eradicate your defects and make progress on the path. If you cannot yet feel love and compassion for those who treat you badly, it is a sign that your mind has not been fully transformed and that you need to keep working on it with increased application.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "Meditation could be said to be the Art of Simplicity: simply sitting, simply breathing, and simply being. The purpose of meditation is not to go deeply into ourselves or withdraw from the world, but to be open and present in every moment. Practice should be free and non-conceptual, unconstrained by introspection and concentration.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "The past is only an unreliable memory held in the present. The future is only a projection of our present conceptions. The present itself vanishes as soon as we try to grasp it. So why bother with attempting to establish an illusion of solid ground? Rest in the continuity of nowness.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "Sentient beings, self and others, enemies and dear ones—all are made by thoughts. It is like seeing a rope and mistaking it for a snake. When we think that the rope is a snake, we are scared, but once we see that we are looking at a rope, our fear dissipates. We have been deluded by our thoughts. Likewise, mentally fabricating self and others, we generate attachment and aversion.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "When death finally comes you will welcome it like an old friend, being aware of how dreamlike and impermanent the phenomenal world really is. Remaining in the recognition of the absolute view, you should leave this life like an eagle soaring up into the blue sky. Do not waste a single moment more.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "Devotion is the essence of the path, and if we have in mind nothing but the guru and feel nothing but fervent devotion, whatever occurs is perceived as his blessing. All forms are the guru, all sounds are prayer, and all gross and subtle thoughts arise as devotion. Everything is spontaneously liberated in the absolute nature, like knots untied in the sky.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "To go beyond samsara and nirvana, we will need the two wings of emptiness and compassion. From now on, let us use these two wings to fly fearlessly into the sky of the life to come. Emptiness and compassion are inseparable in the realization of the Great Perfection.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "Do not follow after the object of hatred, look at the angry mind. Anger liberated by itself as it arises is mirrorlike wisdom. Do not chase after the object of pride, look at the grasping mind. Self-importance liberated as it arises is the wisdom of equanimity. Do not hanker after the object of desire, look at the craving mind.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "The continual stream of new discovery, revelation, and inspiration which arises at every moment is the manifestation of our clarity. We should learn to see everyday life as mandala—the luminous fringes of experience which radiate spontaneously from the empty nature of our being. By this symbolism the inner teacher reveals the profound and ultimate significance of being. Therefore, be natural and spontaneous, accepting and learning from everything.", author: "Dilgo Khyentse Rinpoche" }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+            setInterval(displayQuote, 18000);
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Teacher Selection</title>
+    <meta name="description" content="Customize which spiritual teachers are displayed on your homepage">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☸️</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            color: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f0f0f0;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .welcome {
+            margin-bottom: 2rem;
+        }
+        .welcome h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+        .welcome p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+        .category {
+            width: 100%;
+            margin-bottom: 3rem;
+            background: rgba(52, 73, 94, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .category-title {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+        .teacher-item {
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .teacher-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+        .teacher-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 10px;
+        }
+        .teacher-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+        .teacher-item h3 {
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+        }
+        .teacher-checkbox {
+            margin-top: 10px;
+        }
+        .teacher-checkbox input {
+            width: 18px;
+            height: 18px;
+            margin-right: 5px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        .teacher-checkbox label {
+            cursor: pointer;
+            vertical-align: middle;
+        }
+        .action-buttons {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .action-button {
+            background-color: rgba(52, 152, 219, 0.7);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        .action-button:hover {
+            background-color: rgba(52, 152, 219, 0.9);
+        }
+        .action-button.reset {
+            background-color: rgba(231, 76, 60, 0.7);
+        }
+        .action-button.reset:hover {
+            background-color: rgba(231, 76, 60, 0.9);
+        }
+        .action-button.select-all {
+            background-color: rgba(46, 204, 113, 0.7);
+        }
+        .action-button.select-all:hover {
+            background-color: rgba(46, 204, 113, 0.9);
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(46, 204, 113, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .notification.show {
+            opacity: 1;
+        }
+        @media (max-width: 768px) {
+            .teachers-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            .teacher-image {
+                width: 80px;
+                height: 80px;
+            }
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="welcome">
+            <h1>Customize Your Spiritual Teachers</h1>
+            <p>Select which teachers you would like to see on your homepage. Your selections will be saved automatically and will personalize both your homepage and navigation menu.</p>
+        </div>
+        
+        <div class="category nondual">
+            <h2 class="category-title">Nondual Teachings</h2>
+            <div class="teachers-grid" id="nondual-teachers">
+                <!-- Nondual teachers will be inserted here by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="category manifestation">
+            <h2 class="category-title">Manifestation & Conscious Creation</h2>
+            <div class="teachers-grid" id="manifestation-teachers">
+                <!-- Manifestation teachers will be inserted here by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="action-button select-all" id="select-all">Select All</button>
+            <button class="action-button reset" id="reset-default">Reset to Default</button>
+            <button class="action-button" id="save-selections">Save & Apply Changes</button>
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">Changes saved successfully!</div>
+    
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        // Define all available teachers with their details
+        const allTeachers = {
+            // Nondual teachers
+            "urgyen": { 
+                name: "Tulku Urgyen Rinpoche", 
+                image: "images/tulku-urgyen.jpg",
+                category: "nondual",
+                default: true
+            },
+            "papaji": { 
+                name: "Papaji (H.W.L. Poonja)", 
+                image: "images/papaji2.jpg",
+                category: "nondual",
+                default: true
+            },
+            "eckhart-tolle": { 
+                name: "Eckhart Tolle", 
+                image: "images/eckhart-tolle.jpg",
+                category: "nondual",
+                default: true
+            },
+            "rupertspira": { 
+                name: "Rupert Spira", 
+                image: "images/rupert-spira.jpg",
+                category: "nondual",
+                default: false
+            },
+            "adyashanti": { 
+                name: "Adyashanti", 
+                image: "images/adyashanti.jpg",
+                category: "nondual",
+                default: false
+            },
+            "mooji": { 
+                name: "Mooji", 
+                image: "images/mooji.jpg",
+                category: "nondual",
+                default: false
+            },
+            "jeanklein": { 
+                name: "Jean Klein", 
+                image: "images/jean-klein.jpg",
+                category: "nondual",
+                default: false
+            },
+            "nisargadatta": { 
+                name: "Nisargadatta Maharaj", 
+                image: "images/nisargadatta.jpg",
+                category: "nondual",
+                default: false
+            },
+            "ramana": { 
+                name: "Ramana Maharshi", 
+                image: "images/ramana.jpg",
+                category: "nondual",
+                default: false
+            },
+            "atmananda": { 
+                name: "Atmananda Krishna Menon", 
+                image: "images/atmananda.jpg",
+                category: "nondual",
+                default: false
+            },
+            "gangaji": { 
+                name: "Gangaji", 
+                image: "images/gangaji.jpg",
+                category: "nondual",
+                default: false
+            },
+            "gaudapada": { 
+                name: "Gaudapada", 
+                image: "images/gaudapada.jpg",
+                category: "nondual",
+                default: false
+            },
+            "tilopa": { 
+                name: "Tilopa", 
+                image: "images/tilopa.jpg",
+                category: "nondual",
+                default: false
+            },
+            "longchenpa": { 
+                name: "Longchenpa", 
+                image: "images/longchenpa.jpg",
+                category: "nondual",
+                default: false
+            },
+            "lalded": { 
+                name: "Lal Ded", 
+                image: "images/lalded.jpg",
+                category: "nondual",
+                default: false
+            },
+            
+            // Manifestation teachers
+            "abraham": { 
+                name: "Abraham Hicks", 
+                image: "images/esther-hicks.jpg",
+                category: "manifestation",
+                default: true
+            },
+            "joe-dispenza": { 
+                name: "Dr. Joe Dispenza", 
+                image: "images/joe-dispenza.png",
+                category: "manifestation",
+                default: true
+            },
+            "bashar": { 
+                name: "Bashar", 
+                image: "images/bashar.jpg",
+                category: "manifestation",
+                default: true
+            }
+        };
+        
+        // Get or initialize teacher selections
+        function getTeacherSelections() {
+            const savedSelections = localStorage.getItem('teacherSelections');
+            if (savedSelections) {
+                return JSON.parse(savedSelections);
+            } else {
+                // Initialize with default selections
+                const defaultSelections = {};
+                Object.keys(allTeachers).forEach(teacherId => {
+                    defaultSelections[teacherId] = allTeachers[teacherId].default;
+                });
+                return defaultSelections;
+            }
+        }
+        
+        // Save teacher selections to localStorage
+        function saveTeacherSelections(selections) {
+            localStorage.setItem('teacherSelections', JSON.stringify(selections));
+        }
+        
+        // Populate teachers grid
+        function populateTeachersGrid() {
+            const selections = getTeacherSelections();
+            const nondualGrid = document.getElementById('nondual-teachers');
+            const manifestationGrid = document.getElementById('manifestation-teachers');
+            
+            // Clear existing content
+            nondualGrid.innerHTML = '';
+            manifestationGrid.innerHTML = '';
+            
+            // Add each teacher to the appropriate grid
+            Object.keys(allTeachers).forEach(teacherId => {
+                const teacher = allTeachers[teacherId];
+                const teacherElement = createTeacherElement(teacherId, teacher, selections[teacherId]);
+                
+                if (teacher.category === 'nondual') {
+                    nondualGrid.appendChild(teacherElement);
+                } else if (teacher.category === 'manifestation') {
+                    manifestationGrid.appendChild(teacherElement);
+                }
+            });
+        }
+        
+        // Create a teacher element
+        function createTeacherElement(id, teacher, isSelected) {
+            const div = document.createElement('div');
+            div.className = 'teacher-item';
+            div.innerHTML = `
+                <div class="teacher-image">
+                    <img src="${teacher.image}" alt="${teacher.name}">
+                </div>
+                <h3>${teacher.name}</h3>
+                <div class="teacher-checkbox">
+                    <input type="checkbox" id="teacher-${id}" ${isSelected ? 'checked' : ''}>
+                    <label for="teacher-${id}">Show on homepage</label>
+                </div>
+            `;
+            
+            // Add event listener to checkbox
+            const checkbox = div.querySelector(`#teacher-${id}`);
+            checkbox.addEventListener('change', function() {
+                const selections = getTeacherSelections();
+                selections[id] = this.checked;
+                saveTeacherSelections(selections);
+            });
+            
+            return div;
+        }
+        
+        // Show notification
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Initialize the page
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            
+            populateTeachersGrid();
+            
+            // Event listener for Select All button
+            document.getElementById('select-all').addEventListener('click', function() {
+                const selections = getTeacherSelections();
+                Object.keys(allTeachers).forEach(teacherId => {
+                    selections[teacherId] = true;
+                    const checkbox = document.getElementById(`teacher-${teacherId}`);
+                    if (checkbox) checkbox.checked = true;
+                });
+                saveTeacherSelections(selections);
+                showNotification('All teachers selected');
+            });
+            
+            // Event listener for Reset to Default button
+            document.getElementById('reset-default').addEventListener('click', function() {
+                const selections = {};
+                Object.keys(allTeachers).forEach(teacherId => {
+                    selections[teacherId] = allTeachers[teacherId].default;
+                    const checkbox = document.getElementById(`teacher-${teacherId}`);
+                    if (checkbox) checkbox.checked = allTeachers[teacherId].default;
+                });
+                saveTeacherSelections(selections);
+                showNotification('Reset to default selections');
+            });
+            
+            // Event listener for Save button
+            document.getElementById('save-selections').addEventListener('click', function() {
+                // No need to save again since changes are saved on checkbox change
+                showNotification('Changes saved successfully! Reloading homepage...');
+                
+                // Redirect to homepage after a short delay
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            });
+            
+            // Add "Teachers" link to navigation
+            const navPlaceholder = document.getElementById('nav-placeholder');
+            if (navPlaceholder && navPlaceholder.querySelector('.navigation')) {
+                const homeLink = navPlaceholder.querySelector('.navigation a[href="index.html"]');
+                if (homeLink) {
+                    const teachersLink = document.createElement('a');
+                    teachersLink.href = 'teachers.html';
+                    teachersLink.textContent = 'Customize Teachers';
+                    homeLink.parentNode.insertBefore(teachersLink, homeLink.nextSibling);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

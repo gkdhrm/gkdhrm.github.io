@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adyashanti Teachings</title>
+    <meta name="description" content="Authentic quotes by Adyashanti on awakening, nonduality, and the nature of self and reality">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #171e23, #202a31);
+            color: #f5f6fa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #b2bec3;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f5f6fa;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.04);
+            background-color: rgba(35, 37, 38, 0.25);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            {
+                text: "Enlightenment is a destructive process. It has nothing to do with becoming better or being happier. Enlightenment is the crumbling away of untruth. It's seeing through the facade of pretense. It's the complete eradication of everything we imagined to be true. In the end, it is the realization that what we are is beyond all concepts and identities.",
+                author: "Adyashanti"
+            },
+            {
+                text: "Do not think that enlightenment is going to make you special, it's not. If you feel special in any way, then enlightenment has not occurred. When it is authentic, there is no one to claim it. Enlightenment is very ordinary; it is nothing special. Rather than making you more special, it is going to make you less special. It plants you right in the center of a wonderful humility and innocence.",
+                author: "Adyashanti"
+            },
+            {
+                text: "When you get out of the driver's seat, you find that life can drive itself, that actually life has always been driving itself. When you get out of the driver's seat, it can drive itself so much easier—it can flow in ways you never imagined. Life becomes almost magical. The illusion of the 'me' is no longer in the way. Life begins to flow, and you never know where it will take you.",
+                author: "Adyashanti"
+            },
+            {
+                text: "The truth is that you already are what you are seeking. The search itself is what keeps you from finding it. When you stop seeking and simply rest in what is, you discover that the peace and fulfillment you long for are already present. The journey ends where it began: in the simple awareness of being.",
+                author: "Adyashanti"
+            },
+            {
+                text: "Real meditation is not about mastering a technique; it's about letting go of control. Meditation is letting go of guiding our experience in any way whatsoever. The foundation of true meditation is that we are letting go of control. In this letting go, we discover the natural state of awareness that is always present beneath the surface of thought.",
+                author: "Adyashanti"
+            },
+            {
+                text: "Suffering is how life tells you that you are resisting or misperceiving what is real and true. It is the way life suggests that you are not in harmony with what is. When you stop resisting, you see that what seems frightening is actually the absolute beauty of reality. Love is the state of nonresistance, and in that love, suffering dissolves.",
+                author: "Adyashanti"
+            },
+            {
+                text: "The experience of separation, although it's illusory, seems to be a natural stage in the development of consciousness. You don't look back and go, 'Why was I ever an infant? That was silly, I should have just skipped over that stage.' The sense of separate self is ultimately illusory but actually quite a natural stage of development. Moving beyond the separate self is a death of an identity, and in that death, true freedom is found.",
+                author: "Adyashanti"
+            },
+            {
+                text: "Awakening is a fundamental shift in the way we perceive and feel about ourself—what and who we take ourselves to be. It is a revelation that shifts our identity from a mind-based or ego-based identification to an identity rooted in our fundamental nature. This shift is life-transforming, as it changes our entire worldview and the way we relate to life.",
+                author: "Adyashanti"
+            },
+            {
+                text: "The important thing is allowing the whole world to wake up. Part of allowing the whole world to wake up is recognizing that the whole world is free—everybody is free to be as they are. Until you have given the whole world its freedom, you'll never have your freedom. True freedom is the recognition that everyone is free to agree or disagree, to love or hate, to see things as you see them or differently.",
+                author: "Adyashanti"
+            },
+            {
+                text: "When we see the world through our thoughts, we stop experiencing life as it really is and others as they really are. When I have a thought about you, that's something I've created. I've turned you into an idea. In a certain sense, if I have an idea about you that I believe, I've degraded you. This is the way of human beings, this is what we do to each other.",
+                author: "Adyashanti"
+            },
+            {
+                text: "Trying to maintain a pleasant state and avoid an unpleasant state is actually the cause of sorrow. When you stop resisting, you see that what seems frightening is actually the absolute beauty of reality. When you see that everything is a momentary display of reality, then you stop resisting it. Resistance hurts, only every single time. Love is the state of nonresistance.",
+                author: "Adyashanti"
+            },
+            {
+                text: "The will is one of the primary things that starts to disappear with deep realization. The experience of will, of wanting to make things happen, is based on the self that is seen through. You start to have a different operating system that you're working from. The will is one of those things that's hard to understand clearly until it's no longer really there.",
+                author: "Adyashanti"
+            },
+            {
+                text: "Grace is something that comes to us when we somehow find ourselves completely available, when we become openhearted and open-minded, and are willing to entertain the possibility that we may not know what we think we know. In this gap of not knowing, in the suspension of any conclusion, a whole other element of life and reality can rush in. This is what I call grace. It's that moment of 'ah-ha!'—a moment of recognition when we realize something that previously we never could quite imagine.",
+                author: "Adyashanti"
+            },
+            {
+                text: "The main force of separation is fear. Fear is an incredible driving force for humanity, and it creates the sense of being divided from life and from others. When we see through the illusion of fear, we discover the unity that has always been present. In that unity, love and compassion arise naturally.",
+                author: "Adyashanti"
+            },
+            {
+                text: "The psychological self isn't who we are. That's the good news—that who we are is already transcendent of the psychological self. A lot of spirituality is often trying to dismantle our attachment to that psychological self. The question isn't meant so you can find a new answer, a new better version of you—it's to disassemble the version that you have made up.",
+                author: "Adyashanti"
+            },
+            {
+                text: "To qualify as a spiritual awakening, it has to involve some type of revelation which has the effect of shifting your identity. You move from a mind-based or ego-based identification to an identity that's more based in our fundamental nature. It's very life-transforming because then you're looking at life from an awareness point-of-view rather than a mind-based point-of-view.",
+                author: "Adyashanti"
+            },
+            {
+                text: "Many sages have said, 'Your world is a dream. You're living in an illusion.' They're referring to this world of the mind and the way we believe our thoughts about reality. When we see the world through our thoughts, we stop experiencing life as it really is and others as they really are.",
+                author: "Adyashanti"
+            },
+            {
+                text: "Love is a flame that burns everything other than itself. It is the destruction of all that is false and the fulfillment of all that is true. In the heart of a human being, emptiness becomes love. When we touch that Source, instantly the love is present. Literally, the divine becomes human and the human becomes divine.",
+                author: "Adyashanti"
+            },
+            {
+                text: "Beyond even any teaching, the aspect of spiritual life that is the most profound is the element of grace. Grace is something that comes to us when we are completely available, openhearted, and open-minded. In this openness, a whole other element of life and reality can rush in. This is what I call grace—a moment of recognition when we realize something that previously we never could quite imagine.",
+                author: "Adyashanti"
+            },
+            {
+                text: "The answer isn't the answer. The answer is the relief of the question. Ultimately there are no answers to all the questions, the only answer is the disappearance of the questioner. All of a sudden the questioner is realized to be a movement of thought that has no actual existence. Without the questioner, there is just what is, and that's it.",
+                author: "Adyashanti"
+            }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html> 

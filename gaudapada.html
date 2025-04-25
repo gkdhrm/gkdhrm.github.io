@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaudapada Teachings</title>
+    <meta name="description" content="Authentic quotes by Gaudapada on Advaita Vedanta, nonduality, and the nature of reality">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕉️</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f2027, #23404d);
+            color: #f7f7f7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #b2bec3;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f7f7f7;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.04);
+            background-color: rgba(15, 32, 39, 0.18);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .original-text {
+            font-size: 0.95em;
+            color: #b2bec3;
+            font-style: italic;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <span id="original" class="original-text"></span>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            { text: "The Self is ever free, unborn, and undying. It is not affected by the play of the world, nor by the mind's projections. Realize this truth, and you will see that bondage and liberation are only ideas in the mind.", author: "Gaudapada" },
+            { text: "There is no creation, no destruction, no bondage, no seeker, no liberated, and no one in bondage. This is the highest truth, the final teaching of nonduality.", author: "Gaudapada" },
+            { text: "The world appears as a dream, fleeting and insubstantial. Just as dream objects vanish upon waking, so too does the world dissolve in the light of Self-knowledge.", author: "Gaudapada" },
+            { text: "The mind imagines duality, but the Self is ever nondual. When the mind is stilled, the truth of oneness shines forth, and all distinctions fall away.", author: "Gaudapada" },
+            { text: "All phenomena are mere appearances in consciousness. They have no independent existence apart from the Self, which is pure awareness, unchanging and eternal.", author: "Gaudapada" },
+            { text: "The wise know that the Self is not born, nor does it die. It is not subject to change, nor is it affected by the play of time and space. It is the witness of all, yet untouched by anything.", author: "Gaudapada" },
+            { text: "Bondage and liberation are both concepts of the mind. In truth, there is only the Self, ever free and pure. Recognize this, and all suffering comes to an end.", author: "Gaudapada" },
+            { text: "The Self is not an object to be known, but the very knowing itself. It is the light in which all experiences arise and subside. Rest as that, and be free from all limitation.", author: "Gaudapada" },
+            { text: "Just as the rope is mistaken for a snake in dim light, so too is the Self mistaken for the body and mind. When true knowledge dawns, the illusion is dispelled, and only the Self remains.", author: "Gaudapada" },
+            { text: "The wise see no difference between waking, dreaming, and deep sleep. All are states appearing in consciousness, which itself is changeless and ever-present.", author: "Gaudapada" },
+            { text: "The Self is not touched by action, nor by inaction. It is the silent witness, ever at peace, regardless of the play of the world.", author: "Gaudapada" },
+            { text: "All distinctions are imagined by the mind. In reality, there is only the nondual Self, beyond all concepts and categories.", author: "Gaudapada" },
+            { text: "The world is a projection of the mind, like a city seen in a mirror. It has no reality apart from the Self, which alone is real.", author: "Gaudapada" },
+            { text: "The Self is not an object of perception, nor is it subject to birth or death. It is pure awareness, the ground of all being.", author: "Gaudapada" },
+            { text: "When the mind is dissolved, only the Self remains. This is the state of true peace, beyond all thought and imagination.", author: "Gaudapada" },
+            { text: "The wise do not grieve for the living or the dead. They know that the Self is eternal, untouched by the play of appearances.", author: "Gaudapada" },
+            { text: "The Self is not attained by effort, nor lost by inaction. It is ever-present, revealed in the silence of the mind.", author: "Gaudapada" },
+            { text: "All teachings are only pointers to the truth. The truth itself is beyond words, beyond thought, beyond all description.", author: "Gaudapada" },
+            { text: "The mind creates the illusion of separation, but the Self is ever one. When this is realized, all fear and desire dissolve, and only peace remains.", author: "Gaudapada" },
+            { text: "The highest knowledge is to know that there is nothing to know. The Self alone is, ever free, ever pure, ever complete.", author: "Gaudapada" }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const originalElement = document.getElementById('original');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            originalElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                if (randomQuote.original) {
+                    originalElement.textContent = randomQuote.original;
+                    originalElement.style.display = 'block';
+                } else {
+                    originalElement.textContent = '';
+                    originalElement.style.display = 'none';
+                }
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+                originalElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html> 

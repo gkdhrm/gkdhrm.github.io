@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spiritual Teachings & Quotes</title>
+    <meta name="description" content="A collection of wisdom quotes from spiritual teachers including Tulku Urgyen Rinpoche, Papaji, Abraham Hicks, Dr. Joe Dispenza, Eckhart Tolle, Rupert Spira, Adyashanti, Mooji, and more">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☸️</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            color: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f0f0f0;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .welcome {
+            margin-bottom: 2rem;
+        }
+        .welcome h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+        .welcome p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+        .category {
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+        .category-title {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .teachers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+        .teacher-card {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .teacher-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+        .teacher-card h2 {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            transition: filter 0.8s ease, opacity 0.8s ease;
+        }
+        .teacher-card:hover h2 {
+            filter: blur(2px);
+            opacity: 0.5;
+        }
+        .teacher-card p {
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .teacher-card:hover p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .teacher-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .teacher-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.5s ease;
+        }
+
+        .teacher-card:hover .teacher-image img {
+            transform: scale(1.1);
+        }
+
+        .card-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+            cursor: pointer;
+        }
+        .nondual {
+            background: rgba(52, 73, 94, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .manifestation {
+            background: rgba(52, 73, 94, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .vedanta {
+            background: rgba(142, 68, 173, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .dzogchen {
+            background: rgba(230, 126, 34, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .mystics {
+            background: rgba(41, 128, 185, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 600px) {
+            .teacher-image {
+                width: 100px;
+                height: 100px;
+            }
+            .teacher-card {
+                height: 280px;
+            }
+            .container {
+                padding: 1rem;
+            }
+            .teachers-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="welcome">
+            <h1>Quotes of Wisdom from Spiritual Teachers</h1>
+            <p>Welcome to this collection of profound teachings and quotes from some of the most potent spiritual teachers of our time. Each teacher offers a unique perspective on consciousness, presence, and the journey toward self-realization.</p>
+        </div>
+        
+        <div class="category nondual">
+            <h2 class="category-title">Contemporary Nondual Teachers</h2>
+            <p>These modern teachers focus on the recognition of our true nature, the dissolution of the separate self, and the direct experience of nondual awareness.</p>
+            <div class="teachers-container">
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/rupert-spira.jpg" alt="Rupert Spira">
+                    </div>
+                    <h2>Rupert Spira</h2>
+                    <p>British teacher who explores the nature of experience through the direct path of non-duality, emphasizing that consciousness is the fundamental reality of all experience.</p>
+                    <a href="rupertspira.html" class="card-link" aria-label="View Rupert Spira quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/adyashanti.jpg" alt="Adyashanti">
+                    </div>
+                    <h2>Adyashanti</h2>
+                    <p>American spiritual teacher. His teachings focus on awakening and living from our true nature beyond the confines of egoic identity.</p>
+                    <a href="adyashanti.html" class="card-link" aria-label="View Adyashanti quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/mooji.jpg" alt="Mooji">
+                    </div>
+                    <h2>Mooji</h2>
+                    <p>Jamaican-born teacher of Advaita Vedanta who offers direct pointing to the Self through his powerful inquiries, helping seekers recognize their true nature beyond all concepts.</p>
+                    <a href="mooji.html" class="card-link" aria-label="View Mooji quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/jean-klein.jpg" alt="Jean Klein">
+                    </div>
+                    <h2>Jean Klein</h2>
+                    <p>Western master of Advaita Vedanta and Kashmir Shaivism who emphasized direct inquiry into the nature of consciousness and the body as a gateway to non-dual understanding.</p>
+                    <a href="jeanklein.html" class="card-link" aria-label="View Jean Klein quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/gangaji.jpg" alt="Gangaji">
+                    </div>
+                    <h2>Gangaji</h2>
+                    <p>American teacher who, after meeting Papaji in India, began sharing the message of self-inquiry and the possibility of recognizing true freedom that is already present within each of us.</p>
+                    <a href="gangaji.html" class="card-link" aria-label="View Gangaji quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/eckhart-tolle.jpg" alt="Eckhart Tolle">
+                    </div>
+                    <h2>Eckhart Tolle</h2>
+                    <p>Author of "The Power of Now" and "A New Earth," Eckhart Tolle offers profound teachings on presence, consciousness, and transcending ego identification to discover inner peace.</p>
+                    <a href="eckhart-tolle.html" class="card-link" aria-label="View Eckhart Tolle quotes"></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category vedanta">
+            <h2 class="category-title">Advaita Vedanta Masters</h2>
+            <p>These teachers represent the profound non-dual tradition of Advaita Vedanta, pointing to the ultimate truth of Self-realization and the recognition of consciousness as our fundamental nature.</p>
+            <div class="teachers-container">
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/shankaracharya.jpg" alt="Adi Shankaracharya">
+                    </div>
+                    <h2>Adi Shankaracharya</h2>
+                    <p>Regarded as the founder of Advaita Vedanta, Adi Shankaracharya revitalized the nondual tradition in India. His teachings and commentaries on the Upanishads, Bhagavad Gita, and Brahma Sutras point directly to the realization of the Self as pure consciousness, beyond all distinctions and limitations.</p>
+                    <a href="shankaracharya.html" class="card-link" aria-label="View Adi Shankaracharya quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/nisargadatta.jpg" alt="Nisargadatta Maharaj">
+                    </div>
+                    <h2>Nisargadatta Maharaj</h2>
+                    <p>Revered sage from Mumbai who taught the direct path to self-realization through inquiry into the nature of "I am." His dialogues in "I Am That" are considered spiritual classics.</p>
+                    <a href="nisargadatta.html" class="card-link" aria-label="View Nisargadatta Maharaj quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/ramana.jpg" alt="Ramana Maharshi">
+                    </div>
+                    <h2>Ramana Maharshi</h2>
+                    <p>Widely regarded as one of India's greatest sages, Ramana Maharshi taught the direct path of self-inquiry with the question "Who am I?" leading to recognition of the Self beyond all identifications.</p>
+                    <a href="ramana.html" class="card-link" aria-label="View Ramana Maharshi quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/atmananda.jpg" alt="Atmananda Krishna Menon
+                        ">
+                    </div>
+                    <h2>Sri Atmananda</h2>
+                    <p>Kerala-born master of Advaita Vedanta who developed the "Direct Path" approach, emphasizing direct examination of experience rather than traditional scriptural study or practice.</p>
+                    <a href="atmananda.html" class="card-link" aria-label="View Atmananda Krishna Menon
+                    quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/papaji2.jpg" alt="Papaji">
+                    </div>
+                    <h2>Papaji (H.W.L. Poonja)</h2>
+                    <p>A disciple of Ramana Maharshi who became a powerful exponent of Advaita Vedanta. Papaji's direct pointing to the Self has awakened countless seekers to their true nature.</p>
+                    <a href="papaji.html" class="card-link" aria-label="View Papaji quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/gaudapada.jpg" alt="Gaudapada">
+                    </div>
+                    <h2>Gaudapada</h2>
+                    <p>Ancient philosopher and sage who was the teacher of Govinda Bhagavatpada, who in turn was the teacher of Adi Shankara. His Mandukya Karika is a seminal text in Advaita philosophy.</p>
+                    <a href="gaudapada.html" class="card-link" aria-label="View Gaudapada quotes"></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category dzogchen">
+            <h2 class="category-title">Dzogchen & Tibetan Buddhist Masters</h2>
+            <p>These teachers reveal the profound wisdom of Dzogchen and Tibetan Buddhism, guiding practitioners to recognize the natural state of mind and primordial awareness.</p>
+            <div class="teachers-container">
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/garab-dorje.jpg" alt="Garab Dorje">
+                    </div>
+                    <h2>Garab Dorje</h2>
+                    <p>Regarded as the first human Dzogchen master, Garab Dorje transmitted the foundational teachings of the Great Perfection, including the famous Three Statements that Strike the Vital Point. His direct instructions on recognizing the nature of mind are the heart of the Dzogchen tradition.</p>
+                    <a href="garabdorje.html" class="card-link" aria-label="View Garab Dorje quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/padmasambhava-square.jpg" alt="Padmasambhava">
+                    </div>
+                    <h2>Padmasambhava</h2>
+                    <p>Known as Guru Rinpoche, Padmasambhava is revered as the Lotus-Born Guru who established Buddhism in Tibet and transmitted the profound teachings of Dzogchen. His instructions on the nature of mind and the path of liberation are central to the Nyingma tradition.</p>
+                    <a href="padmasambhava.html" class="card-link" aria-label="View Padmasambhava quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/jigme-lingpa-square.jpg" alt="Jigme Lingpa">
+                    </div>
+                    <h2>Jigme Lingpa</h2>
+                    <p>One of the greatest Dzogchen masters of Tibet, Jigme Lingpa revealed the Longchen Nyingtik cycle and transmitted profound teachings on the nature of mind and the Great Perfection. His writings continue to inspire practitioners on the path of nonduality.</p>
+                    <a href="jigmelingpa.html" class="card-link" aria-label="View Jigme Lingpa quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/patrulrinpoche.jpg" alt="Patrul Rinpoche">
+                    </div>
+                    <h2>Patrul Rinpoche</h2>
+                    <p>Renowned for his humility and clarity, Patrul Rinpoche was a great Dzogchen master and the author of 'The Words of My Perfect Teacher.' His teachings on the natural state and self-liberation continue to guide practitioners on the path of nonduality.</p>
+                    <a href="patrulrinpoche.html" class="card-link" aria-label="View Patrul Rinpoche quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/dilgo-khyentse.jpg" alt="Dilgo Khyentse Rinpoche">
+                    </div>
+                    <h2>Dilgo Khyentse Rinpoche</h2>
+                    <p>One of the most revered Dzogchen masters of the 20th century, Dilgo Khyentse Rinpoche was a prolific teacher, writer, and poet. His profound teachings on the nature of mind, compassion, and the Great Perfection continue to inspire practitioners worldwide.</p>
+                    <a href="dilgokhyentse.html" class="card-link" aria-label="View Dilgo Khyentse Rinpoche quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/namkhai-norbu.jpg" alt="Namkhai Norbu Rinpoche">
+                    </div>
+                    <h2>Namkhai Norbu Rinpoche</h2>
+                    <p>Renowned Dzogchen master and scholar, Namkhai Norbu Rinpoche dedicated his life to transmitting the essence of Dzogchen teachings worldwide. His accessible approach and deep realization have inspired thousands to recognize the natural state of mind.</p>
+                    <a href="namkhainorbu.html" class="card-link" aria-label="View Namkhai Norbu Rinpoche quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/khenpo-tsultrim.jpg" alt="Khenpo Tsültrim Gyamtso Rinpoche">
+                    </div>
+                    <h2>Khenpo Tsültrim Gyamtso Rinpoche</h2>
+                    <p>Renowned for his songs of realization and profound teachings, Khenpo Tsültrim Gyamtso Rinpoche is a master of both Dzogchen and Mahamudra. His guidance on the nature of mind and nonconceptual wisdom has inspired practitioners around the world.</p>
+                    <a href="khenpotsultrim.html" class="card-link" aria-label="View Khenpo Tsültrim Gyamtso Rinpoche quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/tulku-urgyen.jpg" alt="Tulku Urgyen Rinpoche">
+                    </div>
+                    <h2>Tulku Urgyen Rinpoche</h2>
+                    <p>Renowned Tibetan Buddhist master who taught the recognition of the nature of mind with remarkable clarity. His teachings on rigpa and unfabricated awareness offer direct insight into nonduality.</p>
+                    <a href="urgyen.html" class="card-link" aria-label="View Tulku Urgyen Rinpoche quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/tilopa.jpg" alt="Tilopa">
+                    </div>
+                    <h2>Tilopa</h2>
+                    <p>Indian Buddhist mahasiddha (great adept) who lived between the 10th and 11th centuries and is credited with originating the Kagyu lineage of Tibetan Buddhism through his disciple Naropa.</p>
+                    <a href="tilopa.html" class="card-link" aria-label="View Tilopa quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/longchenpa.jpg" alt="Longchenpa">
+                    </div>
+                    <h2>Longchenpa</h2>
+                    <p>14th-century Tibetan Buddhist master who systematized the Nyingma teachings, particularly Dzogchen. His works on the nature of mind and reality are considered the pinnacle of Tibetan philosophical literature.</p>
+                    <a href="longchenpa.html" class="card-link" aria-label="View Longchenpa quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/milarepa-square1.jpg" alt="Milarepa">
+                    </div>
+                    <h2>Milarepa</h2>
+                    <p>Legendary Tibetan yogi, poet, and master of Mahamudra and Dzogchen, Milarepa is renowned for his songs of realization and his unwavering perseverance on the path. His life and teachings exemplify the transformative power of devotion, meditation, and nondual wisdom.</p>
+                    <a href="milarepa.html" class="card-link" aria-label="View Milarepa quotes"></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category mystics">
+            <h2 class="category-title">Mystics & Ancient Wisdom</h2>
+            <p>These mystics and sacred teachings represent timeless wisdom expressing the ineffable truth of our essential nature across cultural and spiritual traditions.</p>
+            <div class="teachers-container">
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/lalded.jpg" alt="Lal Ded">
+                    </div>
+                    <h2>Lal Ded (Lalleshwari)</h2>
+                    <p>14th-century Kashmiri mystic and poet who conveyed profound spiritual insights through her vakhs (verses). She embodied the essence of Kashmir Shaivism's non-dual understanding.</p>
+                    <a href="lalded.html" class="card-link" aria-label="View Lal Ded quotes"></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category manifestation">
+            <h2 class="category-title">Manifestation & Conscious Creation</h2>
+            <p>These teachers focus on the practical application of consciousness principles to create positive change and manifest desired outcomes in life.</p>
+            <div class="teachers-container">
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/esther-hicks.jpg" alt="Esther Hicks">
+                    </div>
+                    <h2>Abraham Hicks</h2>
+                    <p>Offering teachings on the Law of Attraction and conscious creation, Abraham Hicks provides practical guidance on aligning with your true vibrational essence and manifesting from joy.</p>
+                    <a href="abraham.html" class="card-link" aria-label="View Abraham Hicks quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/joe-dispenza.png" alt="Dr. Joe Dispenza">
+                    </div>
+                    <h2>Dr. Joe Dispenza</h2>
+                    <p>Blending neuroscience, quantum physics, and spirituality, Dr. Joe Dispenza teaches how to rewire the brain, heal the body, and create new possibilities through meditation and conscious intention.</p>
+                    <a href="joe-dispenza.html" class="card-link" aria-label="View Dr. Joe Dispenza quotes"></a>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="images/bashar.jpg" alt="Bashar">
+                    </div>
+                    <h2>Bashar</h2>
+                    <p>Channeled by Darryl Anka, Bashar offers wisdom on reality creation, parallel realities, and aligning with your highest excitement to manifest your desired experiences and raise your vibrational frequency.</p>
+                    <a href="bashar.html" class="card-link" aria-label="View Bashar quotes"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>

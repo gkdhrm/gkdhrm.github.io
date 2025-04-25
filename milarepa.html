@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milarepa Teachings</title>
+    <meta name="description" content="Authentic quotes by Milarepa on nonduality, perseverance, and the yogic path of realization.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛰️</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            color: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f0f0f0;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            {
+                text: "In the solitary mountains, I sought the essence of mind. Through perseverance and unwavering resolve, I discovered that all appearances are but the play of awareness, and the true nature of mind is vast, luminous, and free from all grasping. The hardships I endured became the very path to realization, and in the silence of the wilderness, I found the song of nonduality resounding within my heart. To those who persevere, the mountain of awakening reveals its summit.",
+                author: "Milarepa"
+            },
+            {
+                text: "When doubts and fears arise like storm clouds, do not be disheartened. Remain steadfast in your practice, for the nature of mind is like the open sky—unaffected by passing weather. Through patience and diligence, the clouds of confusion dissolve, revealing the sun of awareness that has always shone within. Perseverance on the path transforms obstacles into gateways to realization.",
+                author: "Milarepa"
+            },
+            {
+                text: "I wandered alone in desolate valleys, enduring hunger and cold, yet my heart was filled with joy. For in solitude, I recognized the inseparability of all things, and the unity of samsara and nirvana. The hardships of the path are but illusions, and with unwavering determination, one discovers the boundless freedom of nondual awareness.",
+                author: "Milarepa"
+            },
+            {
+                text: "The mind that clings to hope and fear is like a restless monkey, never at peace. Through meditation and perseverance, I learned to let go of all expectations, resting in the natural state. In this effortless presence, the duality of self and other dissolves, and the true face of reality is revealed as pure, unconditioned awareness.",
+                author: "Milarepa"
+            },
+            {
+                text: "Do not be discouraged by the difficulties you encounter on the path. Every hardship is an opportunity to deepen your understanding and strengthen your resolve. Like gold refined by fire, the sincere practitioner is purified by adversity, and through perseverance, attains the precious jewel of nondual realization.",
+                author: "Milarepa"
+            },
+            {
+                text: "In the face of suffering, I turned inward and discovered the radiant nature of mind. The more I persevered, the more the illusions of separation and limitation faded away. Ultimately, I realized that all phenomena are empty, and the heart of compassion arises naturally from this understanding. The path is long, but each step brings you closer to the truth of your own being.",
+                author: "Milarepa"
+            },
+            {
+                text: "The world is filled with distractions and temptations, but the true yogi remains unmoved. By persevering in meditation and self-inquiry, I found that the mind's restless waves subside, revealing the stillness of the ocean beneath. In this vast expanse, there is no self or other, only the luminous play of awareness itself.",
+                author: "Milarepa"
+            },
+            {
+                text: "Through countless hardships and trials, I learned that the greatest obstacle is the mind's own delusion. By facing my fears and doubts with courage and perseverance, I discovered the indestructible nature of awareness. The path of nonduality is not for the faint of heart, but for those who persist, liberation is assured.",
+                author: "Milarepa"
+            },
+            {
+                text: "The teachings of the Buddha are like a lamp in the darkness, but it is through your own effort that the path is illuminated. Persevere in your practice, and do not be swayed by praise or blame. In the end, you will see that all phenomena are empty, and the mind itself is the source of all appearances. Rest in this realization, and you will know true peace.",
+                author: "Milarepa"
+            },
+            {
+                text: "I have wandered through forests and mountains, seeking the truth with unwavering resolve. In the silence of solitude, I discovered that the nature of mind is beyond birth and death, beyond coming and going. Through perseverance, I realized that all suffering arises from clinging to illusions, and true freedom is found in letting go.",
+                author: "Milarepa"
+            },
+            {
+                text: "The path of awakening is not easy, but every challenge is a blessing in disguise. By persevering through hardship, I learned to see all experiences as teachings, and every moment as an opportunity for realization. In the end, the duality of pain and pleasure dissolves, and only the boundless expanse of awareness remains.",
+                author: "Milarepa"
+            },
+            {
+                text: "When the mind is free from attachment and aversion, it rests naturally in its own luminous clarity. Through perseverance in meditation, I discovered that all thoughts and emotions are like clouds passing through the sky—they come and go, but the sky itself remains unchanged. This is the essence of nondual realization.",
+                author: "Milarepa"
+            },
+            {
+                text: "Do not seek happiness outside yourself, for the source of all joy is within. By persevering in self-inquiry, I discovered the radiant nature of mind, and the unity of all beings. The path may be difficult, but with unwavering determination, you will discover the boundless compassion and wisdom that is your true nature.",
+                author: "Milarepa"
+            },
+            {
+                text: "The mind that is distracted by worldly concerns is like a candle flickering in the wind. Through perseverance and single-pointed focus, I learned to rest in the stillness of awareness, undisturbed by external circumstances. In this state, the duality of subject and object dissolves, and the true nature of reality is revealed.",
+                author: "Milarepa"
+            },
+            {
+                text: "In the face of adversity, do not lose heart. Every obstacle is an opportunity to deepen your practice and strengthen your resolve. Through perseverance, I discovered that the mind's true nature is indestructible, and the light of awareness shines even in the darkest of times.",
+                author: "Milarepa"
+            },
+            {
+                text: "The path of realization is like climbing a steep mountain—each step requires effort and determination. But when you reach the summit, you see that the journey itself was the goal, and the view is boundless. Persevere in your practice, and you will discover the limitless expanse of nondual awareness.",
+                author: "Milarepa"
+            },
+            {
+                text: "Through solitude and meditation, I discovered the inseparability of all things. The duality of self and other, subject and object, is but an illusion created by the mind. By persevering in the practice of nonduality, I realized the unity of all existence, and the boundless compassion that arises from this understanding.",
+                author: "Milarepa"
+            },
+            {
+                text: "The mind that is free from grasping and aversion is like a clear mirror, reflecting all phenomena without distortion. Through perseverance in meditation, I learned to rest in this natural state, undisturbed by the play of thoughts and emotions. In this state, the true nature of mind is revealed as pure, luminous awareness.",
+                author: "Milarepa"
+            },
+            {
+                text: "Do not be discouraged by setbacks or failures on the path. Every mistake is a lesson, and every challenge is an opportunity for growth. Through perseverance and self-reflection, I discovered the indestructible nature of awareness, and the boundless freedom that comes from letting go of all attachments.",
+                author: "Milarepa"
+            },
+            {
+                text: "The path of nonduality is not found in books or words, but in direct experience. By persevering in meditation and self-inquiry, I discovered the radiant nature of mind, and the unity of all things. Rest in this realization, and you will know the true meaning of freedom and peace.",
+                author: "Milarepa"
+            }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html> 

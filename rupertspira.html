@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rupert Spira Teachings</title>
+    <meta name="description" content="Authentic quotes by Rupert Spira on nonduality, awareness, and the nature of experience">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕊️</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2d3436, #50575b);
+            color: #f8f8f2;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #b2bec3;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f8f8f2;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.04);
+            background-color: rgba(44, 62, 80, 0.25);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            {
+                text: "We are so accustomed to thinking of ourselves as a body or a mind that we overlook the simple fact of being aware. Awareness is not something we do; it is what we are. It is the ever-present background of all experience, never coming or going, never changing. All that changes is the content of experience, but the knowing of experience—awareness itself—remains untouched.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "Happiness is not found in the acquisition of objects, relationships, or experiences. It is the very nature of our being, always present beneath the surface of the mind's activity. When the mind's agitation subsides, happiness shines by itself, effortlessly. This happiness is not dependent on circumstances, but is the background of all experience.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "The belief that we are a separate self is the root cause of suffering. This belief gives rise to the sense of lack, fear, and the search for fulfillment in the world. When we recognize our true nature as open, unlimited awareness, the sense of separation dissolves. What remains is peace, love, and the natural ease of being.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "All experience appears in awareness, is known by awareness, and is made of awareness. There is nothing outside of awareness, just as there is nothing outside the screen in a movie. The world, the body, and the mind are appearances within the field of knowing. Our essential nature is this knowing presence, not any particular experience that arises within it.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "We do not have to get rid of thoughts or feelings to know our true nature. Thoughts and feelings are simply movements within awareness, like waves on the ocean. The ocean is never disturbed by its waves, nor is awareness disturbed by the content of experience. Rest as the ocean of awareness, allowing all things to come and go without resistance.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "The search for happiness is the search for our own being. We look for it in objects, relationships, and achievements, but it is always already present as the sense of being aware. When we turn our attention away from the objects of experience and towards the fact of being aware, we discover the peace and fulfillment we have always sought.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "Awareness is not personal. It does not belong to a body or a mind. It is the universal, impersonal presence in which all experience arises. The idea of a separate, individual self is a thought appearing in awareness, not the reality of what we are.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "The world is not something outside of ourselves, made of matter. It is an appearance within consciousness, known and perceived by consciousness alone. The belief in an external world is a habit of thought, not a fact of experience. All that is ever truly known is the knowing of experience itself.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "Love is the recognition of our shared being. When we see that the same awareness shines in all beings, the sense of separation dissolves. True love is not a feeling towards another, but the recognition of oneness. In this recognition, compassion and understanding arise naturally.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "The mind cannot know awareness as an object, because awareness is that which knows. All attempts to grasp awareness with the mind are destined to fail. Instead, simply rest as the knowing presence that is always here. In this resting, the search for understanding comes to an end.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "Time and space are modes of perception, not absolute realities. They are the ways in which awareness structures experience, but they have no existence independent of awareness. The past and future are thoughts appearing now, in present awareness. Only the now is ever truly experienced.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "Suffering arises when we resist what is, or when we seek fulfillment in what is not. The end of suffering is the acceptance of the present moment as it is, and the recognition that our true nature is already whole and complete. Nothing needs to be added or taken away. Peace is the natural state of being.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "The body and mind are activities of awareness, not entities in their own right. Just as a whirlpool is a movement of water, the body-mind is a movement of consciousness. There is no separate self at the center of experience—only the open, empty presence of awareness itself.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "Meditation is not a practice or a technique, but the effortless resting in our true nature. It is the recognition that we are already the awareness in which all experience arises. There is nothing to achieve, nowhere to go, nothing to become. Simply be as you are, and let everything else be as it is.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "The sense of lack is the result of forgetting our true nature. When we identify with the body and mind, we feel incomplete and separate. By returning to the simple knowing of being, we rediscover the fullness and peace that is our birthright. This is the end of the search.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "No experience, however sublime or profound, can add anything to what we are. We are already the fullness of being, the light of awareness in which all experiences come and go. The search for special experiences is a distraction from the simplicity of being. Rest in the ordinary, and discover the extraordinary that is always present.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "The world, the body, and the mind are not obstacles to realization. They are expressions of awareness, appearing within awareness, made of awareness. There is nothing to reject or transcend. Everything is included in the wholeness of being.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "Freedom is not the freedom to do what we want, but the freedom from the belief that we are a separate, limited self. True freedom is the recognition that we are the open, unlimited presence in which all experience arises. This freedom is not achieved, but recognized as our natural state.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "The mind is a wonderful servant but a poor master. When it serves the recognition of our true nature, it is a tool for understanding and expression. When it claims to be the center of experience, it creates confusion and suffering. Let the mind rest in the heart of awareness, and all becomes clear.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "There is no distance between ourselves and happiness, because happiness is the very nature of our being. The belief that happiness is to be found in the future or in objects is the great illusion. In the simplicity of being, happiness is revealed as ever-present and unconditional.",
+                author: "Rupert Spira"
+            },
+            {
+                text: "To know our true nature is to know peace, love, and happiness as the background of all experience. This knowing is not a mental understanding, but a direct, experiential recognition. It is the end of seeking, the fulfillment of all longing, and the discovery of our real home.",
+                author: "Rupert Spira"
+            }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html> 

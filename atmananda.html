@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atmananda Krishna Menon Teachings</title>
+    <meta name="description" content="Authentic quotes by Atmananda Krishna Menon on direct path, nonduality, and the nature of the Self">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌄</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #232526, #4e6b0e);
+            color: #f7f7f7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #b2bec3;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f7f7f7;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.04);
+            background-color: rgba(106, 145, 19, 0.18);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .original-text {
+            font-size: 0.95em;
+            color: #b2bec3;
+            font-style: italic;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <span id="original" class="original-text"></span>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            { text: "The Self is ever-present, shining in all experience. It is not an object to be known, but the very knowing itself. When you turn your attention inward and rest as the witness, you discover that you have always been free. This is the direct path to liberation.", author: "Atmananda Krishna Menon" },
+            { text: "All experience arises in consciousness, but consciousness itself is never touched by experience. The world, the body, and the mind are appearances in the light of awareness. Remain as the light, and all confusion will dissolve.", author: "Atmananda Krishna Menon" },
+            { text: "The search for truth ends when you realize that you are the truth you seek. There is no distance between the seeker and the sought. The very act of seeking veils the reality that is always present.", author: "Atmananda Krishna Menon" },
+            { text: "Happiness is not found in objects or experiences, but in the recognition of your true nature. When you know yourself as awareness, all desires fall away, and peace remains. This is the essence of the direct path.", author: "Atmananda Krishna Menon" },
+            { text: "The mind is a tool for functioning in the world, but it cannot know the Self. The Self is the witness of the mind, ever free and unattached. Rest as the witness, and let the mind be as it is.", author: "Atmananda Krishna Menon" },
+            { text: "You are not the body, nor the mind, nor the senses. You are the pure awareness in which all these appear and disappear. This recognition is the end of all suffering.", author: "Atmananda Krishna Menon" },
+            { text: "The world is a projection of consciousness, not separate from the Self. When you see the world as your own Self, all fear and desire vanish. Only peace and love remain.", author: "Atmananda Krishna Menon" },
+            { text: "Let go of all concepts, even the concept of the Self. What remains is pure being, untouched by thought or experience. This is your true nature, ever-present and unchanging.", author: "Atmananda Krishna Menon" },
+            { text: "The direct path is not a practice, but a recognition. It is the immediate seeing that you are awareness itself, not a person or an experiencer. In this seeing, all seeking comes to an end.", author: "Atmananda Krishna Menon" },
+            { text: "Freedom is not something to be attained, but the recognition that you are never bound. The sense of bondage is only a thought, a passing cloud in the sky of awareness. Remain as the sky, and let all clouds pass by.", author: "Atmananda Krishna Menon" },
+            { text: "The heart of the teaching is to know yourself as you truly are. All other knowledge is secondary. When you abide as the Self, all questions and doubts disappear.", author: "Atmananda Krishna Menon" },
+            { text: "The world, the body, and the mind are not obstacles to realization. They are expressions of awareness, appearing within awareness, made of awareness. There is nothing to reject or transcend. Everything is included in the wholeness of being.", author: "Atmananda Krishna Menon" },
+            { text: "Let thoughts come and go, like waves on the ocean. You are the ocean, vast and unchanging, untouched by the movement of the waves. In this recognition, all anxiety and fear dissolve.", author: "Atmananda Krishna Menon" },
+            { text: "The mind seeks answers, but the heart knows that there are no questions. In the silence of being, all questions dissolve, and only peace remains. Trust the heart, and you will find your way home.", author: "Atmananda Krishna Menon" },
+            { text: "You are the light of awareness, shining in every experience. Do not look for yourself in the objects of perception; you are the perceiver, the witness of all that appears. This recognition is the key to lasting peace and happiness.", author: "Atmananda Krishna Menon" },
+            { text: "Peace is not something to be attained, but the natural state of being. When you stop searching and simply rest in awareness, peace reveals itself. It is always present, waiting to be recognized.", author: "Atmananda Krishna Menon" },
+            { text: "The greatest gift you can offer the world is your own presence. When you are fully present, you radiate peace and love to all around you. This is the true service, the highest form of compassion.", author: "Atmananda Krishna Menon" },
+            { text: "Do not try to change the world; change your relationship to it. When you see the world as a reflection of your own consciousness, you gain the power to transform your experience. The world is not outside you; it is within.", author: "Atmananda Krishna Menon" },
+            { text: "Let go of all ideas about yourself, good or bad. You are not the story the mind tells; you are the awareness in which all stories appear. When you let go of identification with the mind, you discover a freedom that is beyond description. This is the freedom of the Self, your true home.", author: "Atmananda Krishna Menon" },
+            { text: "You are the Self, pure and free, ever-present and unchanging. This is the truth that liberates you from all fear and desire. Abide as the Self, and let the play of life unfold as it will.", author: "Atmananda Krishna Menon" }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const originalElement = document.getElementById('original');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            originalElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                if (randomQuote.original) {
+                    originalElement.textContent = randomQuote.original;
+                    originalElement.style.display = 'block';
+                } else {
+                    originalElement.textContent = '';
+                    originalElement.style.display = 'none';
+                }
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+                originalElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html> 

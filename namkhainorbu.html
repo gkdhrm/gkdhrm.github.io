@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namkhai Norbu Rinpoche Teachings</title>
+    <meta name="description" content="Authentic long quotes by Namkhai Norbu Rinpoche on Dzogchen and nonduality.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☸️</text></svg>">
+    <style>
+        body { margin: 0; padding: 0; background: linear-gradient(135deg, #1a1a1a, #2a2a2a); color: #f0f0f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif; display: flex; flex-direction: column; min-height: 100vh; text-align: center; transition: opacity 3s; opacity: 0; }
+        .navigation { padding: 10px; background-color: rgba(0, 0, 0, 0.2); }
+        .navigation a { color: #bdc3c7; text-decoration: none; margin: 0 10px; font-size: 14px; transition: color 0.3s; }
+        .navigation a:hover { color: #f0f0f0; }
+        .container { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .quote-container { border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 15px; box-shadow: 0 0 30px rgba(255, 255, 255, 0.05); background-color: rgba(0, 0, 0, 0.3); padding: 2rem; }
+        .quote { font-size: clamp(1rem, 2.5vw, 1.5rem); line-height: 1.6; margin-bottom: 1rem; transition: opacity 2s; }
+        .author { font-size: clamp(0.8rem, 2vw, 1.2rem); opacity: 0.8; transition: opacity 2s; }
+        @media (max-width: 600px) { .quote-container { padding: 1rem; margin: 1rem; } }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            { text: "All the various types of teachings and spiritual paths are related to the different capacities of understanding that different individuals have. There does not exist, from an absolute point of view, any teaching which is more perfect or effective than another. A teaching's value lies solely in the inner awakening which an individual can arrive at through it. If a person benefits from a given teaching, for that person that teaching is the supreme path, because it is suited to his or her nature and capacities. There's no sense in trying to judge it as more or less elevated in relation to other paths to realization.", author: "Namkhai Norbu Rinpoche" },
+            { text: "All the philosophical theories that exist have been created by the mistaken dualistic minds of human beings. In the realm of philosophy, that which today is considered true, may tomorrow be proved to be false. No one can guarantee a philosophy's validity. Because of this, any intellectual way of seeing whatever is always partial and relative. The fact is that there is no truth to seek or to confirm logically; rather what one needs to do is to discover just how much the mind continually limits itself in a condition of dualism.", author: "Namkhai Norbu Rinpoche" },
+            { text: "Dualism is the real root of our suffering and of all our conflicts. All our concepts and beliefs, no matter how profound they may seem, are like nets which trap us in dualism. When we discover our limits we have to try to overcome them, untying ourselves from whatever type of religious, political or social conviction may condition us. We have to abandon such concepts as 'enlightenment', 'the nature of the mind', and so on, until we are no longer satisfied by a merely intellectual knowledge, and until we no longer neglect to integrate our knowledge with our actual existence.", author: "Namkhai Norbu Rinpoche" },
+            { text: "Someone who begins to develop an interest in the teachings can tend to distance themselves from the reality of material things, as if the teachings were something completely apart from daily life. Often, at the bottom of all this, there is an attitude of giving up and running away from one's own problems, with the illusion that one will be able to find something that will miraculously help one to transcend all that. But the teachings are based on the principle of our actual human condition. We have a physical body with all its various limits: each day we have to eat, work, rest, and so on. This is our reality, and we can't ignore it.", author: "Namkhai Norbu Rinpoche" },
+            { text: "The light of the sun is the manifestation of the clarity of the sky; and the sky is the basic condition necessary for the manifestation of the sun's light. So, too, in the sky two, three, four, or any number of suns could arise; but the sky always remains indivisibly one sky. Similarly, every individual's state of presence is unique and distinct, but the void nature of the individual is universal, and common to all beings.", author: "Namkhai Norbu Rinpoche" },
+            { text: "Enlightenment, or Nirvana, is nothing other than the state beyond all obstacles, in the same way that from the peak of a very high mountain one always sees the sun. Nirvana is not a paradise or some special place of happiness, but is in fact the condition beyond all dualistic concepts, including those of happiness and suffering. When all our obstacles have been overcome, and we find ourselves in a state of total presence, the wisdom of enlightenment manifests spontaneously without limits, just like the infinite rays of the sun. The clouds have dissolved, and the sun is finally free to shine once again.", author: "Namkhai Norbu Rinpoche" },
+            { text: "Controlling the position of one's body and keeping a straight back are not contemplation, but can in fact become an obstacle to contemplation. When leaving the body 'uncontrolled' is spoken of, what is meant is simply allowing the body to remain in an authentic, uncorrected condition, in which it is not necessary to modify or improve anything. This is because, since all our attempts at correcting the body come from the reasoning mind, they are all false and artificial.", author: "Namkhai Norbu Rinpoche" },
+            { text: "But beyond the mind, beyond our thoughts, there is something we call the 'nature of the mind', the mind's true condition, which is beyond all limits. If it is beyond the mind, though, how can we approach an understanding of it? Let's take the example of a mirror. When we look into a mirror we see in it the reflected images of any objects that are in front of it; we don't see the nature of the mirror. But what do we mean by this 'nature of the mirror'? We mean its capacity to reflect, definable as its clarity, its purity, and its limpidity, which are indispensable conditions for the manifestation of reflections. This 'nature of the mirror' is not something visible, and the only way we can conceive of it is through the images reflected in the mirror. In the same way, we only know and have concrete experience of that which is relative to our condition of body, voice, and mind. But this itself is the way to understand their true nature.", author: "Namkhai Norbu Rinpoche" },
+            { text: "The truth is that a better society will only arise through the evolution of the individual. This is because society is made up of millions of individuals. To count to a million, one has to start with number one, which means one has to start with the individual, the only real place one can actually begin to change something. This doesn't mean putting oneself first in an egotistical way, but rather it involves our coming to understand the condition of the whole of humanity through understanding our own experience. With this experience as our guide, we will know how to behave with awareness in any circumstance in every type of society.", author: "Namkhai Norbu Rinpoche" },
+            { text: "But karma is not in fact a material accumulation, and does not depend on externals; rather its power to condition us depends on the obstacles that impede our knowledge. If we compare our karma and the ignorance that creates it to a dark room, knowledge of the primordial state would be like a lamp, which, when lit in the room, at once causes the darkness to disappear, enlightening everything. In the same way, if one has the presence of the primordial state, one can overcome all hindrances in an instant.", author: "Namkhai Norbu Rinpoche" },
+            { text: "In Dzogchen one learns to become responsible for oneself without following rules. A person who follows rules is like a blind person who needs someone to guide them in order to be able to walk. For this reason it is said that a Dzogchen practitioner must open his or her eyes to discover their condition, so that they will no longer be dependent on anyone or anything.", author: "Namkhai Norbu Rinpoche" },
+            { text: "Realization is not knowledge about the universe, but the living experience of the nature of the universe. Until we have such living experience, we remain dependent on examples, and subject to their limits. The path of Dzogchen is not about accumulating knowledge, but about direct recognition and presence.", author: "Namkhai Norbu Rinpoche" },
+            { text: "But it can happen that a phrase intended to indicate a state beyond concepts just becomes another concept in itself, in the same way that if you ask a person their name and they reply that they have no name, you will then perhaps mistakenly call them 'No name'. The true nature of mind is beyond all labels and concepts, and can only be recognized directly.", author: "Namkhai Norbu Rinpoche" },
+            { text: "If you are aware in the dream, you can experience many things within the dream state. It is easier to develop your practices in a dream than in the daytime. In the daytime we are limited by our material body, but in a dream our function of mind and our consciousness of the senses are unhindered. This is why dream yoga is considered a powerful practice in Dzogchen.", author: "Namkhai Norbu Rinpoche" },
+            { text: "Dzogchen is not about striving for some special state or experience. It is about recognizing the nature of mind in every moment, in the midst of ordinary life. When you rest in this recognition, all confusion dissolves, and you abide in the natural state, free from suffering.", author: "Namkhai Norbu Rinpoche" },
+            { text: "The key to Dzogchen practice is presence. Presence is not something to be fabricated or created; it is the natural state of awareness, always available. When you recognize and remain in presence, all phenomena are seen as the play of awareness, and you are no longer caught by attachment or aversion.", author: "Namkhai Norbu Rinpoche" },
+            { text: "In the practice of Dzogchen, there is no need to reject thoughts or emotions. They are the self-display of awareness, like waves on the ocean. When you recognize their nature, they self-liberate without effort, and you remain undisturbed in the natural state. This is the heart of nondual realization.", author: "Namkhai Norbu Rinpoche" },
+            { text: "The natural state is beyond meditation and non-meditation, beyond effort and non-effort. It is the spontaneous presence of awareness, free from all contrivance. When you rest in this state, you are free from all striving, and the mind's true nature reveals itself effortlessly.", author: "Namkhai Norbu Rinpoche" },
+            { text: "The true nature of mind is like space: open, boundless, and unobstructed. All phenomena arise and dissolve within this space, leaving no trace. When you recognize this, you are free from all limitations, and you abide in the great peace of Dzogchen.", author: "Namkhai Norbu Rinpoche" }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+            setInterval(displayQuote, 18000);
+        });
+    </script>
+</body>
+</html> 

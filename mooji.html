@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mooji Teachings</title>
+    <meta name="description" content="Authentic quotes by Mooji on awakening, nonduality, and the nature of self and reality">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌺</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #283e51, #3a4650);
+            color: #f8f8f2;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #b2bec3;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f8f8f2;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.04);
+            background-color: rgba(40, 62, 81, 0.25);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .original-text {
+            font-size: 0.95em;
+            color: #b2bec3;
+            font-style: italic;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <span id="original" class="original-text"></span>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            {
+                text: "You are the unchanging awareness in which all thoughts, feelings, and experiences appear and disappear. Do not identify yourself with the passing content of the mind. Remain as the witness, the pure presence that is untouched by any event. In this seeing, you discover a peace that cannot be disturbed, a joy that is not dependent on circumstances. This is your true nature, ever-present and unchanging.",
+                author: "Mooji"
+            },
+            {
+                text: "The mind will try to convince you that you are incomplete, that you must become something or achieve something to be whole. But you are already complete, already whole, lacking nothing. The sense of lack is only a thought, a passing cloud in the vast sky of your being. Recognize this and rest in your natural state of completeness. All striving then falls away, and you abide in effortless peace.",
+                author: "Mooji"
+            },
+            {
+                text: "Let everything come and go. Let thoughts, emotions, and sensations arise and pass away without clinging or resisting. You are the space in which all phenomena appear, but you are not any particular phenomenon. When you realize this, you are free from the tyranny of the mind and the world. Freedom is not something to be attained; it is your very essence.",
+                author: "Mooji"
+            },
+            {
+                text: "If you make the mind your friend, it will serve you well. But if you believe every thought, you will be tossed about like a leaf in the wind. Observe the mind with detachment, and you will see that you are not the mind. You are the awareness in which the mind appears and disappears. This simple recognition is the doorway to liberation.",
+                author: "Mooji"
+            },
+            {
+                text: "True understanding is not a matter of accumulating knowledge, but of recognizing what you already are. The greatest discovery is to realize that you are the Self, pure awareness, beyond birth and death. All suffering arises from the mistaken belief that you are a person, limited and separate. See through this illusion, and suffering dissolves in the light of your true nature.",
+                author: "Mooji"
+            },
+            {
+                text: "You do not have to fix yourself or become perfect. You only need to recognize what is already perfect and whole within you. The mind will always find something to improve, but the heart knows that you are already home. Rest in the heart, and let the mind be as it is. In this way, you live in harmony with yourself and the world.",
+                author: "Mooji"
+            },
+            {
+                text: "The world is a play of appearances, ever-changing and unpredictable. Do not look for lasting happiness in what comes and goes. Turn your attention inward to the source of all experience, the unchanging Self. Here you will find a peace that is not affected by the ups and downs of life. This is the peace that passes all understanding.",
+                author: "Mooji"
+            },
+            {
+                text: "When you let go of the need to control life, you discover a natural flow and ease. Life takes care of itself when you stop interfering. Trust the intelligence of existence, and you will see that everything unfolds perfectly. Even challenges and difficulties are opportunities for growth and awakening. Surrender is not weakness; it is the highest strength.",
+                author: "Mooji"
+            },
+            {
+                text: "The sense of 'I am' is the doorway to your true nature. Stay with the feeling of being, without attaching any labels or stories to it. In the silence of being, all questions dissolve, and only pure awareness remains. This is the direct path to self-realization. Do not complicate it with concepts or practices; simply be as you are.",
+                author: "Mooji"
+            },
+            {
+                text: "You are not here to fix the world, but to discover your true Self. When you awaken to your true nature, your presence becomes a blessing to all. The world may not change, but your relationship to it is transformed. You move through life with grace, compassion, and wisdom. This is the greatest gift you can offer to the world.",
+                author: "Mooji"
+            },
+            {
+                text: "Do not be afraid of silence. In silence, the mind loses its power, and the heart reveals its secrets. All the answers you seek are found in the stillness of your own being. Make friends with silence, and you will discover the peace that is always present. Silence is the language of the Self.",
+                author: "Mooji"
+            },
+            {
+                text: "The ego is a phantom, a collection of thoughts and beliefs with no real substance. It claims ownership of actions, experiences, and even awakening. See through the illusion of the ego, and you will find that there is only awareness, pure and free. The ego cannot survive the light of true understanding. Let it dissolve, and be free.",
+                author: "Mooji"
+            },
+            {
+                text: "You are not the body, nor the mind, nor the roles you play in the world. You are the timeless witness, the unchanging presence in which all experiences arise and subside. This recognition is the end of fear and the beginning of true freedom. Abide as the Self, and let the play of life unfold as it will.",
+                author: "Mooji"
+            },
+            {
+                text: "The greatest obstacle to awakening is the belief that you are not already awake. The mind will always find reasons to postpone your freedom. Do not listen to the mind; listen to the heart, which knows the truth. You are already that which you seek. Trust this, and let go of all seeking.",
+                author: "Mooji"
+            },
+            {
+                text: "Love is your natural state, the fragrance of your true being. When you stop searching for love outside yourself, you discover that love is what you are. This love is not personal; it embraces all beings without exception. In the light of this love, all differences dissolve, and only oneness remains.",
+                author: "Mooji"
+            },
+            {
+                text: "Do not try to change the world; change your relationship to the world. When you see the world as a reflection of your own mind, you gain the power to transform your experience. The world is not outside you; it is a projection of consciousness. Change your consciousness, and the world changes with you.",
+                author: "Mooji"
+            },
+            {
+                text: "The journey to self-realization is not a journey in time or space. It is the recognition of what is always present, here and now. You do not have to go anywhere or become anything. Simply recognize the truth of your own being, and all seeking comes to an end.",
+                author: "Mooji"
+            },
+            {
+                text: "Let go of all ideas about yourself, good or bad. You are not the story the mind tells; you are the awareness in which all stories appear. When you let go of identification with the mind, you discover a freedom that is beyond description. This is the freedom of the Self, your true home.",
+                author: "Mooji"
+            },
+            {
+                text: "The mind is a wonderful servant but a terrible master. Use the mind for practical purposes, but do not let it rule your life. The heart is the true guide, the seat of wisdom and love. Follow the heart, and the mind will find its rightful place. In this way, you live in harmony with yourself and the world.",
+                author: "Mooji"
+            },
+            {
+                text: "You are the light of consciousness, shining in every experience. Do not look for yourself in the objects of perception; you are the perceiver, the witness of all that appears. This recognition is the key to lasting peace and happiness. Abide as the Self, and let the world be as it is.",
+                author: "Mooji"
+            }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const originalElement = document.getElementById('original');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            originalElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                if (randomQuote.original) {
+                    originalElement.textContent = randomQuote.original;
+                    originalElement.style.display = 'block';
+                } else {
+                    originalElement.textContent = '';
+                    originalElement.style.display = 'none';
+                }
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+                originalElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html> 

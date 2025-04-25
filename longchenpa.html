@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longchenpa Teachings</title>
+    <meta name="description" content="Authentic quotes by Longchenpa on Dzogchen, nonduality, and the nature of mind">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌄</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f7971e, #c9a600);
+            color: #2d3436;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.08);
+        }
+        .navigation a {
+            color: #636e72;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #2d3436;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(0, 0, 0, 0.08);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.04);
+            background-color: rgba(255, 210, 0, 0.13);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .original-text {
+            font-size: 0.95em;
+            color: #636e72;
+            font-style: italic;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <span id="original" class="original-text"></span>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            { text: "Rest in natural great peace, this exhausted mind, beaten helpless by karma and neurotic thoughts, like the relentless fury of the pounding waves in the infinite ocean of samsara.", author: "Longchenpa" },
+            { text: "Since everything is but an apparition, perfect in being what it is, having nothing to do with good or bad, acceptance or rejection, you might as well burst out laughing!", author: "Longchenpa" },
+            { text: "All phenomena are empty by nature, like a magical display, neither real nor unreal. When you recognize this, you are freed from attachment and aversion, and the mind abides in its natural state.", author: "Longchenpa" },
+            { text: "The nature of mind is luminous, open, and spacious. It is not something to be attained, but recognized as ever-present, the ground of all experience.", author: "Longchenpa" },
+            { text: "Let go of all striving and rest in the simplicity of being. In this effortless presence, all confusion dissolves, and the true nature of mind shines forth.", author: "Longchenpa" },
+            { text: "Thoughts and emotions are like clouds in the sky. They come and go, but the sky itself remains unchanged, vast, and clear.", author: "Longchenpa" },
+            { text: "The essence of all teachings is to recognize the nature of your own mind. When you see this, you are free from all suffering and delusion.", author: "Longchenpa" },
+            { text: "There is nothing to reject, nothing to accept, nothing to transform. Everything is already complete, just as it is.", author: "Longchenpa" },
+            { text: "The play of appearances is like a dream, vivid yet insubstantial. Do not be caught by the dream; recognize the dreamer, and awaken to your true nature.", author: "Longchenpa" },
+            { text: "In the expanse of primordial purity, all phenomena are self-liberated. There is no need to alter or improve anything; simply rest in the natural state.", author: "Longchenpa" },
+            { text: "The mind that seeks is itself the obstacle. When you stop seeking and simply rest, the truth reveals itself effortlessly.", author: "Longchenpa" },
+            { text: "Awareness is like space: open, boundless, and free from all limitations. Rest as this awareness, and all suffering dissolves.", author: "Longchenpa" },
+            { text: "The true nature of mind is beyond birth and death, beyond coming and going. It is the ever-present ground of all experience.", author: "Longchenpa" },
+            { text: "Let go of all concepts, all judgments, all striving. Rest in the simplicity of being, and the natural state will reveal itself.", author: "Longchenpa" },
+            { text: "All appearances are the self-display of awareness, empty and luminous. Recognize this, and you are free from all attachment and aversion.", author: "Longchenpa" },
+            { text: "The greatest obstacle to realization is the belief that there is something to realize. Let go of this belief, and the truth will shine forth effortlessly.", author: "Longchenpa" },
+            { text: "In the natural state, there is no separation, no duality, no conflict. Everything is included in the wholeness of being.", author: "Longchenpa" },
+            { text: "The mind is restless by nature, but its essence is peace. Recognize this, and let the mind return to its own ground.", author: "Longchenpa" },
+            { text: "There is no need to purify the mind or attain any special state. The natural state is already pure, already perfect, already complete.", author: "Longchenpa" },
+            { text: "Rest in the natural state, free from hope and fear, free from grasping and aversion. Here, you will find the peace that passes all understanding.", author: "Longchenpa" }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const originalElement = document.getElementById('original');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            originalElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                if (randomQuote.original) {
+                    originalElement.textContent = randomQuote.original;
+                    originalElement.style.display = 'block';
+                } else {
+                    originalElement.textContent = '';
+                    originalElement.style.display = 'none';
+                }
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+                originalElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html> 

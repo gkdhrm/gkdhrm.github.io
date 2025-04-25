@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jigme Lingpa Teachings</title>
+    <meta name="description" content="Authentic long quotes by Jigme Lingpa on Dzogchen and nonduality.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☸️</text></svg>">
+    <style>
+        body { margin: 0; padding: 0; background: linear-gradient(135deg, #1a1a1a, #2a2a2a); color: #f0f0f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif; display: flex; flex-direction: column; min-height: 100vh; text-align: center; transition: opacity 3s; opacity: 0; }
+        .navigation { padding: 10px; background-color: rgba(0, 0, 0, 0.2); }
+        .navigation a { color: #bdc3c7; text-decoration: none; margin: 0 10px; font-size: 14px; transition: color 0.3s; }
+        .navigation a:hover { color: #f0f0f0; }
+        .container { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .quote-container { border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 15px; box-shadow: 0 0 30px rgba(255, 255, 255, 0.05); background-color: rgba(0, 0, 0, 0.3); padding: 2rem; }
+        .quote { font-size: clamp(1rem, 2.5vw, 1.5rem); line-height: 1.6; margin-bottom: 1rem; transition: opacity 2s; }
+        .author { font-size: clamp(0.8rem, 2vw, 1.2rem); opacity: 0.8; transition: opacity 2s; }
+        @media (max-width: 600px) { .quote-container { padding: 1rem; margin: 1rem; } }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            { text: "The location of the truth of the Great Perfection is the unfabricated mind of the present moment, this naked radiant awareness itself, not a hair of which has been forced into relaxation. Maintaining this at all times, just through not forgetting it even in the states of eating, sleeping, walking, and sitting, is called meditation. However, until you are free from the obscurations of cognition, it is impossible for this not to be mixed with the experiences of bliss, clarity, and nonconceptualization. Nevertheless, just by not forgetting the nature of one's own awareness — the kind that is not a tangled mindfulness that gets more tangled in order to be mindful — at some point the unelaborated ultimate truth, transcending terms and examples, will appear.", author: "Jigme Lingpa" },
+            { text: "The true nature of things is naturally free of conceptual projections. It does not exist, since even the victorious ones do not see it. Yet neither is it non-existent, as it is the ground of all samsara and nirvana. There is no contradiction here, for it lies beyond the realm of expression. Rest in this recognition, and you will discover the freedom that is the heart of Dzogchen.", author: "Jigme Lingpa" },
+            { text: "Mesmerized by the sheer variety of perceptions, which are like the illusory reflections of the moon in water, beings wander endlessly astray in samsara's vicious cycle. When you recognize the nature of mind, all appearances are seen as the play of awareness, and you are no longer deceived by the illusions of duality.", author: "Jigme Lingpa" },
+            { text: "Virtue that is filled with loving-kindness and compassion is generosity when practiced for the sake of beings. It is discipline when free from self-concern and patience when untiring for the sake of others. It is diligence when done with vibrant joy and concentration when enacted with one-pointed mindfulness. It is wisdom when there is no clinging to the reality of things. From virtue such as this the six perfections never separate.", author: "Jigme Lingpa" },
+            { text: "Sickness are the brooms sweeping your evil deeds. Seeing the sickness as the teacher, pray to them. Sickness are coming to you by the kindness of the masters and the Three Jewels. Sickness are your accomplishments, so worship them as the deities. Sickness are the signs that your bad karmas are being exhausted. Do not look at the face of your sickness, but at the one (the mind) who is sick. Do not place the sickness on your mind, but place your naked intrinsic awareness upon your sickness. This is the instruction on sickness arising as the Dharmakāya.", author: "Jigme Lingpa" },
+            { text: "The natural state of the ground is free from complexity, and ground-appearances are rigpa-dharmakāya. The path has always been clear of effort, from the very beginning. When this nature itself is realized, it is the great source of freedom. The fruition is not something separate and set apart. All qualities of the path and fruition are complete within the natural state.", author: "Jigme Lingpa" },
+            { text: "Without any deliberate view, it is beyond dullness and agitation. Without deliberate meditation, it is entering the original 'womb'. Without deliberate conduct, it is free from rigid notions or ideas. One who has mastered this is a lord among yogis. Rest in the uncontrived simplicity of awareness, and you will discover the freedom that is your true nature.", author: "Jigme Lingpa" },
+            { text: "If you are aware of a thought as it suddenly appears, and can sustain the continuity of recognition, that is insight gone astray in character. It can also be referred to as post-meditation. But it's not the freeing of thoughts as dharmakāya, and we must cut directly to the source. Rigpa has always been free from conceptual elaboration.", author: "Jigme Lingpa" },
+            { text: "Conventions such as 'view', 'meditation' or 'conduct' and any clinging to them is cleared, without basis or origin. Good thoughts, bad thoughts, and those in between, without slipping into any such categorization, are freed upon arising, without any agent to make distinctions. As long as awareness does not lose its own ground, there is no need for anything more than this.", author: "Jigme Lingpa" },
+            { text: "Even if you were to meet a hundred scholarly monks, a thousand siddhas, ten thousand translators and pandits, a hundred thousand instructions, or a billion treatises, still there'd be no call to clarify uncertainty or doubt. The direct recognition of your own nature is the heart of the path. Remain in this recognition, and all phenomena will self-liberate.", author: "Jigme Lingpa" },
+            { text: "The maha ati, which is beyond conceptions and transcends both grasping and letting go, is the essence of transcendental insight. This is the unchanging state of non meditation in which there is awareness but no clinging. Understanding this, I pay ceaseless homage to the maha ati with great simplicity. The state of non meditation is born in the heart when one no longer discriminates between meditation and non-meditation and one is no longer tempted to change or prolong the state of meditation. There is all-pervading joy, free from all doubts.", author: "Jigme Lingpa" },
+            { text: "According to the maha ati teaching, meditation consists of seeing whatever arises in the mind and simply remaining in the state of nowness. Continuing in this state after meditation is known as the post-meditation experience. The yogi of maha ati may look like an ordinary person but his awareness is completely absorbed in nowness. He has no need of books because he sees apparent phenomena and the whole of existence as the mandala of the guru.", author: "Jigme Lingpa" },
+            { text: "The experience of true insight is the simultaneous awareness of both stillness and active thoughts. Meditation is not about suppressing thoughts or seeking a blank state, but about recognizing the nature of mind in all circumstances. When you rest in this recognition, all phenomena are seen as the play of awareness, and you are free from attachment and aversion.", author: "Jigme Lingpa" },
+            { text: "There are four mistaken views of the void. It is a mistake to imagine that the void is merely empty without seeing the wild space of nowness. It is a mistake to seek the buddha nature in external sources, without realizing that nowness knows no path or goal. It is a mistake to try to introduce some remedy for thoughts without realizing that thoughts are by nature void and that one can free oneself like a snake unwinding. It is also a mistake to hold a nihilistic view that there is nothing but the void, no cause and effect of karma and no meditator nor meditation, failing to experience the void which is beyond conceptions.", author: "Jigme Lingpa" },
+            { text: "To be freely resting like a mountain is a measure of view; to be freely resting like an ocean is a measure of meditation; to be freely resting in appearances is a measure of conduct; to be freely resting in pure presence is a measure of fruition. The being that knows these four modes in full measure knows the definitive meaning of the Great Perfection.", author: "Jigme Lingpa" },
+            { text: "Kye! In pure presence, in the here and now, do not try to change anything, or to add or subtract anything; but without elaborating or concentrating, just let it be. Neither accept nor reject, neither hope nor fear. Rest in the natural state, and all phenomena will self-liberate.", author: "Jigme Lingpa" },
+            { text: "Nonfixation is generosity; homelessness is moral discipline; unguardedness is patience; nonstriving is perseverance; nonthought is concentrated absorption; referencelessness is perfect insight. When these qualities are present, the six perfections are complete, and the path to liberation is clear.", author: "Jigme Lingpa" },
+            { text: "No intelligence, no power, no wealth or strength can help someone without diligence. He is like a boatman whose boat has everything but oars. Diligence is the key to progress on the path, and without it, realization remains out of reach.", author: "Jigme Lingpa" },
+            { text: "True teachers who do not deceive on the supreme path are like great ships that rescue beings from the ocean of existence. They are like rain of nectar that covers the flames of karma and defilements. And they are like the sun and moon that dispels the darkness of ignorance. Rely on such teachers, and your journey to liberation will be swift.", author: "Jigme Lingpa" },
+            { text: "The location of the truth of the Great Perfection is the unfabricated mind of the present moment. Maintaining this at all times, just through not forgetting it even in the states of eating, sleeping, walking, and sitting, is called meditation. This is the essence of the path, and the heart of all the teachings.", author: "Jigme Lingpa" }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+            setInterval(displayQuote, 18000);
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garab Dorje Teachings</title>
+    <meta name="description" content="Authentic long quotes by Garab Dorje on Dzogchen and nonduality.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☸️</text></svg>">
+    <style>
+        body { margin: 0; padding: 0; background: linear-gradient(135deg, #1a1a1a, #2a2a2a); color: #f0f0f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif; display: flex; flex-direction: column; min-height: 100vh; text-align: center; transition: opacity 3s; opacity: 0; }
+        .navigation { padding: 10px; background-color: rgba(0, 0, 0, 0.2); }
+        .navigation a { color: #bdc3c7; text-decoration: none; margin: 0 10px; font-size: 14px; transition: color 0.3s; }
+        .navigation a:hover { color: #f0f0f0; }
+        .container { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .quote-container { border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 15px; box-shadow: 0 0 30px rgba(255, 255, 255, 0.05); background-color: rgba(0, 0, 0, 0.3); padding: 2rem; }
+        .quote { font-size: clamp(1rem, 2.5vw, 1.5rem); line-height: 1.6; margin-bottom: 1rem; transition: opacity 2s; }
+        .author { font-size: clamp(0.8rem, 2vw, 1.2rem); opacity: 0.8; transition: opacity 2s; }
+        @media (max-width: 600px) { .quote-container { padding: 1rem; margin: 1rem; } }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            { text: "Directly recognize the face of your own awareness, which is naturally pure and free from all elaboration. This is the essence of Dzogchen, the Great Perfection. When you see your true nature, you realize that all appearances are the play of luminous emptiness, inseparable from awareness itself. There is nothing to add, nothing to remove, nothing to improve. Rest in this recognition, and you will discover the freedom that has always been present.", author: "Garab Dorje" },
+            { text: "The first vital point is direct introduction to your own nature. The teacher points out the nature of mind, and you recognize it as your own. This recognition is not a thought or a concept, but a direct, nondual experience. Once you have seen this, you know that all phenomena arise within the expanse of awareness, and you are no longer deceived by appearances.", author: "Garab Dorje" },
+            { text: "Decide upon one thing and one thing only: to remain in the state of recognition. Do not be distracted by thoughts, emotions, or external circumstances. Whatever arises, let it arise and dissolve naturally, without grasping or rejecting. The unwavering certainty in your own nature is the key to liberation.", author: "Garab Dorje" },
+            { text: "Have confidence in the self-liberation of all thoughts. When a thought arises, recognize its nature and let it dissolve on its own, like a drawing on water. There is no need to fight with thoughts or try to control the mind. Simply rest in the natural state, and all phenomena will self-liberate without effort.", author: "Garab Dorje" },
+            { text: "The mind's true nature is beyond birth and death, beyond coming and going. It is the ground of all experience, the source of all appearances. When you recognize this, you are free from hope and fear, free from striving and struggle. Abide in the natural state, and you will discover the great peace that is the heart of Dzogchen.", author: "Garab Dorje" },
+            { text: "All phenomena are the display of awareness, like reflections in a mirror. They have no independent existence, no true substance. When you see this, you are no longer caught by attachment or aversion. You rest in the spaciousness of your own nature, free from all limitations.", author: "Garab Dorje" },
+            { text: "The path of Dzogchen is not about effort or achievement. It is about recognizing what is already present, what has always been present. The teacher's role is to introduce you to your own nature, and your role is to recognize and remain in that state. This is the essence of all the teachings.", author: "Garab Dorje" },
+            { text: "Do not seek outside yourself for realization. The true nature of mind is not found in books, rituals, or philosophies. It is found in the direct experience of awareness, here and now. Trust in your own recognition, and you will find the freedom that cannot be lost.", author: "Garab Dorje" },
+            { text: "When you rest in the natural state, all thoughts and emotions arise and dissolve like clouds in the sky. The sky is never affected by the clouds, no matter how many appear. In the same way, your true nature is never affected by the play of thoughts and emotions. Recognize this, and you are free.", author: "Garab Dorje" },
+            { text: "The three statements that strike the vital point are the heart of Dzogchen. First, recognize your own nature. Second, remain in that recognition with unwavering certainty. Third, have confidence that all phenomena self-liberate in the expanse of awareness. These three are the complete path to liberation.", author: "Garab Dorje" },
+            { text: "Awareness is self-knowing, self-luminous, and free from all limitations. It is not created by causes or conditions, nor is it destroyed by time or change. When you recognize this, you are no longer bound by the dualities of samsara and nirvana. You abide in the great equality of all phenomena.", author: "Garab Dorje" },
+            { text: "The natural state is beyond meditation and non-meditation, beyond effort and non-effort. It is the spontaneous presence of awareness, free from all contrivance. When you rest in this state, you are free from all striving, and the mind's true nature reveals itself effortlessly.", author: "Garab Dorje" },
+            { text: "Do not be deceived by appearances. All phenomena are empty of inherent existence, yet they appear vividly and clearly. This is the magical display of awareness, the play of luminous emptiness. Recognize this, and you will not be caught by attachment or aversion.", author: "Garab Dorje" },
+            { text: "The teacher's instruction is like a key that opens the door to your own nature. Once you have entered, you must remain in that state and not be distracted by the play of thoughts. The true path is to rest in the natural state, without grasping or rejecting anything.", author: "Garab Dorje" },
+            { text: "The essence of Dzogchen is to recognize, remain, and have confidence. Recognize your own nature, remain in that recognition, and have confidence that all phenomena self-liberate. This is the complete teaching, the heart of all the tantras and instructions.", author: "Garab Dorje" },
+            { text: "When you recognize your own nature, you see that all beings share the same essence. There is no separation, no division. Compassion arises naturally, and you act for the benefit of all without effort or contrivance. This is the great compassion of Dzogchen.", author: "Garab Dorje" },
+            { text: "The natural state is beyond words and concepts, beyond all descriptions. It cannot be grasped by the intellect, nor can it be lost or destroyed. Rest in the uncontrived simplicity of awareness, and you will discover the freedom that is your true nature.", author: "Garab Dorje" },
+            { text: "All teachings are methods to bring you to the recognition of your own nature. Once you have recognized, there is nothing more to seek, nothing more to do. Remain in the natural state, and all phenomena will self-liberate without effort.", author: "Garab Dorje" },
+            { text: "The mind's true nature is like space: open, boundless, and unobstructed. All phenomena arise and dissolve within this space, leaving no trace. When you recognize this, you are free from all limitations, and you abide in the great peace of Dzogchen.", author: "Garab Dorje" },
+            { text: "The path of Dzogchen is the path of direct recognition. It is not a gradual path, nor is it achieved through effort or struggle. Recognize your own nature, remain in that recognition, and have confidence in the self-liberation of all phenomena. This is the complete path to liberation.", author: "Garab Dorje" }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+            setInterval(displayQuote, 18000);
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lal Ded Teachings</title>
+    <meta name="description" content="Authentic quotes and vakhs by Lal Ded on Kashmiri Shaivism, nonduality, and mystical poetry">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #b993d6, #6e8ab7);
+            color: #2d3436;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.08);
+        }
+        .navigation a {
+            color: #636e72;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #2d3436;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(0, 0, 0, 0.08);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.04);
+            background-color: rgba(185, 147, 214, 0.13);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .original-text {
+            font-size: 0.95em;
+            color: #636e72;
+            font-style: italic;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <span id="original" class="original-text"></span>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            { text: "I searched for my Self until I grew weary, but no one, I know now, reaches the hidden knowledge by means of effort. Then, absorbed in 'Thou art This,' I found the place of Wine. There all the jars are filled, but no one is left to drink.", author: "Lal Ded" },
+            { text: "Whatever work I did became worship of the Lord; whatever word I uttered became a mantra. When I ate, I offered food to Shiva. What else could touch me, O Shiva, except you?", author: "Lal Ded" },
+            { text: "The soul, like the moon, is new, and always new again. And I have seen the ocean continuously creating. Since I scoured my mind and my body, I too, Lalla, am new, each moment new. My teacher told me one thing, live in the soul. When that was so, I began to go naked, and dance.", author: "Lal Ded" },
+            { text: "I have traveled the world in search of the Self, but the Self was within me all along. When I let go of seeking, I found the treasure that cannot be lost.", author: "Lal Ded" },
+            { text: "The soul, like the lotus, blooms in muddy water. Do not seek elsewhere, for the divine is within you, waiting to be recognized. In the silence of your own heart, the mystery is revealed.", author: "Lal Ded" },
+            { text: "I, Lalla, entered through the garden gate, and lost the thread of the world. I found the path to the inner sky, where the mind dissolves and only the heart remains.", author: "Lal Ded" },
+            { text: "The mind is a house with many doors. I wandered from room to room, searching for the Beloved, until I realized the Beloved was the space in which all rooms appear.", author: "Lal Ded" },
+            { text: "Why run from door to door, seeking the One who is everywhere? Sit still, and the world will open within you. The heart is the true temple, the Self the only priest.", author: "Lal Ded" },
+            { text: "I have worn out my body, searching for the One. But when I let go of all effort, the One revealed itself as my own true nature, ever-present and free.", author: "Lal Ded" },
+            { text: "The river of life flows on, carrying all before it. But the one who stands still in the midst of the current finds the source from which all rivers spring.", author: "Lal Ded" },
+            { text: "I have seen the world as a mirage, a play of light and shadow. When I looked within, I found the light that casts all shadows, the Self that is beyond all appearances.", author: "Lal Ded" },
+            { text: "The mind is restless, always seeking, always grasping. But in the stillness of the heart, all seeking ends, and the truth is revealed in silence.", author: "Lal Ded" },
+            { text: "I have wandered through many births, seeking the One. Now, in this life, I have found the path that leads home, the path of love and surrender.", author: "Lal Ded" },
+            { text: "The world is a play, a dance of forms. But the dancer is one, the witness of all. When you see this, you are free from all bondage, all fear.", author: "Lal Ded" },
+            { text: "I have burned my books, broken my pen, and thrown away my words. In the silence that remains, I have found the truth that cannot be spoken.", author: "Lal Ded" },
+            { text: "The heart is a lamp, the mind its wick. When the oil of love is poured, the flame of wisdom burns bright, dispelling all darkness.", author: "Lal Ded" },
+            { text: "I have seen the Beloved in every face, heard the song of the Self in every sound. When I let go of all separation, I found the One in all.", author: "Lal Ded" },
+            { text: "The path is simple: let go of all that is not you, and what remains is the Self, pure and free. In this recognition, all suffering ends, and only peace remains.", author: "Lal Ded" },
+            { text: "I have danced in the fire, bathed in the river, and wandered in the forest. Everywhere I went, I found only the Self, shining in all things.", author: "Lal Ded" },
+            { text: "The world is a mirror, reflecting your own face. When you see the Self in all, and all in the Self, you are free from all bondage, all fear.", author: "Lal Ded" }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const originalElement = document.getElementById('original');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            originalElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                if (randomQuote.original) {
+                    originalElement.textContent = randomQuote.original;
+                    originalElement.style.display = 'block';
+                } else {
+                    originalElement.textContent = '';
+                    originalElement.style.display = 'none';
+                }
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+                originalElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adi Shankaracharya Teachings</title>
+    <meta name="description" content="Authentic long quotes by Adi Shankaracharya on Advaita Vedanta, self-realization, and nonduality.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕉️</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #010f17, #021a33);
+            color: #f0e6d2;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #b8b8b8;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f0e6d2;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            {
+                text: "Brahman is the only truth, the world is an illusion, and there is ultimately no difference between Brahman and the individual self. When the mind is purified and all desires have been extinguished, the Self shines forth in its own true nature, free from all limitations and distinctions. Realize this, and you will be free from the bondage of birth and death.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "Just as the space inside a jar merges with the vast space outside when the jar is broken, so too does the individual soul merge with the Supreme Self when ignorance is destroyed. The wise see no distinction between themselves and the world, for all is but the play of consciousness, undivided and infinite.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "The Self is self-luminous, ever pure, and free from all attributes. It is beyond the reach of the senses and the mind, yet it is that by which the senses and mind function. Knowing this Self, one becomes free from sorrow and attains the highest bliss, which is not affected by the dualities of pleasure and pain.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "You are not the body, nor the mind, nor the senses. You are the witness, the pure consciousness that illumines all experiences. When you realize your true nature, you transcend all limitations and become established in peace, unaffected by the changing circumstances of the world.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "The world appears real due to ignorance, but when true knowledge dawns, it is seen as nothing but Brahman. Just as a rope appears as a snake in dim light, so too does the Self appear as the world when veiled by ignorance. Remove this ignorance, and only the Self remains, infinite and eternal.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "Meditate on the Self as the witness of all thoughts and actions. Know that you are not the doer, but the silent observer, untouched by the play of the mind. In this realization, all suffering ceases, and you abide in the bliss of your own true nature, which is ever free and full.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "The mind, when purified by discrimination and detachment, becomes fit to realize the Self. Just as a clean mirror reflects the face clearly, so too does a pure mind reflect the light of consciousness. Strive for this purity, and the truth will reveal itself effortlessly.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "All suffering arises from the mistaken identification with the body and mind. When this false identification is removed through self-inquiry, the bliss of the Self is revealed. This bliss is not dependent on external circumstances, for it is the very nature of your being.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "The Self is beyond birth and death, beyond all change and decay. It is the eternal witness, present in all states of consciousness. Realize this, and you will no longer be affected by the ups and downs of life, for you will have found the unchanging reality within yourself.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "Knowledge of the Self is the greatest purifier. It destroys the ignorance that binds us to the cycle of birth and death. Through constant meditation and self-inquiry, the mind becomes still, and the light of the Self shines forth, dispelling all darkness and doubt.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "The wise see the same Self in all beings, just as the sun is reflected in countless pots of water. Though the reflections appear many, the sun is one. In the same way, the Self is one, though it appears as many in the forms of living beings.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "Renounce the idea that you are the body or the mind, and realize your true nature as pure consciousness. This realization is not the result of any action, but the removal of ignorance. When ignorance is destroyed, the Self shines forth in all its glory, free from all limitations.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "The world is like a dream, fleeting and insubstantial. Do not be attached to its passing pleasures and pains. Seek the Self, which is the only reality, and you will find lasting peace and happiness that cannot be disturbed by the changing world.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "The Self is ever free, ever pure, and ever blissful. It is not affected by the actions of the body or the thoughts of the mind. Know yourself as this Self, and you will be free from all bondage and suffering, established in the peace that passes all understanding.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "Just as the sun illumines the world without being affected by it, so too does the Self illumine the body and mind without being touched by their actions. Realize this, and you will no longer be bound by the fruits of action, but will abide in the freedom of your own true nature.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "The mind is like a restless monkey, always jumping from one thing to another. Through steady practice and self-inquiry, it can be brought under control. When the mind becomes still, the bliss of the Self is revealed, and all suffering comes to an end.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "The Self is not an object to be known, but the very knower itself. It is self-revealing, self-luminous, and ever-present. Seek not to know the Self as an object, but to realize yourself as the Self, the witness of all experiences.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "All distinctions of caste, creed, and religion are based on ignorance. The wise see only the Self, which is the same in all beings. Realize this unity, and you will be free from all hatred and delusion, established in universal love and compassion.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "The Self is the source of all happiness, yet it is not affected by pleasure or pain. It is the witness of all experiences, untouched by the play of the mind. Realize this, and you will abide in the peace and bliss of your own true nature, free from all sorrow and fear.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "Just as a mirage appears in the desert but has no real existence, so too does the world appear in the Self but is ultimately unreal. Know yourself as the Self, and you will no longer be deceived by the illusions of the world.",
+                author: "Adi Shankaracharya"
+            },
+            {
+                text: "The highest knowledge is the knowledge of the Self, by which all other knowledge is rendered insignificant. Realize the Self, and you will have attained the supreme goal of life, free from all bondage and suffering, established in the bliss of your own true nature.",
+                author: "Adi Shankaracharya"
+            }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+        }
+
+        window.onload = function() {
+            document.body.style.opacity = '1';
+            displayQuote();
+            setInterval(displayQuote, 18000);
+        };
+    </script>
+</body>
+</html> 
