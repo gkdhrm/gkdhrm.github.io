@@ -1,14 +1,34 @@
+/**
+ * Spiritual Quotes Website - Settings and Quote Navigation Manager
+ * 
+ * This file manages the settings panel and quote navigation functionality for the
+ * spiritual quotes website. It provides the following features:
+ * - Customizable quote display time (up to 15 minutes)
+ * - Sequential or random quote navigation
+ * - Keyboard navigation with arrow keys
+ * - Optional visible timer display
+ * - Settings panel accessible via gear icon
+ * - Local storage of user preferences
+ * 
+ * The script dynamically adds navigation controls and settings UI to quote pages
+ * without requiring modifications to individual quote HTML files.
+ */
+
 // Default settings
 const defaultSettings = {
     quoteDisplayTime: 20, // seconds
     enableKeyboardNavigation: true,
-    currentTheme: 'default' // for future dark mode
+    currentTheme: 'default', // for future dark mode
+    randomQuotes: false, // Setting for random quote display
+    showTimer: false // Setting to show/hide the countdown timer
 };
 
 // Global variables
 let settings = {};
 let currentQuoteIndex = 0;
 let quoteTimer;
+let countdownInterval;
+let timeRemaining;
 let settingsPanelOpen = false;
 
 // Initialize settings
@@ -59,13 +79,25 @@ function createSettingsPanel() {
         <div class="settings-content">
             <div class="setting-item">
                 <label for="quote-display-time">Quote Display Time (seconds)</label>
-                <input type="range" id="quote-display-time" min="5" max="60" step="5" value="${settings.quoteDisplayTime}">
+                <input type="range" id="quote-display-time" min="5" max="900" step="5" value="${settings.quoteDisplayTime}">
                 <span id="quote-time-value">${settings.quoteDisplayTime}</span>
             </div>
             <div class="setting-item">
                 <label for="keyboard-nav">
                     <input type="checkbox" id="keyboard-nav" ${settings.enableKeyboardNavigation ? 'checked' : ''}>
                     Enable keyboard navigation (← →)
+                </label>
+            </div>
+            <div class="setting-item">
+                <label for="random-quotes">
+                    <input type="checkbox" id="random-quotes" ${settings.randomQuotes ? 'checked' : ''}>
+                    Display quotes randomly
+                </label>
+            </div>
+            <div class="setting-item">
+                <label for="show-timer">
+                    <input type="checkbox" id="show-timer" ${settings.showTimer ? 'checked' : ''}>
+                    Show meditation countdown timer
                 </label>
             </div>
             <!-- Reserved for future dark mode setting -->
@@ -169,6 +201,24 @@ function createSettingsPanel() {
         .settings-button:hover {
             color: #f0f0f0;
         }
+        
+        /* Timer display */
+        .quote-timer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            opacity: 0.2;
+            transition: opacity 0.3s;
+            z-index: 100;
+        }
+        .quote-timer:hover {
+            opacity: 1;
+        }
     `;
     document.head.appendChild(styleElement);
     document.body.appendChild(settingsPanel);
@@ -189,6 +239,99 @@ function createSettingsPanel() {
         saveSettings();
         applySettings();
     });
+    
+    // Event listener for the random quotes setting
+    document.getElementById('random-quotes').addEventListener('change', function() {
+        settings.randomQuotes = this.checked;
+        saveSettings();
+        applySettings();
+    });
+    
+    // Event listener for the show timer setting
+    document.getElementById('show-timer').addEventListener('change', function() {
+        settings.showTimer = this.checked;
+        saveSettings();
+        applySettings();
+        
+        if (settings.showTimer) {
+            createOrUpdateTimerDisplay();
+        } else {
+            removeTimerDisplay();
+        }
+    });
+}
+
+// Create or update the timer display
+function createOrUpdateTimerDisplay() {
+    // Remove existing timer if present
+    removeTimerDisplay();
+    
+    if (!settings.showTimer) return;
+    
+    // Create timer element
+    const timerElement = document.createElement('div');
+    timerElement.className = 'quote-timer';
+    timerElement.id = 'quote-timer';
+    document.body.appendChild(timerElement);
+    
+    // Initialize time remaining
+    timeRemaining = settings.quoteDisplayTime;
+    updateTimerDisplay();
+    
+    // Start countdown
+    startCountdown();
+}
+
+// Remove the timer display
+function removeTimerDisplay() {
+    const existingTimer = document.getElementById('quote-timer');
+    if (existingTimer) {
+        existingTimer.remove();
+    }
+    
+    // Clear countdown interval
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+    }
+}
+
+// Start the countdown timer
+function startCountdown() {
+    // Clear any existing interval
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
+    }
+    
+    // Set new interval
+    countdownInterval = setInterval(() => {
+        timeRemaining--;
+        updateTimerDisplay();
+        
+        if (timeRemaining <= 0) {
+            clearInterval(countdownInterval);
+        }
+    }, 1000);
+}
+
+// Update the timer display text
+function updateTimerDisplay() {
+    const timerElement = document.getElementById('quote-timer');
+    if (!timerElement) return;
+    
+    // Format time as M:SS or MM:SS
+    const minutes = Math.floor(timeRemaining / 60);
+    const seconds = timeRemaining % 60;
+    const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    
+    timerElement.textContent = formattedTime;
+}
+
+// Reset the timer display
+function resetTimerDisplay() {
+    timeRemaining = settings.quoteDisplayTime;
+    updateTimerDisplay();
+    startCountdown();
 }
 
 // Add settings button to navigation
@@ -258,7 +401,28 @@ function initQuoteNavigation() {
                 showNextQuote();
             }
         });
+        
+        // Create timer display if setting is enabled
+        if (settings.showTimer) {
+            createOrUpdateTimerDisplay();
+        }
     }
+}
+
+// Get random quote index that is different from current index
+function getRandomQuoteIndex() {
+    if (typeof quotes === 'undefined' || quotes.length <= 1) return 0;
+    
+    // If there's only one quote, return the same index
+    if (quotes.length === 1) return 0;
+    
+    // Generate a random index that's different from the current one
+    let randomIndex;
+    do {
+        randomIndex = Math.floor(Math.random() * quotes.length);
+    } while (randomIndex === currentQuoteIndex);
+    
+    return randomIndex;
 }
 
 // Show previous quote
@@ -268,8 +432,13 @@ function showPreviousQuote() {
     // Reset timer
     clearTimeout(quoteTimer);
     
-    // Get previous index
-    currentQuoteIndex = (currentQuoteIndex > 0) ? currentQuoteIndex - 1 : quotes.length - 1;
+    if (settings.randomQuotes) {
+        // In random mode, just show another random quote
+        currentQuoteIndex = getRandomQuoteIndex();
+    } else {
+        // Get previous index sequentially
+        currentQuoteIndex = (currentQuoteIndex > 0) ? currentQuoteIndex - 1 : quotes.length - 1;
+    }
     
     // Display the quote
     displaySelectedQuote();
@@ -282,8 +451,13 @@ function showNextQuote() {
     // Reset timer
     clearTimeout(quoteTimer);
     
-    // Get next index
-    currentQuoteIndex = (currentQuoteIndex < quotes.length - 1) ? currentQuoteIndex + 1 : 0;
+    if (settings.randomQuotes) {
+        // In random mode, get a random quote index
+        currentQuoteIndex = getRandomQuoteIndex();
+    } else {
+        // Get next index sequentially
+        currentQuoteIndex = (currentQuoteIndex < quotes.length - 1) ? currentQuoteIndex + 1 : 0;
+    }
     
     // Display the quote
     displaySelectedQuote();
@@ -307,6 +481,11 @@ function displaySelectedQuote() {
         quoteElement.style.opacity = '1';
         authorElement.style.opacity = '1';
         
+        // Reset timer display
+        if (settings.showTimer) {
+            resetTimerDisplay();
+        }
+        
         // Set timer for next quote
         quoteTimer = setTimeout(() => showNextQuote(), settings.quoteDisplayTime * 1000);
     }, 1000);
@@ -321,6 +500,11 @@ function applySettings() {
         
         // Set new timer
         quoteTimer = setTimeout(() => showNextQuote(), settings.quoteDisplayTime * 1000);
+        
+        // Update timer display if enabled
+        if (settings.showTimer) {
+            resetTimerDisplay();
+        }
     }
 }
 
@@ -333,7 +517,11 @@ window.addEventListener('load', () => {
         
         // Override with our own implementation
         window.displayQuote = function() {
-            // Instead of random, we'll use the current index
+            // If random mode is enabled, use a random index
+            if (settings.randomQuotes) {
+                currentQuoteIndex = getRandomQuoteIndex();
+            }
+            
             const quoteElement = document.getElementById('quote');
             const authorElement = document.getElementById('author');
             
@@ -349,6 +537,11 @@ window.addEventListener('load', () => {
                 authorElement.style.opacity = '1';
             }, 1000);
             
+            // Reset timer display if enabled
+            if (settings.showTimer) {
+                resetTimerDisplay();
+            }
+            
             // Use settings for delay
             quoteTimer = setTimeout(() => showNextQuote(), settings.quoteDisplayTime * 1000);
         };
@@ -356,4 +549,4 @@ window.addEventListener('load', () => {
     
     // Initialize settings
     initSettings();
-});
+}); 
