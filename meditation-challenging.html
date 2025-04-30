@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenging Meditation Instructions</title>
+    <meta name="description" content="Quotes from Tibetan masters on facing difficulty and challenge in meditation practice.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧘</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #121233, #181844);
+            color: #f7f7f7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #b2bec3;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f7f7f7;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.04);
+            background-color: rgba(127, 140, 141, 0.25);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            { text: "When you sit to meditate and your mind feels wild like a river in flood, do not despair. This very awareness of its wildness is itself the beginning of taming it. Do not try to force the mind into stillness like a tyrant breaking a horse; instead, rest lightly in the knowledge that the storm will pass. If thoughts are many, observe them. If feelings of frustration arise, observe them. Nothing that arises has any essence; it will all dissolve if you leave it alone. To meditate is not to wage war against experience, but to become its quiet witness.", author: "Patrul Rinpoche" },
+            { text: "When you feel you are getting nowhere in your practice, that is actually a good sign. It shows you have stopped fabricating success and are encountering your own mind raw and unadorned. Do not be discouraged. Discouragement is itself a thought, and thoughts are like clouds drifting through the sky. The sky never argues with the clouds, nor should you argue with your mind. Return gently, again and again, to the openness where thoughts appear and dissolve.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "If your meditation seems dry, hard, and unrewarding, rejoice. You are stepping beyond the need for entertainment and comfort. Meditation is not the production of blissful states; it is the steady, courageous turning toward whatever arises, however bitter or tedious. Endurance without hope of reward is the true training. If you are bored, meditate with boredom. If you are restless, meditate with restlessness. The real test of practice is what you do when it is no longer pleasing.", author: "Chatral Rinpoche" },
+            { text: "In the furnace of meditation, it is not the pleasing visions that purify the gold of mind, but the flames of difficulty. When agitation comes, sit with it. When dullness comes, sit with it. All emotions and experiences are the heat that burns away the dross. If you abandon your seat in the fire, you will never be purified. Be patient as the impurities bubble to the surface. Only then will you see the natural gold shine forth.", author: "Mipham Rinpoche" },
+            { text: "If meditation brings discomfort, that is the sign you are touching the rough edges of delusion. Do not run away, for the edge is where the illusion thins. Stay, endure, and let the harsh winds of mind blow past you. Nothing that arises can harm the nature of mind. The more painful the experience, the greater the opportunity for direct recognition. Remember, the sky is not harmed by the passing of storms.", author: "Longchenpa" },
+            { text: "When meditation seems impossible, remember that it is precisely then that real meditation is possible. Anyone can sit when the mind is sweet and calm. But to sit when your heart is a battlefield—that is courage. To remain present when you want to flee—that is devotion. Take the very force that seeks to pull you away, and turn it into fuel for your steadfastness. No enemy is greater than your own impulse to escape.", author: "Kangyur Rinpoche" },
+            { text: "Meditation is not like planting flowers in a garden; it is more like standing still in a desert sandstorm. Everything will try to strip you bare. Fear will rise, anger will burn, sorrow will weep. Let them. You stand still, rooted in the knowing that the storm is not you. Eventually, the sand will settle, and you will realize you were the desert all along.", author: "Chatral Rinpoche" },
+            { text: "You must have the boldness of a man who has thrown himself from a cliff and no longer hopes to grasp a branch. When suffering surges in meditation, do not reach for anything. Let the suffering swell and break like a wave. Know that no wave has ever harmed the ocean. It is precisely when the mind seems unworkable that the great compassion can emerge. Let your own brokenness be the gateway to the mind of all beings.", author: "Patrul Rinpoche" },
+            { text: "When you are tired, meditate tiredly. When you are angry, meditate angrily. Meditation is not reserved for a purified version of yourself. It must include the dirty, the broken, the restless. Only by accepting all aspects of experience can you realize that none of them bind awareness itself. The more you embrace the difficulty, the more inexhaustible your compassion becomes.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "If you wish to conquer the mind, do not battle it directly. Sit and watch it like an old man watching children play. Whether they cry, fight, or laugh, he remains seated, knowing their games have no real substance. If pain arises, let it arise. If fear arises, let it arise. By not interfering, you discover that mind is like mist that vanishes in the heat of your steady gaze.", author: "Milarepa" },
+            { text: "When thoughts overwhelm you and you feel lost, smile inwardly. You are simply watching the great river of samsara flow by. Sit firm on the riverbank. No thought can carry you away unless you chase after it. Endurance, patience, and unshakable observation—these are the bridges across the restless waters. Cross without struggle. Trust that the flow will exhaust itself.", author: "Khenpo Ngawang Palzang" },
+            { text: "Meditate not for comfort but for clarity. When you are crushed under confusion, do not scramble to fix it. Sit in the middle of it, like a boulder unmoved by waves. See how confusion arises, dances, and dissolves. See how even the worst feelings cannot stain the sky-like mind. This is the true taste of practice.", author: "Chatral Rinpoche" },
+            { text: "If sitting in meditation feels like sitting in a burning house, then truly you have begun the work. Do not look for the door; stay where you are. See the flames for what they are—phantoms of your mind's construction. No fire has ever consumed the empty space of the house. Practice until you know this with every breath.", author: "Patrul Rinpoche" },
+            { text: "It is easy to believe you are progressing when you experience visions, joy, or tranquility. It is much harder, and far more profound, to persist when the mind gives you nothing but dryness, agitation, or sorrow. These are the real signs that you are touching the roots of grasping. Water the roots with patience. Tend the garden with kindness. The fruits will ripen unseen, and when they fall, they will surprise you.", author: "Dilgo Khyentse Rinpoche" },
+            { text: "If you meet despair in your meditation, greet it like an old friend. It has come to show you what you still cling to. Let despair tell its story without interrupting. Do not try to argue, soothe, or defeat it. Simply listen, and then let it pass. In the vastness of awareness, even despair is a brief echo.", author: "Longchenpa" },
+            { text: "When obstacles arise, do not seek to cut them down with swords of impatience. Instead, let them grow before you, vast and towering. See how even the mightiest obstacle cannot block the open sky. Meditation is not a siege; it is an opening. Open so wide that even your difficulties are welcomed guests.", author: "Mipham Rinpoche" },
+            { text: "Do not fear the roaring winds of disturbing thoughts. Sit as the mountain sits—unmoving, untroubled. The winds may batter the mountain's slopes, but its peak remains free in the sky. Practice with this dignity. Be vast, be unmoving, be patient beyond all measure. This is the victory of meditation.", author: "Kangyur Rinpoche" },
+            { text: "The demons you meet in meditation are none other than your own mind's illusions. Invite them to sit beside you. Offer them tea. See that they are powerless unless you fear them. Once seen clearly, they melt like ice under a warm sun. Meditation is the art of seeing through appearances, not fighting with them.", author: "Milarepa" },
+            { text: "If practice tastes sweet, be careful. If it tastes bitter, persevere. The sweet taste may lead you to complacency; the bitter taste forces you deeper. Only bitter roots produce sweet fruits. Meditate beyond taste, beyond judgment, beyond hope. Meditate like a stone absorbs the rain: without complaint, without expectation.", author: "Chatral Rinpoche" },
+            { text: "Restlessness, fear, sorrow — these are not enemies to defeat. They are the raw materials of realization. Accept them completely. Let them open your heart wider than you thought possible. Let them strip you of pretense, of ambition, of pride. Then you will know that even the broken heart is vast, and luminous.", author: "Dilgo Khyentse Rinpoche" }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html> 

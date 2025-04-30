@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meditation Instructions</title>
+    <meta name="description" content="Guided meditation instructions and body scan quotes from renowned teachers.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧘</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #16354f, #204d71);
+            color: #f7f7f7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #b2bec3;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f7f7f7;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.04);
+            background-color: rgba(127, 140, 141, 0.25);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .original-text {
+            font-size: 0.95em;
+            color: #b2bec3;
+            font-style: italic;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <span id="original" class="original-text"></span>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            {
+                text: "To find presence, turn your attention to your inner body. Close your eyes for a moment and feel the subtle energy field that permeates your entire physical form. Sense the aliveness in your hands, your feet, your abdomen, your head. Don't think *about* the body, *feel* it. If there is discomfort or pain, allow it to be there without resistance. It is just energy moving. Breathe into it. Your focus on the inner body anchors your consciousness in the Now, pulling it out of the incessant stream of thought. This is not an exercise *for* the body, but an exercise *in* being present through the body. Stay with the simple sensations, the tingling, the warmth, the vibration. This is the formless life expressing through form, and touching it directly is accessing the power of the present moment.",
+                author: "Eckhart Tolle"
+            },
+            {
+                text: "When you meditate, invite yourself to become intimate with the landscape of your body. Let your awareness settle, perhaps starting with the breath, noticing where its movement is most palpable. Then, gently expand your attention to scan your body from the soles of your feet to the crown of your head, or simply rest your attention wherever it lands. Pay attention to the physical sensations present – areas of tightness, spaciousness, warmth, coolness, tingling, pressure. These are the places where our emotional lives and energetic states live. Don't try to fix or change anything, simply observe with kindness. If a strong or uncomfortable sensation arises, practice allowing it. Breathe with it, investigate its texture and edges without judgment. See the energy it holds, and offer a gentle, compassionate presence to it. This is how we learn to dwell peacefully within our own skin, integrating mind and body in awareness.",
+                author: "Tara Brach"
+            },
+            {
+                text: "Sit in quiet meditation and bring your attention into the direct experience of your physical form. Begin a systematic scan, perhaps starting with the toes of your left foot. Feel the space within the skin, the bone, the muscle. Notice any sensations present – a subtle pulse, warmth, coolness, pressure, tingling. Slowly move your attention, area by area, through your feet, ankles, lower legs, knees, thighs, hips, torso, arms, hands, neck, and head. Linger in areas that call for attention, noticing the flow of energy, the solidity, the vibrations. If you encounter discomfort, simply acknowledge it without tightening around it. See it as pure sensation, energy arising and passing. If the mind gets caught in thinking, gently note 'thinking' and return to the felt sense of the body. This mindful exploration helps to quiet the mental chatter and grounds you deeply in the reality of the present moment, body as temple.",
+                author: "Jack Kornfield"
+            },
+            {
+                text: "Breathing in, I am aware of my body. Breathing out, I calm my body. As you sit, allow your awareness to embrace your physical form like a kind parent holding a child. Notice the points of contact between your body and the cushion or chair, feeling the support of the earth. Bring your gentle attention to the path of the breath moving in and out, not forcing it, just observing. Where do you feel the breath most clearly in your body? The nostrils, the chest, the abdomen? Follow these subtle movements. Then, become aware of the sensations throughout your body – the rise and fall of the abdomen, the feeling of clothing on your skin, any areas of tension or relaxation. Recognize that these sensations are impermanent, constantly changing like waves on the ocean. Simply be present for them, offering peace and acceptance to your physical self with each conscious breath.",
+                author: "Thich Nhat Hanh"
+            },
+            {
+                text: "Allow yourself to settle into stillness, perhaps lying down or sitting comfortably. Bring your attention gently inward to the raw sensory data of your physical existence. Begin a body scan, sweeping your awareness through different regions of the body, noticing whatever sensations are present – or the absence of sensation. You might feel warmth, coolness, tingling, vibration, pressure, tightness, ease, or nothing at all. There's no right or wrong; the practice is simply one of observing with non-judgmental awareness. If the mind drifts into thoughts about the sensations, or plans, or worries, that's okay – just notice where it went and gently escort your attention back to the feeling in the body, anchoring yourself again and again in the direct experience of the physical self in this very moment. The body is always in the present, offering a reliable doorway home.",
+                author: "Jon Kabat-Zinn"
+            },
+            {
+                text: "When strong emotions or difficulties arise, they often manifest as powerful energies and sensations in the body – tightness in the chest, heat in the face, butterflies in the stomach, a clenching elsewhere. In meditation, when you notice these physical symptoms of activated energy, the instruction is not to push them away, but to lean in gently with curiosity. Stay with the raw, physical sensation itself, rather than the story *about* the emotion. Use the breath as an anchor, breathing in and out, connecting directly with the felt experience in the body. Feel its texture, its intensity, its location. See it as pure energy, vibrant and impermanent. By meeting these intense body energies with gentle presence and non-resistance, we begin to dissolve the solidified patterns of suffering and discover our innate capacity for fearlessness and compassion right here, in the midst of the discomfort.",
+                author: "Pema Chödrön"
+            },
+            {
+                text: "Sit in the openness of simply being. As you rest, notice what is here in your direct, lived experience, particularly within the body. What physical sensations are present? Are there areas of holding, tension, or vibration? Is there a sense of expansion or contraction, a flow of energy, or stillness? The invitation is to allow everything that arises within the physical form to be precisely as it is, without needing to change it, fix it, or understand it conceptually. These sensations and energies are simply movements within consciousness, impersonal occurrences. Recognize that you are the aware space in which they are happening, not the sensations themselves. Stay as that open, allowing presence, welcoming whatever arises in the body's landscape with a simple, naked awareness. This unwavering acceptance of the body's reality opens the door to deep peace.",
+                author: "Adyashanti"
+            },
+            {
+                text: "We often think meditation is about finding a special state, but the true practice is engaging with our present reality, including the vibrant, sometimes chaotic, energy of the body and mind. Sit naturally and bring your attention to the physical sensations that make up your experience. Notice the feeling of sitting, the weight, the posture. Become aware of the breath as a physical event. Then, let your awareness explore other sensations: itching, discomfort, warmth, coolness, the pulsing flow of energy. When difficult sensations or emotions arise, which always have a physical component, don't see them as obstacles. See the tightness, the heat, the vibration as simply energy. Look at it directly, feel it fully without grasping or pushing away. Rest your awareness *with* the sensation, experiencing its texture and change. This direct encounter, grounded in bodily sensation, is how we transform difficulty into wisdom.",
+                author: "Yongey Mingyur Rinpoche"
+            },
+            {
+                text: "Approach your body in meditation with tenderness, as if connecting with a dear friend. Sit and feel the simple reality of being embodied. Notice the breath flowing in and out, a continuous subtle movement of energy. Then, gently broaden your awareness to the whole body. Are there places that feel open and relaxed? Are there areas that feel tight, hard, or blocked? Bring a soft, kind attention to these places. Don't probe aggressively; just rest your awareness there with warmth. Feel the energy within the sensations – the dull ache, the sharp tingle, the buzzing vibration. See these as expressions of the body's life force. Hold them in a space of gentle acceptance. It's not about analyzing or fixing, but simply being present with what is, acknowledging the reality of your physical and energetic state with a tender, open heart. This gentle awareness itself is healing.",
+                author: "Tsoknyi Rinpoche"
+            },
+            {
+                text: "Just be where you are. The body is your current address. Sit quietly and come into the physical vehicle. Close your eyes and feel the weight of your body being supported. Feel the breath entering and leaving, a physical event happening right here. Now, just notice the sensations. Are there tingles, pressures, warmth, coolness? Is there discomfort anywhere? Don't get caught in the stories *about* the sensations, just feel the raw energy, the physical data. Where is the life force flowing? Are there places where it feels stuck? Simply observe the dance of energy and sensation within this form. It's all just happening. You are the awareness witnessing it. Keep returning to the simple fact of physical presence, using the breath or any strong sensation as your anchor when the mind pulls you away. Be here now, in the body.",
+                author: "Ram Dass"
+            }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const originalElement = document.getElementById('original');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            originalElement.style.opacity = '0';
+
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                if (randomQuote.original) {
+                    originalElement.textContent = randomQuote.original;
+                    originalElement.style.display = 'block';
+                } else {
+                    originalElement.textContent = '';
+                    originalElement.style.display = 'none';
+                }
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+                originalElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html> 

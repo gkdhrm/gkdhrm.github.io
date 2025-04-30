@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traditional Meditation Instructions</title>
+    <meta name="description" content="Traditional meditation instructions and body-based wisdom from Asian masters.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧘</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #121233, #181844);
+            color: #f7f7f7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        .navigation {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .navigation a {
+            color: #b2bec3;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navigation a:hover {
+            color: #f7f7f7;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quote-container {
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.04);
+            background-color: rgba(127, 140, 141, 0.25);
+            padding: 2rem;
+        }
+        .quote {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: opacity 2s;
+        }
+        .author {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            transition: opacity 2s;
+        }
+        @media (max-width: 600px) {
+            .quote-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+        <div class="quote-container">
+            <div id="quote" class="quote" aria-live="polite"></div>
+            <div id="author" class="author"></div>
+        </div>
+    </div>
+    <script src="nav.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        const quotes = [
+            { text: "When you sit, bring your full, unwavering attention to the reality of your physical form. Feel the breath entering and leaving, not just as air, but as vital energy moving through channels you may not yet perceive. Focus keenly on the physical sensations that arise – the pressure where you meet the cushion, the warmth, the coolness, the tingling, the subtle vibrations. Do not grasp at pleasant sensations or push away unpleasant ones. See them all as simply arising and passing phenomena, transient energies in motion. Recognize that within these sensations, there is no permanent self, no enduring entity. This diligent observation of the body as a field of impermanent sensation is the direct path to wisdom and liberation from suffering. Stay with the raw feeling, moment after moment, patiently and persistently.", author: "Ledi Sayadaw" },
+            { text: "The most profound practice is to remain present with the raw reality of experience, and this begins with the body. Sit with a strong, upright posture, a reflection of inner dignity. Feel the breath moving, a constant, subtle tide. Then, broaden your awareness to encompass the entire physical form. Notice the weight, the pressure, the solidity, the spaces. Pay close attention to the energetic sensations – the warmth, the coolness, the tingling, the pulsating life within. When discomfort or strong emotions arise, locate them in the body. Feel the tightness, the heat, the tremor as pure sensation, pure energy, not as 'my' problem. Abide with this raw energy, without resistance or judgment, seeing its impermanence. This unwavering attention to the body's energetic landscape is the ground for stability and insight.", author: "Mahasi Sayadaw" },
+            { text: "In the meditation practice, let the body be your anchor in the present moment. Sit with stability, feeling your connection to the earth. Bring your gentle attention to the simple act of breathing, noticing the physical sensations it creates – the rise and fall of the abdomen, the expansion of the chest, the subtle feeling of air in the nostrils. Expand your awareness to the entire body as a field of sensations. Feel the warmth, the coolness, the pressure, the tingling, any vibrations or subtle energies. See these physical phenomena as constantly changing, arising and passing away. When pain or discomfort appears, do not react with aversion. See it as pure sensation, pure energy. Observe its characteristics – is it sharp, dull, throbbing? Stay with the raw feeling, recognizing its impermanence. This direct, non-judgmental observation of the body's energy leads to insight.", author: "Ajahn Mun" },
+            { text: "Cultivate awareness of the four elements within your body: earth (solidity), water (liquidity), fire (heat), air (motion). As you meditate, feel the density of bone and flesh (earth), the fluids circulating (water), the temperature (fire), the breath moving (air). These elements are the raw constituents of your physical form. Focus your attention on the physical sensations arising from these elements – pressure, flow, warmth, coolness, vibration, movement. See them as impersonal forces, not inherently 'you'. When emotions surge, feel their physical form – the heat of anger, the shaking of fear, the heaviness of sadness purely as physical energies. Observe their arising and passing. This elemental analysis, grounded in direct bodily sensation, reveals the impermanent and selfless nature of the body.", author: "Ajahn Lee" },
+            { text: "Sit straight and still, like a mountain. The body is the place where practice happens. Bring your attention to the breath entering and leaving the body. Feel its physical trace. Then, let your awareness permeate your entire physical form. Feel the solid presence, the weight, the pressure where you are seated. Notice all the sensations that arise – tingling, warmth, coolness, itching, pain. Do not chase after pleasant sensations or try to flee from unpleasant ones. See them all as simply physical phenomena, energy arising and passing. If discomfort is strong, meet it with unwavering attention. See it as pure sensation, pure energy, without adding mental commentary or resistance. This courageous, non-reactive observation of the body's ever-changing energy is the path to developing deep concentration and insight.", author: "Ajahn Sao Kantasilo" },
+            { text: "The precious human body, though subject to decay, is our vessel for enlightenment. Do not neglect it in meditation, but use it as the very foundation of your practice. Sit comfortably and bring your awareness to the sensation of breathing, noticing the physical touch of air and the movement in your chest and abdomen. Expand your attention to feel the entire body, sensing the warmth, coolness, pressure, tingling, and vibrant energy flowing within. When you encounter physical discomfort or the energetic surge of emotions, recognize them as temporary formations. Stay with the raw physical feeling, breathing through it, allowing the energy to move without becoming caught in aversion or reactivity. Seeing the body's sensations clearly, including the unpleasant ones, is essential for cutting through attachment and realizing liberation.", author: "Patrul Rinpoche" },
+            { text: "To purify the mind, purify the channels of energy within the body. While sitting, hold your body in a noble posture. Bring your attention to the breath, feeling its connection to the subtle energy (prana or lung) that flows throughout your being. Notice the sensations this energy creates – warmth, tingling, vibration, pulsation. You may focus gently on energy centers (chakras or wheels) or simply remain aware of the overall energetic field of the body. When mental defilements or strong emotions arise, they often manifest as blockages or turbulent energy in the body. Locate these physical feelings – tightness, heat, cold, tremor. Breathe into these areas, allowing the energy to soften and flow. By working with the physical and energetic body, you clear obstacles to deep meditative absorption and insight.", author: "Atisha Dipankara Shrijnana" },
+            { text: "When you engage in meditation, make the body your guide to the present moment. Sit with dignity, feeling the posture. Bring your attention to the simple physical reality of the breath – the feeling of air moving, the gentle rise and fall. Then, expand your awareness to feel the entire body as a field of sensation and energy. Feel the weight, the warmth, the coolness, the tingling, the pulsating life within. When challenging physical feelings arise, such as pain or discomfort, or when emotional energies manifest physically, turn towards them with clear, calm attention. See them as pure sensation, pure energy, arising and passing away. By staying present with the body's transient energies without resistance, you cultivate the path of insight and liberation.", author: "Sayadaw U Sobhana (Mahasi)" },
+            { text: "The entire universe is contained within this body. In meditation, explore this inner cosmos through direct sensation. Feel the breath as a link between the inner and outer elements. Bring your attention to the sensations: the solidity of bones, the flow of fluids, the warmth of inner fire, the movement of wind energy. Notice how these feel – pressure, fluidity, heat, vibration, emptiness. See them all as manifestations of pure energy, constantly changing. When emotions surge, feel their physical form – the tightness, the heat, the tremor – as simply energy in motion. Abide with these raw physical feelings without identifying with them, seeing their impermanence and insubstantiality. This profound inquiry into the body's energetic reality leads to liberation.", author: "Milarepa" },
+            { text: "Rest your awareness in the body as it is, a collection of elements and energies. Sit with stillness, feeling the breath moving through your form. Notice the physical sensations – where the body touches the seat, the feeling of clothing, the temperature of the air on your skin. Extend your attention within, feeling the warmth, the coolness, the pressure, the vibration, the subtle currents of energy. When physical discomfort or the energetic charge of emotions arises, meet it with calm, non-judgmental attention. See the raw physical feeling – the ache, the tension, the heat – as simply energy arising and passing. By staying present with the body's transient sensations and energies, you cultivate insight into impermanence and non-self.", author: "Achaan Chah" },
+            { text: "Develop mindful awareness of the body in the present moment. This is the foundation of practice. Sit and feel your body's contact with the ground or seat, the sense of being supported. Bring your attention to the physical sensation of breathing – the rise and fall of the abdomen, the feeling of air at the nostrils. Then, extend your awareness to the entire body as a field of sensation. Feel the warmth, the coolness, the pressure, the subtle vibrations and energies flowing within. When discomfort or emotional energy manifests physically, turn towards the raw sensation. See it as just feeling, just energy, arising and passing away. This continuous, gentle, non-judgmental attention to the body's immediate experience is the path to calming the mind and developing insight.", author: "Sayadaw U Pandita" },
+            { text: "The essence of meditation is to see reality as it is, and reality is first experienced through the body. Sit with awareness and feel the breath moving through you, a current of energy. Notice the physical sensations associated with each inhalation and exhalation. Then, open your attention to the entire physical form. Feel the warmth, the coolness, the tingling, the pressure, the vibration of life energy throughout. When challenging sensations arise – pain, restlessness, emotional energy manifesting physically – turn your attention directly to the raw physical feeling. See it as pure energy arising and passing, without resistance or judgment. This direct, non-conceptual observation of the body's energetic reality leads to liberation.", author: "S.N. Goenka" },
+            { text: "In meditation, make the body your monastery, your place of awakening. Sit with dignity and stability. Bring your attention to the breath, the most immediate manifestation of life energy. Feel the physical sensations of breathing in your chest and belly. Then, allow your awareness to fill your entire physical form. Notice the weight, the pressure, the warmth, the coolness, the subtle vibrations and currents of energy flowing throughout. When emotional turbulence arises, notice its impact on the body – the tightness, the heat, the trembling. Stay with the raw physical sensation of that energy, breathing with it, allowing the energy to move without getting lost in the story. This courageous, moment-to-moment attention to the body's energies is the path to insight and freedom.", author: "Chögyam Trungpa" },
+            { text: "The body is the place where suffering is experienced, and therefore the place where liberation can be found. As you sit in meditation, ground your awareness firmly in your physical form. Feel the points of contact with the seat, the sense of gravity. Tune into the breath, noticing the simple physical sensations it creates as it enters and leaves your body. Then, let your attention explore the entire body as a field of sensation and energy. Feel the warmth, the coolness, the pressure, the tingling, the subtle vibrations. When discomfort or challenging energies arise, such as pain or restlessness, turn towards the physical feeling itself. See it as pure sensation, energy in motion, without resistance. This direct, non-reactive observation of the body's reality leads to insight into impermanence and non-self.", author: "Sayadaw U Tejaniya" },
+            { text: "Bring your awareness fully into the body, which is the dwelling place of the present moment. Sit and feel the physical reality of the breath moving within you – the expansion and contraction, the subtle sensations. Then, extend your attention to encompass the entire physical form. Notice the sensations present: warmth, coolness, pressure, tingling, vibration, areas of tension or ease. When emotions arise, locate their physical manifestation in the body – the tightness in the chest, the knot in the stomach, the heat in the face. Stay with the raw physical sensation of the emotion's energy, allowing it to be present without getting lost in the story. This mindful embodiment, this willingness to feel the body's language without resistance, is a direct path to calming the mind and seeing things as they are.", author: "Ajahn Buddhadasa" },
+            { text: "Meditate on the impermanence of the body by observing its changing sensations. Sit and feel the breath moving, a constant reminder of flow. Then, focus your attention on the physical sensations throughout your body. Notice that no sensation is permanent; all are arising and passing away, moment after moment. Feel the warmth turn to coolness, the pressure shift, the tingling fade. When pain or intense energy arises, observe its nature: is it stable? Does it have a fixed form? See it as simply energy, vibrating, pulsing, changing. This direct, moment-to-moment observation of the body's energetic flux reveals the truth of impermanence and non-self, cutting through attachment and leading to liberation.", author: "Ledi Sayadaw" },
+            { text: "Cultivate a fearless awareness of the body as it truly is: a process of arising and passing away, a collection of elements, devoid of a permanent self. Sit and feel the breath, its physical reality. Then, bring your attention to the sensations throughout your form – the pressure, the warmth, the vibration, the discomfort, the ease. See these as impersonal phenomena, pure energy in motion. When strong emotions or physical pain arise, meet them head-on with bare attention. Feel the raw physical sensation, the energy of it, without adding mental commentary or resistance. Observe its characteristics, its duration, its dissolution. This unwavering attention to the body's energetic reality, seeing impermanence and non-self directly in sensation, is the path to Nibbana.", author: "Mahasi Sayadaw" },
+            { text: "The practice is simply to be present with the body, which is always in the here and now. Sit and feel the breath moving, this constant current of life energy. Notice the physical sensations it creates. Then, open your awareness to the entire body as a field of sensation. Feel the warmth, the coolness, the pressure, the tingling, any vibrations or subtle energies. When emotions arise, they are felt in the body. Notice the tightness in the chest, the knot in the stomach, the heat in the face. Stay with the raw physical sensation, the energy of the emotion, without getting lost in the story. Breathe with it, allowing it to be. This mindful attention to the body's energetic reality is the foundation for calming the mind and developing insight.", author: "Ajahn Chah" },
+            { text: "Realization is not found outside, but within this very body. In meditation, make your body the object of investigation. Feel the breath as it moves through you, a palpable current of energy. Scan through your body, or simply rest your awareness on any prominent sensation: pressure, warmth, coolness, tingling, vibration, discomfort. Do not recoil from unpleasant sensations; they are simply energy arising and passing. See them as pure physical phenomena, devoid of personal 'self'. When emotions manifest physically, stay with the raw physical feeling of their energy. Observe their intensity, their location, their changing nature. This direct, non-conceptual investigation of the body's energies reveals the truth of impermanence, suffering, and non-self.", author: "Sayadaw U Pandita" },
+            { text: "Use the body as the means to come into the present moment. Sit and feel the simple reality of being embodied. Bring your attention to the breath, noticing its flow and the physical sensations it creates in your chest and belly. Then, let your awareness encompass the entire body as a field of sensation. Feel the pressure where you meet the seat, the warmth, the coolness, the subtle vibrations and energies within. When discomfort or the energetic charge of emotions arises, meet it with calm attention. Locate the physical feeling – tightness, heat, trembling – and stay with the raw sensation. See it as simply energy arising and passing away. This unwavering attention to the body's physical and energetic reality grounds the mind and opens the door to insight.", author: "Ajahn Buddhadasa" },
+            { text: "Rest in the natural state of mind, which is always present, and use the body as a support. Sit comfortably and bring your attention to the breath, feeling its connection to the subtle energy (lung) that flows throughout your being. Notice the sensations this energy creates – warmth, vibration, pulsation, tingling. When thoughts or emotions arise, notice how they manifest physically in the body – creating tightness, turbulence, heat. Instead of getting lost in the mental content, bring your awareness directly to the physical sensation of that energetic disturbance. Stay with the raw feeling, allowing the energy to soften and flow. By making friends with the body's energy through sustained awareness, you cultivate deep calm and clarity, essential for recognizing the nature of mind.", author: "Dudjom Rinpoche" },
+            { text: "Meditation is about directly experiencing reality, and the body is the primary place where reality manifests through sensation and energy. Sit with awareness and feel the breath moving, a constant current of energy. Notice the physical sensations associated with it. Then, expand your attention to the entire body as a field of sensation. Feel the warmth, the coolness, the pressure, the tingling, the subtle vibrations and energies flowing within. When emotions arise, they are felt physically. Notice the tightness, the heat, the churning. Stay with the raw physical sensation of the emotion's energy, without getting lost in the story. See it as simply energy moving. This mindful attention to the body's energetic reality, seeing impermanence and non-self in sensation, leads to liberation.", author: "S.N. Goenka" },
+            { text: "The body is the manifestation of the elements, constantly changing. In meditation, observe these elemental energies directly through sensation. Feel the solidity (earth), the flow (water), the heat (fire), the movement (air) within your form. Notice the pressure, the fluidity, the warmth, the coolness, the vibration. See these sensations as impersonal forces, arising and passing. When pain or strong energy arises, meet it with bare attention. See it as pure sensation, pure energy, without reacting. Observe its characteristics, its duration, its dissolution. This direct, non-conceptual observation of the body's energetic flux reveals the truth of impermanence, suffering, and non-self, paving the way to Nibbana.", author: "Sayadaw U Pandita" },
+            { text: "When you sit for meditation, understand that your body is not separate from your mind or the space around you. It is a field of energy and sensation. Bring your attention gently to the body, feeling its form and presence. Notice the breath moving, not just in the nostrils or chest, but as a movement affecting the whole body. Scan your body, open your awareness to any feeling: heat, cold, pressure, lightness, vibration. Don't label them good or bad. See them as raw energy, constantly shifting. If an emotion arises, notice where and how you feel it in the body. Anger might be heat, fear a tremor, sadness a heaviness. Stay with the pure bodily sensation, allowing the energy to simply be and move, without getting caught in the story of the emotion. This direct physical awareness is the gateway to liberation.", author: "Dalai Lama" },
+            { text: "Sit upright, letting your posture be one of dignity. Connect with the feeling of sitting, the weight of your body grounding down. Bring your awareness to the breath, not as an object of focus to be grasped tightly, but as a gentle current flowing through the body. Notice the simple physical sensations associated with breathing – the rise and fall, the expansion and contraction. Then, extend your awareness to encompass the whole body as a field of sensation. Feel the tingling, the vibration, areas of comfort or discomfort. Don't try to fix anything. Simply be present with the raw energy. If your mind drifts, gently return to the sensation of the breath or the physical body. This unwavering, gentle attention to your immediate bodily experience is the path.", author: "Sharon Salzberg" },
+            { text: "In zazen, seated meditation, the posture itself is the primary instruction. The body is not an obstacle to be overcome, but the very ground of practice. Sit with stability and uprightness. Pay attention to the feeling of the breath flowing in and out. This breath is not separate from your physical being. Feel how the breath moves through your chest and belly. Expand your awareness to the entire body sitting here and now. Notice any physical sensations that arise – tightness in the shoulders, ease in the hands, pressure on the cushion. Just observe them without judgment, allowing them to be exactly as they are. These sensations are simply temporary phenomena. They arise and pass away. By staying present with the raw reality of bodily sensation, you cut through thinking and connect directly with the living, breathing moment.", author: "Shunryu Suzuki" },
+            { text: "The body is the living monastery, the site of practice. As you sit in meditation, bring your full, wakeful attention to your physical form. Feel the solid presence, the contact with the ground. Become aware of the breath, not just air moving, but life energy animating the body. Follow the sensations of the breath throughout your chest, abdomen, even into your limbs. Then, let your awareness explore the entire body, noticing any and all physical sensations – warmth, coolness, vibration, pressure, tightness, release. Recognize that these sensations are constantly arising and passing; they are impermanent energies in motion. If you encounter resistance or judgment towards a sensation, simply notice that resistance itself with kindness, and return your attention to the raw physical feeling. This diligent, moment-to-moment awareness of the body is a powerful path to liberation.", author: "Ajahn Chah" }
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.text;
+                authorElement.textContent = `- ${randomQuote.author}`;
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 2000);
+
+            const delay = Math.max(20000, Math.min(30000, randomQuote.text.length * 75));
+            setTimeout(displayQuote, delay);
+        }
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            displayQuote();
+        });
+    </script>
+</body>
+</html> 

@@ -3,10 +3,12 @@
  * 
  * This file manages the settings panel and quote navigation functionality for the
  * spiritual quotes website. It provides the following features:
- * - Customizable quote display time (up to 15 minutes)
+ * - Customizable quote display time (10 seconds to 15 minutes)
+ * - Independent meditation timer (1 to 30 minutes)
  * - Sequential or random quote navigation
  * - Keyboard navigation with arrow keys
  * - Optional visible timer display
+ * - Optional visible navigation arrows
  * - Settings panel accessible via gear icon
  * - Local storage of user preferences
  * 
@@ -17,7 +19,8 @@
 // Default settings
 const defaultSettings = {
     quoteDisplayTime: 20, // seconds
-    enableKeyboardNavigation: true,
+    meditationTimerDuration: 300, // seconds (5 minutes)
+    showKeyboardNavigation: true, // for showing/hiding navigation arrows
     currentTheme: 'default', // for future dark mode
     randomQuotes: false, // Setting for random quote display
     showTimer: false // Setting to show/hide the countdown timer
@@ -56,6 +59,13 @@ function loadSettings() {
     const savedSettings = localStorage.getItem('spiritualQuotesSettings');
     if (savedSettings) {
         settings = JSON.parse(savedSettings);
+        
+        // Add any missing settings with defaults
+        for (const key in defaultSettings) {
+            if (settings[key] === undefined) {
+                settings[key] = defaultSettings[key];
+            }
+        }
     } else {
         settings = { ...defaultSettings };
         saveSettings();
@@ -78,14 +88,14 @@ function createSettingsPanel() {
         </div>
         <div class="settings-content">
             <div class="setting-item">
-                <label for="quote-display-time">Quote Display Time (seconds)</label>
-                <input type="range" id="quote-display-time" min="5" max="900" step="5" value="${settings.quoteDisplayTime}">
-                <span id="quote-time-value">${settings.quoteDisplayTime}</span>
+                <label for="quote-display-time">Quote Display Time</label>
+                <input type="range" id="quote-display-time" min="10" max="900" step="5" value="${settings.quoteDisplayTime}">
+                <span id="quote-time-value">${formatTimeDisplay(settings.quoteDisplayTime)}</span>
             </div>
             <div class="setting-item">
-                <label for="keyboard-nav">
-                    <input type="checkbox" id="keyboard-nav" ${settings.enableKeyboardNavigation ? 'checked' : ''}>
-                    Enable keyboard navigation (← →)
+                <label for="show-keyboard-nav">
+                    <input type="checkbox" id="show-keyboard-nav" ${settings.showKeyboardNavigation ? 'checked' : ''}>
+                    Show navigation arrows
                 </label>
             </div>
             <div class="setting-item">
@@ -99,6 +109,11 @@ function createSettingsPanel() {
                     <input type="checkbox" id="show-timer" ${settings.showTimer ? 'checked' : ''}>
                     Show meditation countdown timer
                 </label>
+            </div>
+            <div class="setting-item timer-duration-container" style="${settings.showTimer ? '' : 'opacity: 0.5; pointer-events: none;'}">
+                <label for="meditation-timer-duration">Meditation Timer Duration</label>
+                <input type="range" id="meditation-timer-duration" min="60" max="1800" step="60" value="${settings.meditationTimerDuration}">
+                <span id="meditation-timer-value">${formatTimeDisplay(settings.meditationTimerDuration)}</span>
             </div>
             <!-- Reserved for future dark mode setting -->
         </div>
@@ -155,7 +170,7 @@ function createSettingsPanel() {
             width: 80%;
             vertical-align: middle;
         }
-        #quote-time-value {
+        #quote-time-value, #meditation-timer-value {
             display: inline-block;
             margin-left: 10px;
         }
@@ -165,6 +180,9 @@ function createSettingsPanel() {
             display: flex;
             justify-content: center;
             margin-top: 20px;
+        }
+        .quote-nav-buttons.hidden {
+            display: none;
         }
         .quote-nav-btn {
             background: rgba(255, 255, 255, 0.2);
@@ -219,6 +237,11 @@ function createSettingsPanel() {
         .quote-timer:hover {
             opacity: 1;
         }
+        
+        /* Style for timer duration setting */
+        .timer-duration-container {
+            transition: opacity 0.3s ease;
+        }
     `;
     document.head.appendChild(styleElement);
     document.body.appendChild(settingsPanel);
@@ -227,17 +250,18 @@ function createSettingsPanel() {
     document.getElementById('close-settings').addEventListener('click', toggleSettingsPanel);
     
     document.getElementById('quote-display-time').addEventListener('input', function() {
-        const value = this.value;
-        document.getElementById('quote-time-value').textContent = value;
-        settings.quoteDisplayTime = parseInt(value);
+        const value = parseInt(this.value);
+        document.getElementById('quote-time-value').textContent = formatTimeDisplay(value);
+        settings.quoteDisplayTime = value;
         saveSettings();
         applySettings();
     });
     
-    document.getElementById('keyboard-nav').addEventListener('change', function() {
-        settings.enableKeyboardNavigation = this.checked;
+    document.getElementById('show-keyboard-nav').addEventListener('change', function() {
+        settings.showKeyboardNavigation = this.checked;
         saveSettings();
         applySettings();
+        updateNavigationVisibility();
     });
     
     // Event listener for the random quotes setting
@@ -253,12 +277,48 @@ function createSettingsPanel() {
         saveSettings();
         applySettings();
         
+        // Update the timer duration control visibility
+        const timerDurationContainer = document.querySelector('.timer-duration-container');
+        if (timerDurationContainer) {
+            timerDurationContainer.style.opacity = settings.showTimer ? '1' : '0.5';
+            timerDurationContainer.style.pointerEvents = settings.showTimer ? 'auto' : 'none';
+        }
+        
         if (settings.showTimer) {
             createOrUpdateTimerDisplay();
         } else {
             removeTimerDisplay();
         }
     });
+    
+    // Event listener for meditation timer duration
+    document.getElementById('meditation-timer-duration').addEventListener('input', function() {
+        const value = parseInt(this.value);
+        document.getElementById('meditation-timer-value').textContent = formatTimeDisplay(value);
+        settings.meditationTimerDuration = value;
+        saveSettings();
+        
+        // Update the timer if it's currently displayed
+        if (settings.showTimer) {
+            resetTimerDisplay();
+        }
+    });
+}
+
+// Format time display for settings (converts seconds to min:sec or just min)
+function formatTimeDisplay(seconds) {
+    if (seconds < 60) {
+        return `${seconds} sec`;
+    } else {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        
+        if (remainingSeconds === 0) {
+            return `${minutes} min`;
+        } else {
+            return `${minutes}:${remainingSeconds.toString().padStart(2, '0')} min`;
+        }
+    }
 }
 
 // Create or update the timer display
@@ -274,8 +334,8 @@ function createOrUpdateTimerDisplay() {
     timerElement.id = 'quote-timer';
     document.body.appendChild(timerElement);
     
-    // Initialize time remaining
-    timeRemaining = settings.quoteDisplayTime;
+    // Initialize time remaining using the meditation timer duration
+    timeRemaining = settings.meditationTimerDuration;
     updateTimerDisplay();
     
     // Start countdown
@@ -310,8 +370,26 @@ function startCountdown() {
         
         if (timeRemaining <= 0) {
             clearInterval(countdownInterval);
+            
+            // Play sound when timer ends
+            playTimerEndSound();
         }
     }, 1000);
+}
+
+// Play sound when timer ends
+function playTimerEndSound() {
+    try {
+        // Create audio element
+        const audio = new Audio('bowl.mp3');
+        audio.volume = 0.7; // 70% volume
+        audio.play()
+            .catch(error => {
+                console.error('Error playing audio:', error);
+            });
+    } catch (error) {
+        console.error('Error creating audio element:', error);
+    }
 }
 
 // Update the timer display text
@@ -329,7 +407,8 @@ function updateTimerDisplay() {
 
 // Reset the timer display
 function resetTimerDisplay() {
-    timeRemaining = settings.quoteDisplayTime;
+    // Use meditation timer duration instead of quote display time
+    timeRemaining = settings.meditationTimerDuration;
     updateTimerDisplay();
     startCountdown();
 }
@@ -371,6 +450,18 @@ function toggleSettingsPanel() {
     }
 }
 
+// Update navigation visibility based on settings
+function updateNavigationVisibility() {
+    const navButtons = document.querySelector('.quote-nav-buttons');
+    if (navButtons) {
+        if (settings.showKeyboardNavigation) {
+            navButtons.classList.remove('hidden');
+        } else {
+            navButtons.classList.add('hidden');
+        }
+    }
+}
+
 // Initialize quote navigation
 function initQuoteNavigation() {
     // Create navigation buttons
@@ -379,6 +470,9 @@ function initQuoteNavigation() {
     
     const navButtons = document.createElement('div');
     navButtons.className = 'quote-nav-buttons';
+    if (!settings.showKeyboardNavigation) {
+        navButtons.classList.add('hidden');
+    }
     navButtons.innerHTML = `
         <button class="quote-nav-btn prev-quote">←</button>
         <button class="quote-nav-btn next-quote">→</button>
@@ -391,10 +485,8 @@ function initQuoteNavigation() {
         document.querySelector('.prev-quote').addEventListener('click', () => showPreviousQuote());
         document.querySelector('.next-quote').addEventListener('click', () => showNextQuote());
         
-        // Keyboard navigation
+        // Keyboard navigation - always enabled regardless of visibility setting
         document.addEventListener('keydown', function(e) {
-            if (!settings.enableKeyboardNavigation) return;
-            
             if (e.key === 'ArrowLeft') {
                 showPreviousQuote();
             } else if (e.key === 'ArrowRight') {
@@ -481,11 +573,6 @@ function displaySelectedQuote() {
         quoteElement.style.opacity = '1';
         authorElement.style.opacity = '1';
         
-        // Reset timer display
-        if (settings.showTimer) {
-            resetTimerDisplay();
-        }
-        
         // Set timer for next quote
         quoteTimer = setTimeout(() => showNextQuote(), settings.quoteDisplayTime * 1000);
     }, 1000);
@@ -493,6 +580,9 @@ function displaySelectedQuote() {
 
 // Apply current settings to the page
 function applySettings() {
+    // Update navigation visibility
+    updateNavigationVisibility();
+    
     // If we're on a quote page and have a timer running
     if (typeof quotes !== 'undefined' && quoteTimer) {
         // Clear existing timer
@@ -500,11 +590,11 @@ function applySettings() {
         
         // Set new timer
         quoteTimer = setTimeout(() => showNextQuote(), settings.quoteDisplayTime * 1000);
-        
-        // Update timer display if enabled
-        if (settings.showTimer) {
-            resetTimerDisplay();
-        }
+    }
+    
+    // Update meditation timer if enabled
+    if (settings.showTimer) {
+        resetTimerDisplay();
     }
 }
 
@@ -537,11 +627,6 @@ window.addEventListener('load', () => {
                 authorElement.style.opacity = '1';
             }, 1000);
             
-            // Reset timer display if enabled
-            if (settings.showTimer) {
-                resetTimerDisplay();
-            }
-            
             // Use settings for delay
             quoteTimer = setTimeout(() => showNextQuote(), settings.quoteDisplayTime * 1000);
         };
@@ -549,4 +634,4 @@ window.addEventListener('load', () => {
     
     // Initialize settings
     initSettings();
-}); 
+});
